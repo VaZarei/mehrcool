@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_extra %}
+  {% if site.hero_poster %}<link rel="preload" as="image" href="{{ site.hero_poster.url }}" fetchpriority="high">{% endif %}
+{% endblock %}
+
+{% block content %}
+  {# ---------- Hero: full-bleed video + poster + scrim ---------- #}
+  <section class="hero hero--with-strip" data-hero aria-labelledby="hero-title">
+    <div class="hero__media" aria-hidden="true">
+      {% if site.hero_poster %}
+        <div class="hero__poster">
+          {% picture site.hero_poster alt="" sizes="100vw" widths="768,1080,1440,1920" loading="eager" fetchpriority="high" decoding="sync" %}
+        </div>
+      {% endif %}
+      {% if site.has_hero_video %}
+        <video class="hero__video" data-hero-video muted loop playsinline preload="none" disablepictureinpicture
+               {% if site.hero_poster %}poster="{{ site.hero_poster.url }}"{% endif %}
+               data-sources='[{% if site.hero_video_webm %}{"src":"{{ site.hero_video_webm.url }}","type":"video/webm"}{% if site.hero_video_mp4 %},{% endif %}{% endif %}{% if site.hero_video_mp4 %}{"src":"{{ site.hero_video_mp4.url }}","type":"video/mp4"}{% endif %}]'></video>
+      {% endif %}
+      <div class="hero__scrim"></div>
+    </div>
+
+    <div class="container hero__content">
+      <p class="hero__badge">{% icon "clock" size=18 %}{{ site.response_time_claim }}</p>
+      <h1 class="hero__title" id="hero-title">{{ site.hero_headline }}</h1>
+      <p class="hero__lead">{{ site.hero_subheadline }}</p>
+      <div class="hero__actions">
+        {% call_button label=site.hero_primary_cta_label size="lg" event="phone_click" %}
+        <a class="btn btn--outline-light btn--lg" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+      </div>
+    </div>
+
+    {% if site.has_hero_video %}
+      <button class="hero__toggle" type="button" data-hero-toggle aria-pressed="false" data-label-pause="Pause video" data-label-play="Play video">
+        <span data-hero-toggle-label>Pause video</span>
+      </button>
+    {% endif %}
+  </section>
+
+  {# ---------- "I need…" self-segmentation strip ---------- #}
+  {% if intent_cards %}
+    <section class="intent" aria-labelledby="intent-heading">
+      <div class="container">
+        <h2 class="intent__heading" id="intent-heading">{{ site.intent_strip_heading }}</h2>
+        <div class="intent__grid">
+          {% for card in intent_cards %}
+            <a class="intent-card {% if card.is_emergency %}intent-card--emergency{% endif %}" href="{{ card.url }}" data-event="intent_click" data-event-label="{{ card.label }}">
+              <span class="intent-card__icon">{% icon card.icon %}</span>
+              <span class="intent-card__body">
+                <span class="intent-card__label">{{ card.label }}</span>
+                <span class="intent-card__desc">{{ card.description }}</span>
+              </span>
+              <span class="intent-card__arrow">{% icon "arrow-right" %}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {# ---------- Trust strip ---------- #}
+  {% include "partials/trust_strip.html" %}
+
+  {# ---------- Services ---------- #}
+  <section class="section section--tint" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Services</span>
+        <h2 id="services-heading">{{ site.home_services_heading }}</h2>
+        {% if site.home_services_intro %}<p class="lead">{{ site.home_services_intro }}</p>{% endif %}
+      </div>
+      <div class="grid-auto grid-auto--lg">
+        {% for category in categories %}
+          <article class="card card--dark reveal">
+            <div class="card__media card__media--icon card__media--navy">
+              {% if category.hero_image %}{% picture category.hero_image alt=category.hero_image_alt sizes="(min-width: 1024px) 30vw, 92vw" widths="480,768,1080" %}{% else %}{% icon category.icon %}{% endif %}
+            </div>
+            <div class="card__body">
+              <h3 class="card__title"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h3>
+              <p class="card__text">{{ category.intro|truncatewords:28 }}</p>
+              <ul class="card__tags">
+                {% for service in category.published_services|slice:":4" %}<li><span class="chip chip--on-dark">{{ service.name }}</span></li>{% endfor %}
+              </ul>
+              <div class="card__footer"><span class="link-arrow link-arrow--light">See all {{ category.published_services|length }} service{{ category.published_services|length|pluralize }} {% icon "arrow-right" size=18 %}</span></div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      {% if featured_services %}
+        <div class="grid-auto mt-8">
+          {% for service in featured_services %}{% include "partials/card_service.html" %}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {# ---------- Why us ---------- #}
+  {% if site.why_items %}
+    <section class="section" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow">Why Mehr Cool</span>
+          <h2 id="why-heading">{{ site.home_why_heading }}</h2>
+        </div>
+        <div class="features {% if site.why_items|length > 3 %}features--4{% else %}features--3{% endif %}">
+          {% for item in site.why_items %}
+            <div class="feature reveal">
+              <span class="feature__num">0{{ forloop.counter }}</span>
+              <h3 class="feature__title">{{ item.title }}</h3>
+              <p class="feature__text">{{ item.body }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {# ---------- Proof: case studies ---------- #}
+  {% if case_studies %}
+    <section class="section section--tint" aria-labelledby="proof-heading">
+      <div class="container">
+        <div class="section__header cluster cluster--between">
+          <div>
+            <span class="eyebrow">Case studies</span>
+            <h2 id="proof-heading">{{ site.home_proof_heading }}</h2>
+          </div>
+          <a class="link-arrow" href="{% url 'projects:case_study_list' %}">All case studies {% icon "arrow-right" size=18 %}</a>
+        </div>
+        <div class="grid-auto grid-auto--lg">
+          {% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {# ---------- Reviews ---------- #}
+  {% if reviews %}
+    <section class="section" aria-labelledby="reviews-heading">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow">Reviews</span>
+          <h2 id="reviews-heading">{{ site.home_reviews_heading }}</h2>
+          <div class="mt-4">{% include "partials/rating.html" %}</div>
+        </div>
+        <div class="review-grid">
+          {% for review in reviews %}{% include "partials/review.html" %}{% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% include "partials/cta_band.html" %}
+{% endblock %}

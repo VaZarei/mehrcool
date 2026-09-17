@@ -1,0 +1,6 @@
+<div class="mobile-bar {% if not site.whatsapp_href %}mobile-bar--single{% endif %}" role="region" aria-label="Quick contact">
+  <a class="btn btn--primary" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="mobile_bar">{% icon "phone" %}{{ site.mobile_bar_call_label }}</a>
+  {% if site.whatsapp_href %}
+    <a class="btn btn--accent" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-label="mobile_bar">{% icon "whatsapp" %}{{ site.mobile_bar_whatsapp_label }}</a>
+  {% endif %}
+</div>

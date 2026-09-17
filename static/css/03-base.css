@@ -1,0 +1,198 @@
+/* ==========================================================================
+   03 — Base: element defaults and typography
+   Hierarchy is built from weight + size + leading as a set. Tracking is
+   size-specific: tight on display, near zero on body, slightly open on small.
+   ========================================================================== */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-body);
+  color: var(--text-primary);
+  background: var(--surface-page);
+  font-optical-sizing: auto;
+  font-variant-numeric: tabular-nums;
+  padding-bottom: 0;
+}
+
+/* Reserve space for the mobile thumb bar so it never covers content. */
+@media (max-width: 767.98px) {
+  body.has-mobile-bar {
+    padding-bottom: calc(var(--mobile-bar-height) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--weight-bold);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-heading);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-heading);
+}
+
+h4 {
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.005em;
+}
+
+p {
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+small,
+.text-small {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-small);
+}
+
+strong {
+  font-weight: var(--weight-semibold);
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+/* Visible focus for keyboard users — never removed, only restyled. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--color-ice-200);
+  color: var(--color-navy-900);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--space-8) 0;
+}
+
+address {
+  font-style: normal;
+}
+
+blockquote {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-grey-100);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Long-form prose rendered from admin text. */
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose h3 {
+  margin-top: var(--space-8);
+}
+
+.prose h4 {
+  margin-top: var(--space-6);
+}
+
+.prose ul {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+.prose li::marker {
+  color: var(--accent);
+}
+
+.prose--on-dark,
+.prose--on-dark h3,
+.prose--on-dark h4 {
+  color: var(--text-on-dark);
+}
+
+.prose--on-dark a {
+  color: var(--color-ice-300);
+}
+
+.prose--measure {
+  max-width: var(--container-narrow);
+}
+
+.prose--lg {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+
+.lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.eyebrow--on-dark {
+  color: var(--color-ice-300);
+}

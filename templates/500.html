@@ -1,0 +1,23 @@
+{% load static %}<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Something went wrong — {{ trading_name }}</title>
+  <meta name="robots" content="noindex">
+  {% if debug %}<link rel="stylesheet" href="{% static 'css/main.css' %}">{% else %}<link rel="stylesheet" href="{% static 'css/main.min.css' %}">{% endif %}
+</head>
+<body>
+  <main class="section section--fill" id="main">
+    <div class="container container--narrow text-center stack stack--lg">
+      <span class="eyebrow">Error 500</span>
+      <h1>Something went wrong on our side</h1>
+      <p class="lead mx-auto">The page could not be loaded. Our phones are unaffected — if you need an engineer, call the 24/7 line.</p>
+      <div class="cluster cluster--center">
+        <a class="btn btn--primary btn--lg" href="{{ tel_href }}">Call {{ phone }}</a>
+        <a class="btn btn--outline btn--lg" href="/">Back to the homepage</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

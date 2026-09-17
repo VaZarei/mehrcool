@@ -1,0 +1,13 @@
+{% with widget_type=field.field.widget.input_type %}
+<div class="field {% if widget_type == 'checkbox' %}field--check{% endif %} {% if field.errors %}field--error{% endif %} {{ extra_class|default:'' }}">
+  {% if widget_type == 'checkbox' %}
+    {{ field }}
+    <label class="field__label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="field__required" aria-hidden="true">*</span>{% endif %}</label>
+  {% else %}
+    <label class="field__label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="field__required" aria-hidden="true">*</span>{% endif %}</label>
+    {{ field }}
+  {% endif %}
+  {% if field.help_text %}<p class="field__help" id="{{ field.id_for_label }}_help">{{ field.help_text }}</p>{% endif %}
+  {% for error in field.errors %}<p class="field__error" id="{{ field.id_for_label }}_error">{% icon "close" %}{{ error }}</p>{% endfor %}
+</div>
+{% endwith %}

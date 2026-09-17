@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Card — service, case study, sector and area cards share one skeleton.
+   Image-led, whole card clickable, lift on hover, press feedback.
+   ========================================================================== */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-ice-300);
+}
+
+.card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.card__media {
+  aspect-ratio: 16 / 10;
+  background: var(--color-ice-100);
+  overflow: hidden;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.card:hover .card__media img {
+  transform: scale(1.03);
+}
+
+.card__media--icon {
+  display: grid;
+  place-items: center;
+  color: var(--color-navy-500);
+  background: linear-gradient(135deg, var(--color-ice-100), var(--color-ice-200));
+}
+
+.card__media--icon .icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.card__media--navy {
+  background: linear-gradient(135deg, var(--color-navy-800), var(--color-navy-600));
+  color: var(--color-ice-300);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  flex: 1;
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.card__title {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+.card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Stretch the primary link over the whole card. */
+.card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card__text {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.card__footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.card__footer .btn,
+.card__footer .link-arrow {
+  position: relative;
+  z-index: 2;
+}
+
+.card__meta {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-small);
+}
+
+/* Compact list card (e.g. related services). */
+.card--row {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.card--row .card__media {
+  flex: none;
+  width: 4rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+
+.card--row .card__body {
+  padding: 0;
+  gap: var(--space-1);
+}
+
+/* Category hub card (dark) */
+.card--dark {
+  background: var(--color-navy-800);
+  border-color: rgb(255 255 255 / 0.08);
+  color: var(--text-on-dark);
+}
+
+.card--dark .card__title,
+.card--dark .card__title a {
+  color: var(--text-on-dark);
+}
+
+.card--dark .card__text {
+  color: var(--text-on-dark-muted);
+}
+
+.card--dark:hover {
+  border-color: var(--color-navy-500);
+}
+
+/* Fact list inside cards / asides */
+.fact-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.fact-list__item {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+}
+
+.fact-list__item .icon {
+  color: var(--color-navy-500);
+  margin-top: 0.1em;
+}
+
+.fact-list__label {
+  color: var(--text-muted);
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-small);
+}
+
+.fact-list__value {
+  font-weight: var(--weight-medium);
+}
+
+/* Aside panel */
+.panel {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--surface-tint);
+  border: 1px solid var(--border-subtle);
+}
+
+.panel--dark {
+  background: var(--color-navy-800);
+  color: var(--text-on-dark);
+  border-color: transparent;
+}
+
+.panel--dark h3,
+.panel--dark h4 {
+  color: var(--text-on-dark);
+}
+
+.panel > * + * {
+  margin-top: var(--space-4);
+}
+
+/* Spec table */
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+  font-size: var(--text-sm);
+}
+
+.spec-table th {
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+  width: 40%;
+  padding-right: var(--space-4);
+}

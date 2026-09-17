@@ -1,0 +1,20 @@
+<h2 class="mb-4" data-focus>Send us the site details</h2>
+<form class="form" method="post" action="{% url 'leads:contact' %}#enquiry" hx-post="{% url 'leads:contact' %}" hx-target="closest [data-form-region]" hx-swap="innerHTML" hx-indicator="closest [data-form-region]" novalidate data-once>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="form__nonfield" role="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+  <div class="hp-field" aria-hidden="true">{{ form.website_url }}</div>
+  <div class="form-grid form-grid--2">
+    {% include "partials/field.html" with field=form.name %}
+    {% include "partials/field.html" with field=form.company %}
+    {% include "partials/field.html" with field=form.phone %}
+    {% include "partials/field.html" with field=form.email %}
+    {% include "partials/field.html" with field=form.enquiry_type extra_class="field--full" %}
+    {% include "partials/field.html" with field=form.message extra_class="field--full" %}
+    {% include "partials/field.html" with field=form.consent extra_class="field--full" %}
+  </div>
+  <div class="form__actions">
+    <button class="btn btn--secondary btn--lg" type="submit">Send enquiry {% icon "arrow-right" size=18 %}</button>
+    <span class="htmx-indicator form__status"><span class="spinner" aria-hidden="true"></span>&nbsp;Sending…</span>
+  </div>
+  <p class="text-small text-muted">Prefer to talk? Call {{ site.emergency_phone }} — {{ site.opening_hours_text|lower }}.</p>
+</form>

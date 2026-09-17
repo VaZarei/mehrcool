@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=page.title lead=page.intro hero_image=page.hero_image hero_image_alt=page.hero_image_alt show_actions=True %}
+  {% for block in blocks %}{% include block.template_name with block=block %}{% endfor %}
+  {% include "partials/trust_strip.html" %}
+  {% if page.show_contact_cta %}{% include "partials/cta_band.html" %}{% endif %}
+{% endblock %}

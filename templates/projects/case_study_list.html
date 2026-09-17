@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro %}
+  <section class="section">
+    <div class="container stack stack--lg">
+      <form class="filters" method="get" action="{% url 'projects:case_study_list' %}">
+        <div class="field"><label class="field__label" for="f-sector">Sector</label><select id="f-sector" name="sector"><option value="">All sectors</option>{% for s in sectors %}<option value="{{ s.slug }}" {% if filters.sector == s.slug %}selected{% endif %}>{{ s.name }}</option>{% endfor %}</select></div>
+        <div class="field"><label class="field__label" for="f-service">Service</label><select id="f-service" name="service"><option value="">All services</option>{% for s in services %}<option value="{{ s.slug }}" {% if filters.service == s.slug %}selected{% endif %}>{{ s.name }}</option>{% endfor %}</select></div>
+        <div class="field"><label class="field__label" for="f-area">Area</label><select id="f-area" name="area"><option value="">All areas</option>{% for a in areas %}<option value="{{ a.slug }}" {% if filters.area == a.slug %}selected{% endif %}>{{ a.name }}</option>{% endfor %}</select></div>
+        <button class="btn btn--secondary" type="submit">Filter</button>
+        {% if filters.sector or filters.service or filters.area %}<a class="btn btn--ghost" href="{% url 'projects:case_study_list' %}">Clear</a>{% endif %}
+      </form>
+      <div class="grid-auto grid-auto--lg">
+        {% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% empty %}<p class="text-muted">No case studies match those filters yet.</p>{% endfor %}
+      </div>
+      {% if is_paginated %}
+        <nav class="cluster cluster--center" aria-label="Pagination">
+          {% if page_obj.has_previous %}<a class="btn btn--outline" href="?page={{ page_obj.previous_page_number }}">Previous</a>{% endif %}
+          <span class="text-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+          {% if page_obj.has_next %}<a class="btn btn--outline" href="?page={{ page_obj.next_page_number }}">Next</a>{% endif %}
+        </nav>
+      {% endif %}
+    </div>
+  </section>
+  {% include "partials/cta_band.html" %}
+{% endblock %}

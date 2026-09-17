@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=category.display_headline lead=category.intro hero_image=category.hero_image hero_image_alt=category.hero_image_alt show_actions=True %}
+
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section__header">
+        <h2 id="services-heading">{{ category.name }} services</h2>
+      </div>
+      <div class="grid-auto">
+        {% for service in services %}{% include "partials/card_service.html" %}{% empty %}<p class="text-muted">Services for this category are being written up. Call us to discuss your requirement.</p>{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% if case_studies %}
+    <section class="section section--tint" aria-labelledby="proof-heading">
+      <div class="container">
+        <div class="section__header cluster cluster--between">
+          <h2 id="proof-heading">{{ category.name }} projects</h2>
+          <a class="link-arrow" href="{% url 'projects:case_study_list' %}">All case studies {% icon "arrow-right" size=18 %}</a>
+        </div>
+        <div class="grid-auto grid-auto--lg">
+          {% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% include "partials/trust_strip.html" %}
+  {% include "partials/cta_band.html" %}
+{% endblock %}

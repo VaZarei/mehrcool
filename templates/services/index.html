@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro show_actions=True %}
+  {% for category in categories %}
+    <section class="section {% cycle '' 'section--tint' %}" aria-labelledby="cat-{{ category.slug }}">
+      <div class="container">
+        <div class="section__header cluster cluster--between">
+          <div>
+            <span class="eyebrow">{{ category.name }}</span>
+            <h2 id="cat-{{ category.slug }}">{{ category.display_headline }}</h2>
+            <p class="lead">{{ category.intro }}</p>
+          </div>
+          <a class="link-arrow" href="{{ category.get_absolute_url }}">About {{ category.name|lower }} {% icon "arrow-right" size=18 %}</a>
+        </div>
+        <div class="grid-auto">
+          {% for service in category.published_services %}{% include "partials/card_service.html" %}{% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+  {% for block in copy.blocks %}{% include block.template_name with block=block %}{% endfor %}
+  {% include "partials/trust_strip.html" %}
+  {% include "partials/cta_band.html" %}
+{% endblock %}

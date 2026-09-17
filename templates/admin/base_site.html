@@ -1,0 +1,8 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Mehr Cool admin{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'admin/css/mehrcool_admin.css' %}">{% endblock %}
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}"><span class="mc-brand"><span class="mc-brand__mark" aria-hidden="true"></span>Mehr<strong>Cool</strong> <span class="mc-brand__sub">website admin</span></span></a></div>
+{% endblock %}
+{% block nav-global %}<a class="mc-viewsite" href="/" target="_blank" rel="noopener">View website ↗</a>{% endblock %}

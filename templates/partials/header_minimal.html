@@ -1,0 +1,19 @@
+<header class="site-header site-header--minimal is-condensed" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="/" aria-label="{{ site.trading_name }} — home">
+      {% if site.logo_light %}
+        <img src="{{ site.logo_light.url }}" alt="{{ site.trading_name }}" width="240" height="60">
+      {% else %}
+        <span class="site-header__wordmark">Mehr<span>Cool</span></span>
+      {% endif %}
+    </a>
+    <div class="site-header__actions">
+      {% if header_badge %}
+        <span class="trust-mark" title="{{ header_badge.short_description|default:header_badge.name }}">
+          <img src="{{ header_badge.logo.url }}" alt="" width="56" height="24"><span>{{ header_badge.name }}</span>
+        </span>
+      {% endif %}
+      <a class="btn btn--primary site-header__call" href="{{ site.emergency_tel_href }}" aria-label="Call {{ site.emergency_phone }}" data-event="phone_click" data-event-label="emergency_header">{% icon "phone" size=18 %}<span class="site-header__call-label">{{ site.emergency_phone }}</span></a>
+    </div>
+  </div>
+</header>

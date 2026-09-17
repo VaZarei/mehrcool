@@ -1,0 +1,22 @@
+{% extends "admin/index.html" %}
+{% block content %}
+
+<div class="mc-dashboard">
+  <div class="mc-dashboard__card">
+    <h2>Where things live</h2>
+    <ul>
+      <li><strong>Change the phone number, email, address, hours or hero video</strong> → <a href="{% url 'admin:core_sitesettings_changelist' %}">Site settings</a></li>
+      <li><strong>Edit the menu or footer links</strong> → <a href="{% url 'admin:core_navigationitem_changelist' %}">Navigation</a></li>
+      <li><strong>Switch on an accreditation logo</strong> → <a href="{% url 'admin:core_trustbadge_changelist' %}">Accreditation badges</a></li>
+      <li><strong>Add or edit a service</strong> → <a href="{% url 'admin:services_service_changelist' %}">Services</a></li>
+      <li><strong>Publish a case study</strong> → <a href="{% url 'admin:projects_casestudy_changelist' %}">Case studies</a></li>
+      <li><strong>Add a borough page</strong> → <a href="{% url 'admin:locations_servicearea_add' %}">Service areas → Add</a></li>
+      <li><strong>Add a review</strong> → <a href="{% url 'admin:testimonials_testimonial_changelist' %}">Reviews</a></li>
+      <li><strong>See new enquiries and emergency callbacks</strong> → <a href="{% url 'admin:leads_emergencycallout_changelist' %}">Emergency callbacks</a> · <a href="{% url 'admin:leads_contactenquiry_changelist' %}">Contact enquiries</a></li>
+      <li><strong>Legal pages, About, Careers</strong> → <a href="{% url 'admin:pages_page_changelist' %}">Pages</a></li>
+    </ul>
+    <p class="mc-dashboard__hint">Every field has a short explanation underneath it. Changes go live as soon as you press <em>Save</em>.</p>
+  </div>
+</div>
+{{ block.super }}
+{% endblock %}

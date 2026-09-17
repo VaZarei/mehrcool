@@ -1,0 +1,4 @@
+{% include "pages/blocks/_wrap_open.html" %}
+<div class="prose {% if not inline %}prose--measure{% endif %} {% if block.background == 'navy' %}prose--on-dark{% endif %}">{{ block.body|richtext }}</div>
+{% if block.cta_label %}<p class="mt-6">{% if block.cta_is_phone %}{% call_button label=block.cta_label %}{% else %}<a class="btn btn--secondary" href="{{ block.cta_url }}">{{ block.cta_label }}</a>{% endif %}</p>{% endif %}
+{% include "pages/blocks/_wrap_close.html" %}

@@ -1,0 +1,8 @@
+{% include "pages/blocks/_wrap_open.html" %}
+{% if block.body %}<p class="lead mb-8">{{ block.body }}</p>{% endif %}
+<div class="stats stats--{{ block.columns }}">
+  {% for item in block.parsed_items %}
+    <div class="stat reveal"><div class="stat__value">{{ item.title }}</div><div class="stat__label">{{ item.body }}</div></div>
+  {% endfor %}
+</div>
+{% include "pages/blocks/_wrap_close.html" %}

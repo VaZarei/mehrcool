@@ -1,0 +1,9 @@
+{% if site.emergency_banner_enabled %}
+<div class="banner" role="region" aria-label="Emergency service notice">
+  <div class="container banner__inner">
+    <span class="banner__pulse" aria-hidden="true"></span>
+    <span class="banner__text">{{ site.emergency_banner_text }}</span>
+    <a class="banner__phone" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="banner">{{ site.emergency_phone }}</a>
+  </div>
+</div>
+{% endif %}

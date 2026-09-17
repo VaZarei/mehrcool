@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=sector.display_headline lead=sector.intro hero_image=sector.hero_image hero_image_alt=sector.hero_image_alt eyebrow="Sector" show_actions=True %}
+  {% if sector.key_services.all %}
+    <section class="section">
+      <div class="container">
+        <div class="section__header"><h2>Services for {{ sector.name|lower }}</h2></div>
+        <div class="grid-auto">{% for service in sector.key_services.all %}{% include "partials/card_service.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+  {% if case_studies %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>{{ sector.name }} projects</h2></div>
+        <div class="grid-auto grid-auto--lg">{% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+  {% include "partials/trust_strip.html" %}
+  {% include "partials/cta_band.html" %}
+{% endblock %}

@@ -1,0 +1,3732 @@
+[
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "mehrcoolrefrigeration.co.uk",
+    "name": "Mehr Cool"
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.461Z",
+    "updated_at": "2026-09-17T19:59:26.461Z",
+    "order": 0,
+    "label": "Services",
+    "parent": null,
+    "target_type": "url",
+    "url": "/services/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.461Z",
+    "updated_at": "2026-09-17T19:59:26.461Z",
+    "order": 0,
+    "label": "Commercial Refrigeration",
+    "parent": 1,
+    "target_type": "category",
+    "url": "",
+    "service_category": 1,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.462Z",
+    "updated_at": "2026-09-17T19:59:26.462Z",
+    "order": 1,
+    "label": "Air Conditioning",
+    "parent": 1,
+    "target_type": "category",
+    "url": "",
+    "service_category": 2,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.462Z",
+    "updated_at": "2026-09-17T19:59:26.462Z",
+    "order": 2,
+    "label": "Emergency Services",
+    "parent": 1,
+    "target_type": "category",
+    "url": "",
+    "service_category": 3,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.462Z",
+    "updated_at": "2026-09-17T19:59:26.462Z",
+    "order": 1,
+    "label": "Sectors",
+    "parent": null,
+    "target_type": "url",
+    "url": "/sectors/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": false,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.462Z",
+    "updated_at": "2026-09-17T19:59:26.462Z",
+    "order": 2,
+    "label": "Case studies",
+    "parent": null,
+    "target_type": "url",
+    "url": "/case-studies/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": false,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.463Z",
+    "updated_at": "2026-09-17T19:59:26.463Z",
+    "order": 3,
+    "label": "Areas",
+    "parent": null,
+    "target_type": "url",
+    "url": "/areas/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": false,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.463Z",
+    "updated_at": "2026-09-17T19:59:26.463Z",
+    "order": 4,
+    "label": "About",
+    "parent": null,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 1,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": false,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.463Z",
+    "updated_at": "2026-09-17T19:59:26.463Z",
+    "order": 5,
+    "label": "Contact",
+    "parent": null,
+    "target_type": "url",
+    "url": "/contact/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": true,
+    "show_in_footer": false,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.463Z",
+    "updated_at": "2026-09-17T19:59:26.463Z",
+    "order": 10,
+    "label": "Company",
+    "parent": null,
+    "target_type": "none",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.464Z",
+    "updated_at": "2026-09-17T19:59:26.464Z",
+    "order": 0,
+    "label": "About us",
+    "parent": 10,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 1,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.464Z",
+    "updated_at": "2026-09-17T19:59:26.464Z",
+    "order": 1,
+    "label": "Careers",
+    "parent": 10,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 6,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 13,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.465Z",
+    "updated_at": "2026-09-17T19:59:26.465Z",
+    "order": 2,
+    "label": "F-Gas compliance statement",
+    "parent": 10,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 2,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 14,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.465Z",
+    "updated_at": "2026-09-17T19:59:26.465Z",
+    "order": 3,
+    "label": "Case studies",
+    "parent": 10,
+    "target_type": "url",
+    "url": "/case-studies/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 15,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.465Z",
+    "updated_at": "2026-09-17T19:59:26.465Z",
+    "order": 4,
+    "label": "Areas we cover",
+    "parent": 10,
+    "target_type": "url",
+    "url": "/areas/",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 16,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.465Z",
+    "updated_at": "2026-09-17T19:59:26.465Z",
+    "order": 11,
+    "label": "Legal",
+    "parent": null,
+    "target_type": "none",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": null,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 17,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.466Z",
+    "updated_at": "2026-09-17T19:59:26.466Z",
+    "order": 0,
+    "label": "Terms of business",
+    "parent": 16,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 3,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 18,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.466Z",
+    "updated_at": "2026-09-17T19:59:26.466Z",
+    "order": 1,
+    "label": "Privacy policy",
+    "parent": 16,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 4,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.navigationitem",
+  "pk": 19,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.467Z",
+    "updated_at": "2026-09-17T19:59:26.467Z",
+    "order": 2,
+    "label": "Cookie policy",
+    "parent": 16,
+    "target_type": "page",
+    "url": "",
+    "service_category": null,
+    "service": null,
+    "page": 5,
+    "location": null,
+    "show_in_header": false,
+    "show_in_footer": true,
+    "open_in_new_tab": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.sitesettings",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.259Z",
+    "updated_at": "2026-09-17T19:59:26.265Z",
+    "trading_name": "Mehr Cool Refrigeration & Air Conditioning",
+    "legal_name": "MEHR COOL REFRIGERATION & AIR CONDITIONING LTD",
+    "company_number": "15733975",
+    "vat_number": "",
+    "founded_date": "2024-05-22",
+    "logo_light": "placeholders/logo-light.svg",
+    "logo_dark": "placeholders/logo-dark.svg",
+    "favicon": "placeholders/favicon.svg",
+    "primary_phone": "+44 77 7888 9080",
+    "emergency_phone": "+44 77 7888 9080",
+    "whatsapp_number": "+44 77 7888 9080",
+    "whatsapp_prefill_message": "Hi Mehr Cool, I need help with my refrigeration / air conditioning. Here is a photo of the unit and error code:",
+    "email": "info@mehrcoolrefrigeration.co.uk",
+    "lead_notification_email": "",
+    "address_line_1": "Dept 2710, 126 East Ferry Road",
+    "address_line_2": "Canary Wharf",
+    "city": "London",
+    "region": "England",
+    "postcode": "E14 9FP",
+    "country_code": "GB",
+    "latitude": "51.491200",
+    "longitude": "-0.015100",
+    "google_maps_embed_url": "https://www.google.com/maps?q=51.4912,-0.0151&z=15&output=embed",
+    "areas_served": "London, Greater London, Berkshire",
+    "opening_hours_text": "Open 24 hours a day, 365 days a year",
+    "is_open_24_7": true,
+    "response_time_claim": "Engineer on site in under 2 hours across London",
+    "price_range": "£££",
+    "emergency_banner_enabled": true,
+    "emergency_banner_text": "24/7 emergency refrigeration & air conditioning engineers across London",
+    "hero_headline": "Commercial refrigeration and air conditioning, kept running.",
+    "hero_subheadline": "F-Gas certified engineers for cold rooms, display fridges, cellar cooling and VRF air conditioning. Installation, planned maintenance and 24/7 emergency repair.",
+    "hero_primary_cta_label": "Call the 24/7 emergency line",
+    "hero_secondary_cta_label": "Request a quote",
+    "hero_secondary_cta_url": "/quote/",
+    "hero_video_mp4": "placeholders/hero-placeholder.mp4",
+    "hero_video_webm": "placeholders/hero-placeholder.webm",
+    "hero_poster": "placeholders/hero-poster.jpg",
+    "hero_poster_alt": "Mehr Cool engineer servicing a commercial refrigeration condenser",
+    "intent_strip_heading": "I need…",
+    "home_services_heading": "What we do",
+    "home_services_intro": "Design, installation, planned maintenance and repair for commercial cooling — one contractor, one point of contact, one set of compliance records.",
+    "home_why_heading": "Why facilities teams keep us on speed dial",
+    "home_why_items": "Engineers, not sales reps :: The person who answers the phone is the person who knows what a high-pressure trip means at 2am.\nF-Gas compliant by default :: Refrigerant recovered, weighed and logged on every job, with certificates for your records.\nFixed-price PPM contracts :: Scheduled visits, filter changes, leak checks and temperature logs — priced per asset, no surprises.\nMulti-brand, manufacturer-trained :: Daikin, Mitsubishi Electric, Toshiba and Fujitsu systems installed and maintained to spec.",
+    "home_proof_heading": "Recent work",
+    "home_reviews_heading": "What clients say",
+    "cta_band_title": "Talk to an engineer, not a call centre",
+    "cta_band_text": "Call now for a breakdown, or send us the site details and we will come back with a fixed-price quote.",
+    "cta_band_checklist": "F-Gas certified engineers — refrigerant handling logged on every job\nWritten quotes and service reports for every site\nPublic liability insurance and RAMS supplied on request",
+    "mobile_bar_call_label": "Call engineer now",
+    "mobile_bar_whatsapp_label": "WhatsApp us",
+    "footer_contact_heading": "Talk to an engineer",
+    "qr_card_title": "Save our number before you need it",
+    "contact_qr_image": "",
+    "contact_qr_caption": "Scan to save our 24/7 number to your phone",
+    "facebook_url": "",
+    "instagram_url": "",
+    "linkedin_url": "",
+    "x_url": "",
+    "google_business_url": "",
+    "checkatrade_url": "",
+    "ga4_measurement_id": "",
+    "gtm_container_id": "",
+    "default_meta_title_suffix": " | Mehr Cool Refrigeration & Air Conditioning, London",
+    "default_meta_description": "Commercial refrigeration, walk-in cold room installation, VRF air conditioning and 24/7 emergency maintenance across London and surrounding areas.",
+    "default_og_image": "placeholders/og-default.jpg",
+    "google_rating_override": null,
+    "google_review_count_override": null,
+    "footer_blurb": "Independent commercial refrigeration and air conditioning contractor based in Canary Wharf. F-Gas certified engineers covering London, Greater London and Berkshire, 24 hours a day.",
+    "footer_legal_line": ""
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.267Z",
+    "updated_at": "2026-09-17T19:59:26.268Z",
+    "order": 0,
+    "name": "F-Gas",
+    "logo": "placeholders/badge-f-gas.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Legally required to handle refrigerant gases under EC 517/2014.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": true,
+    "is_active": true
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.268Z",
+    "updated_at": "2026-09-17T19:59:26.269Z",
+    "order": 1,
+    "name": "REFCOM",
+    "logo": "placeholders/badge-refcom.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Refrigerant handling company certification scheme.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": false,
+    "is_active": false
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.270Z",
+    "updated_at": "2026-09-17T19:59:26.271Z",
+    "order": 2,
+    "name": "SafeContractor",
+    "logo": "placeholders/badge-safecontractor.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Health & safety pre-qualification for contractors.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": false,
+    "is_active": false
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.271Z",
+    "updated_at": "2026-09-17T19:59:26.272Z",
+    "order": 3,
+    "name": "CHAS",
+    "logo": "placeholders/badge-chas.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Contractors Health and Safety Assessment Scheme.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": false,
+    "is_active": false
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.273Z",
+    "updated_at": "2026-09-17T19:59:26.274Z",
+    "order": 4,
+    "name": "ISO 9001",
+    "logo": "placeholders/badge-iso-9001.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Quality management system certification.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": false,
+    "is_active": false
+  }
+},
+{
+  "model": "core.trustbadge",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.274Z",
+    "updated_at": "2026-09-17T19:59:26.275Z",
+    "order": 5,
+    "name": "Gas Safe",
+    "logo": "placeholders/badge-gas-safe.svg",
+    "alt_text": "",
+    "website_url": "",
+    "short_description": "Required for work on gas appliances.",
+    "certificate_url": "",
+    "certificate_number": "",
+    "show_in_header": false,
+    "is_active": false
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.276Z",
+    "updated_at": "2026-09-17T19:59:26.277Z",
+    "order": 0,
+    "name": "Daikin",
+    "logo": "placeholders/brand-daikin.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.278Z",
+    "updated_at": "2026-09-17T19:59:26.279Z",
+    "order": 1,
+    "name": "Mitsubishi Electric",
+    "logo": "placeholders/brand-mitsubishi-electric.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.279Z",
+    "updated_at": "2026-09-17T19:59:26.280Z",
+    "order": 2,
+    "name": "Toshiba",
+    "logo": "placeholders/brand-toshiba.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.281Z",
+    "updated_at": "2026-09-17T19:59:26.281Z",
+    "order": 3,
+    "name": "Fujitsu",
+    "logo": "placeholders/brand-fujitsu.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.282Z",
+    "updated_at": "2026-09-17T19:59:26.283Z",
+    "order": 4,
+    "name": "Panasonic",
+    "logo": "placeholders/brand-panasonic.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.284Z",
+    "updated_at": "2026-09-17T19:59:26.284Z",
+    "order": 5,
+    "name": "LG",
+    "logo": "placeholders/brand-lg.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.285Z",
+    "updated_at": "2026-09-17T19:59:26.285Z",
+    "order": 6,
+    "name": "Foster",
+    "logo": "placeholders/brand-foster.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.286Z",
+    "updated_at": "2026-09-17T19:59:26.287Z",
+    "order": 7,
+    "name": "Williams",
+    "logo": "placeholders/brand-williams.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.287Z",
+    "updated_at": "2026-09-17T19:59:26.288Z",
+    "order": 8,
+    "name": "Bitzer",
+    "logo": "placeholders/brand-bitzer.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.brandserviced",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.289Z",
+    "updated_at": "2026-09-17T19:59:26.289Z",
+    "order": 9,
+    "name": "Danfoss",
+    "logo": "placeholders/brand-danfoss.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.clientlogo",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.290Z",
+    "updated_at": "2026-09-17T19:59:26.291Z",
+    "order": 0,
+    "name": "Dockside Dining Group",
+    "logo": "placeholders/client-0.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.clientlogo",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.292Z",
+    "updated_at": "2026-09-17T19:59:26.293Z",
+    "order": 1,
+    "name": "Riverside Hotels",
+    "logo": "placeholders/client-1.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.clientlogo",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.293Z",
+    "updated_at": "2026-09-17T19:59:26.294Z",
+    "order": 2,
+    "name": "Freshmarket Stores",
+    "logo": "placeholders/client-2.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.clientlogo",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.295Z",
+    "updated_at": "2026-09-17T19:59:26.295Z",
+    "order": 3,
+    "name": "Meridian Offices",
+    "logo": "placeholders/client-3.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.clientlogo",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.296Z",
+    "updated_at": "2026-09-17T19:59:26.297Z",
+    "order": 4,
+    "name": "Thameside Pharmacy Group",
+    "logo": "placeholders/client-4.svg",
+    "alt_text": "",
+    "website_url": "",
+    "is_active": true
+  }
+},
+{
+  "model": "core.intentcard",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.457Z",
+    "updated_at": "2026-09-17T19:59:26.457Z",
+    "order": 0,
+    "label": "Repair",
+    "description": "Something has stopped working — get an engineer today.",
+    "icon": "wrench",
+    "url": "/emergency-callout/",
+    "is_emergency": true,
+    "is_active": true
+  }
+},
+{
+  "model": "core.intentcard",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.458Z",
+    "updated_at": "2026-09-17T19:59:26.458Z",
+    "order": 1,
+    "label": "Maintenance",
+    "description": "Planned servicing, F-Gas leak checks and compliance records.",
+    "icon": "calendar-check",
+    "url": "/air-conditioning/planned-preventative-maintenance/",
+    "is_emergency": false,
+    "is_active": true
+  }
+},
+{
+  "model": "core.intentcard",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.459Z",
+    "updated_at": "2026-09-17T19:59:26.459Z",
+    "order": 2,
+    "label": "New installation",
+    "description": "Cold rooms, display cases or air conditioning for a new or refitted site.",
+    "icon": "plus-square",
+    "url": "/quote/",
+    "is_emergency": false,
+    "is_active": true
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.437Z",
+    "updated_at": "2026-09-17T19:59:26.437Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.437Z",
+    "order": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "About Mehr Cool",
+    "slug": "about",
+    "template": "standard",
+    "intro": "An independent refrigeration and air conditioning contractor in Canary Wharf, run by engineers, covering London, Greater London and Berkshire around the clock.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Contract buyers (Path B)"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.441Z",
+    "updated_at": "2026-09-17T19:59:26.441Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.441Z",
+    "order": 1,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "F-Gas compliance statement",
+    "slug": "f-gas-compliance",
+    "template": "narrow",
+    "intro": "How we meet the F-Gas Regulation (EC 517/2014) on every job, and what that means for equipment owners.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Contract buyers (Path B)"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.442Z",
+    "updated_at": "2026-09-17T19:59:26.442Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.442Z",
+    "order": 10,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Terms of business",
+    "slug": "terms",
+    "template": "narrow",
+    "intro": "",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": false,
+    "audience_note": ""
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.444Z",
+    "updated_at": "2026-09-17T19:59:26.444Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.444Z",
+    "order": 11,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Privacy policy",
+    "slug": "privacy",
+    "template": "narrow",
+    "intro": "",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": false,
+    "audience_note": ""
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.445Z",
+    "updated_at": "2026-09-17T19:59:26.445Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.445Z",
+    "order": 12,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Cookie policy",
+    "slug": "cookies",
+    "template": "narrow",
+    "intro": "",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": false,
+    "audience_note": ""
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.447Z",
+    "updated_at": "2026-09-17T19:59:26.447Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.447Z",
+    "order": 13,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Careers",
+    "slug": "careers",
+    "template": "narrow",
+    "intro": "Join a small team of engineers who care about doing the job properly.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": ""
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.449Z",
+    "updated_at": "2026-09-17T19:59:26.449Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.449Z",
+    "order": 20,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Commercial refrigeration & air conditioning services",
+    "slug": "services",
+    "template": "standard",
+    "intro": "Every service we offer, grouped the way facilities teams buy them: cooling for product, cooling for people, and what happens when either stops.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /services/ index"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.450Z",
+    "updated_at": "2026-09-17T19:59:26.450Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.450Z",
+    "order": 21,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Sectors we serve",
+    "slug": "sectors",
+    "template": "standard",
+    "intro": "Cooling failures cost different things in different buildings: stock in a supermarket, guests in a hotel, uptime in a data centre. We plan maintenance around what your building cannot afford to lose.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /sectors/ index"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.452Z",
+    "updated_at": "2026-09-17T19:59:26.452Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.452Z",
+    "order": 22,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Case studies",
+    "slug": "case-studies",
+    "template": "standard",
+    "intro": "Real sites, real faults, measurable results. Filter by sector, service or area.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /case-studies/ index"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.453Z",
+    "updated_at": "2026-09-17T19:59:26.453Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.453Z",
+    "order": 23,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Areas we cover",
+    "slug": "areas",
+    "template": "standard",
+    "intro": "Engineers based in Canary Wharf with vans across London, Greater London and Berkshire. Pick your area for local response times and recent work nearby.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /areas/ index"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.454Z",
+    "updated_at": "2026-09-17T19:59:26.454Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.454Z",
+    "order": 24,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Contact Mehr Cool",
+    "slug": "contact",
+    "template": "standard",
+    "intro": "For a breakdown, call — we answer around the clock. For maintenance contracts, new installations and tenders, send the site details below and an engineer will reply within one working day.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /contact/ page"
+  }
+},
+{
+  "model": "pages.page",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.455Z",
+    "updated_at": "2026-09-17T19:59:26.455Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.455Z",
+    "order": 25,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Refrigeration or air conditioning down? Call now.",
+    "slug": "emergency-callout",
+    "template": "standard",
+    "intro": "Leave your mobile number and the duty engineer rings you back within minutes.",
+    "hero_image": "",
+    "hero_image_alt": "",
+    "show_contact_cta": true,
+    "audience_note": "Copy for the /emergency-callout/ page (heading, intro, 3-step tips)"
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.438Z",
+    "updated_at": "2026-09-17T19:59:26.438Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "Engineers first",
+    "body": "Mehr Cool Refrigeration & Air Conditioning Ltd was incorporated in May 2024 and is based in Canary Wharf. The company was founded by working refrigeration engineers who had spent years watching good equipment fail for avoidable reasons: dirty condensers, skipped leak checks, undersized plant and paperwork nobody kept.\n\nWe run the business the way we would want a contractor to run it for us. The engineer who quotes the job is the engineer who installs it. Every visit ends with a written report. Every gram of refrigerant is recorded.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 1,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.439Z",
+    "updated_at": "2026-09-17T19:59:26.439Z",
+    "order": 1,
+    "block_type": "stat_row",
+    "heading": "",
+    "body": "",
+    "items": "24/7 :: Emergency line answered by an engineer\n< 2 hrs :: Typical emergency response across London\n100% :: Engineers F-Gas certified\n10+ :: Manufacturers installed and maintained",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 4,
+    "background": "ice",
+    "anchor_id": "",
+    "page": 1,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.439Z",
+    "updated_at": "2026-09-17T19:59:26.439Z",
+    "order": 2,
+    "block_type": "feature_grid",
+    "heading": "Why F-Gas matters to you",
+    "body": "",
+    "items": "It is the law :: Anyone handling fluorinated refrigerants in the UK must hold an F-Gas certificate. Using an uncertified contractor exposes the equipment owner to enforcement action, not just the contractor.\nLeak checks are mandatory :: Systems containing 5 tonnes CO₂-equivalent or more must be leak-tested at fixed intervals and the results recorded. We calculate the threshold for every asset and schedule accordingly.\nRecords protect you :: Insurers, landlords and auditors ask for refrigerant logs. Ours are issued after every visit and kept for five years, as the regulation requires.",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 1,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.440Z",
+    "updated_at": "2026-09-17T19:59:26.440Z",
+    "order": 3,
+    "block_type": "logo_strip",
+    "heading": "",
+    "body": "",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 1,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.440Z",
+    "updated_at": "2026-09-17T19:59:26.440Z",
+    "order": 4,
+    "block_type": "rich_text",
+    "heading": "Company details",
+    "body": "**Legal name:** MEHR COOL REFRIGERATION & AIR CONDITIONING LTD\n\n**Company number:** 15733975 (registered in England and Wales)\n\n**Registered office:** Dept 2710, 126 East Ferry Road, Canary Wharf, London, E14 9FP\n\n**Principal activity:** SIC 43220 — Plumbing, heat and air-conditioning installation",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "ice",
+    "anchor_id": "",
+    "page": 1,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.442Z",
+    "updated_at": "2026-09-17T19:59:26.442Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "",
+    "body": "## Our obligations\nMehr Cool Refrigeration & Air Conditioning Ltd handles fluorinated greenhouse gases (F-Gases) in the course of installing, maintaining and decommissioning refrigeration and air conditioning equipment. We operate under the F-Gas Regulation (EC 517/2014, as retained in UK law) and the associated UK company certification requirements.\n\n## Certification\n- Every engineer who handles refrigerant holds a valid F-Gas category certificate.\n- The company holds, or is in the process of obtaining, company certification through a recognised UK scheme. Certificate numbers are shown on our accreditation badges once issued and are available on request.\n\n## What we do on every job\n- Recover refrigerant rather than vent it, using certified recovery equipment.\n- Weigh and record all refrigerant added or removed, by type and quantity.\n- Issue a written record to the equipment operator after every intervention.\n- Leak-test systems at the intervals the regulation requires, based on CO₂-equivalent charge.\n- Label equipment with refrigerant type, charge and GWP.\n\n## Refrigerant choice\nFor new installations we specify low-GWP refrigerants — R32 for air conditioning, R290 (propane) or R448A/R449A for commercial refrigeration — so that equipment we install today remains serviceable through the HFC phase-down.\n\n## Questions\nIf you are an equipment operator and unsure of your own obligations, ask us. We will explain what applies to your systems in plain English.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 2,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.443Z",
+    "updated_at": "2026-09-17T19:59:26.443Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "",
+    "body": "## 1. These terms\nThese terms of business apply to all quotations, installations, maintenance contracts and repair work carried out by MEHR COOL REFRIGERATION & AIR CONDITIONING LTD (company number 15733975), referred to as \"we\" or \"us\".\n\n## 2. Quotations\nWritten quotations are valid for 30 days unless stated otherwise. Prices exclude VAT unless shown as inclusive. Work outside the quoted scope is agreed in writing before it starts.\n\n## 3. Emergency callouts\nEmergency attendance is charged at the rate stated when the call is booked, including any out-of-hours uplift. Parts and refrigerant are charged in addition unless a fixed price is agreed.\n\n## 4. Payment\nInvoices are payable within 30 days. We may charge statutory interest on late payment. Title to equipment passes on full payment.\n\n## 5. Warranty\nOur workmanship is guaranteed for 12 months. Manufacturer warranties apply to equipment and may require a maintenance contract to remain valid.\n\n## 6. Access and site conditions\nYou agree to provide safe access, power and water where needed. Delays caused by access restrictions may be charged.\n\n## 7. Liability\nNothing in these terms limits liability for death or personal injury caused by negligence. Our liability for other losses is limited to the value of the work concerned.\n\n## 8. Governing law\nThese terms are governed by the law of England and Wales.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 3,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.445Z",
+    "updated_at": "2026-09-17T19:59:26.445Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "",
+    "body": "## Who we are\nMEHR COOL REFRIGERATION & AIR CONDITIONING LTD, Dept 2710, 126 East Ferry Road, Canary Wharf, London, E14 9FP, is the data controller for personal data collected through this website.\n\n## What we collect\n- Contact details you submit through our forms (name, phone, email, company, message).\n- Technical information about your visit (pages viewed, device type) via analytics cookies, where you consent.\n\n## Why we collect it\nTo respond to your enquiry, arrange engineer visits, prepare quotations and, if you become a customer, deliver our services and keep the legal records the F-Gas regulation requires.\n\n## Legal basis\nResponding to enquiries: our legitimate interest and steps towards a contract. Service records: legal obligation. Analytics: consent.\n\n## How long we keep it\nEnquiry data is kept for 24 months. Customer and refrigerant records are kept for at least five years as required by law.\n\n## Your rights\nYou may ask for a copy of your data, correction, deletion or restriction of processing. Contact us using the details on the Contact page. You may also complain to the Information Commissioner's Office.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 4,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.446Z",
+    "updated_at": "2026-09-17T19:59:26.446Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "",
+    "body": "## Essential cookies\nWe set a session cookie and a security (CSRF) cookie so our forms work. These do not track you and cannot be switched off.\n\n## Analytics cookies\nIf Google Analytics or Google Tag Manager is enabled on this site, Google may set cookies to measure how the site is used. IP addresses are anonymised. You can block these cookies in your browser without affecting the site.\n\n## Third-party content\nEmbedded maps and videos may set their own cookies when loaded. We use privacy-enhanced embeds where available.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 5,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.448Z",
+    "updated_at": "2026-09-17T19:59:26.448Z",
+    "order": 0,
+    "block_type": "rich_text",
+    "heading": "",
+    "body": "## Refrigeration & air conditioning engineers\nWe are a small, growing company based in Canary Wharf and we hire engineers who take pride in a tidy install and an honest diagnosis.\n\n**You will need:**\n- F-Gas Category 1 certification\n- Experience on commercial refrigeration (cold rooms, display, cellar cooling) or VRF/split air conditioning — ideally both\n- A full UK driving licence\n- The ability to explain a fault to a chef at 11pm without jargon\n\n**We offer:**\n- Competitive salary with paid on-call and overtime\n- Company van, tools and manufacturer training\n- A say in how the company is run\n\nSend a short note about your experience to the email address on our Contact page. No agencies.",
+    "items": "",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 6,
+    "gallery_images": []
+  }
+},
+{
+  "model": "pages.pageblock",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.456Z",
+    "updated_at": "2026-09-17T19:59:26.456Z",
+    "order": 0,
+    "block_type": "feature_grid",
+    "heading": "While you wait",
+    "body": "",
+    "items": "Keep doors shut. :: A closed cold room holds temperature for hours; an open one loses it in minutes.\nNote the error code. :: A photo of the controller display saves us diagnostic time on arrival.\nLog the temperature. :: Your due-diligence record starts now — write down the time and reading.",
+    "image": "",
+    "image_alt": "",
+    "image_position": "left",
+    "cta_label": "",
+    "cta_url": "",
+    "cta_is_phone": false,
+    "video_embed_url": "",
+    "logo_source": "badges",
+    "columns": 3,
+    "background": "white",
+    "anchor_id": "",
+    "page": 12,
+    "gallery_images": []
+  }
+},
+{
+  "model": "services.servicecategory",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.327Z",
+    "updated_at": "2026-09-17T19:59:26.328Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.327Z",
+    "order": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Commercial Refrigeration",
+    "slug": "commercial-refrigeration",
+    "headline": "Commercial refrigeration that holds temperature",
+    "intro": "Walk-in cold rooms, freezer rooms, display cabinets and cellar cooling for restaurants, supermarkets, hotels and pharmacies. We design, install, maintain and repair — with refrigerant handling logged on every visit as the F-Gas regulation requires.",
+    "hero_image": "placeholders/category-commercial-refrigeration.jpg",
+    "hero_image_alt": "Commercial Refrigeration — placeholder image",
+    "icon": "snowflake",
+    "audience": "Contract buyers comparing suppliers; emergency callers land on the emergency page instead."
+  }
+},
+{
+  "model": "services.servicecategory",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.329Z",
+    "updated_at": "2026-09-17T19:59:26.329Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.329Z",
+    "order": 1,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Air Conditioning",
+    "slug": "air-conditioning",
+    "headline": "Commercial air conditioning, installed and maintained to spec",
+    "intro": "VRF/VRV and split systems for offices, hospitality and retail. Manufacturer-trained on Daikin, Mitsubishi Electric, Toshiba and Fujitsu, with planned preventative maintenance contracts that keep systems efficient and compliant.",
+    "hero_image": "placeholders/category-air-conditioning.jpg",
+    "hero_image_alt": "Air Conditioning — placeholder image",
+    "icon": "wind",
+    "audience": "Contract buyers comparing suppliers; emergency callers land on the emergency page instead."
+  }
+},
+{
+  "model": "services.servicecategory",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.330Z",
+    "updated_at": "2026-09-17T19:59:26.330Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.330Z",
+    "order": 2,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Emergency Services",
+    "slug": "emergency-services",
+    "headline": "24/7 emergency refrigeration and air conditioning repair",
+    "intro": "When a cold room warms or a server room overheats, minutes matter. Duty engineers carry common parts and refrigerants, and attend across London day and night.",
+    "hero_image": "placeholders/category-emergency-services.jpg",
+    "hero_image_alt": "Emergency Services — placeholder image",
+    "icon": "bolt",
+    "audience": "Contract buyers comparing suppliers; emergency callers land on the emergency page instead."
+  }
+},
+{
+  "model": "services.service",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.332Z",
+    "updated_at": "2026-09-17T19:59:26.333Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.332Z",
+    "order": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 2,
+    "name": "VRF/VRV Installation",
+    "slug": "vrf-vrv-installation",
+    "short_summary": "Design and installation of multi-zone VRF/VRV climate control for offices, hotels and mixed-use buildings.",
+    "intro": "Variable Refrigerant Flow (VRF — Daikin's trademark is VRV) connects one outdoor condensing unit to many indoor units, each modulating independently. That means individual zone control, simultaneous heating and cooling with heat-recovery systems, and lower running costs than multiple split systems.\n\nWe survey heat loads room by room, size pipework and refrigerant charge to manufacturer software, and commission every indoor unit with recorded superheat, subcooling and airflow figures. You receive as-installed drawings, the F-Gas record and the commissioning pack.",
+    "hero_image": "placeholders/service-vrf-vrv-installation.jpg",
+    "hero_image_alt": "VRF/VRV Installation — placeholder image",
+    "icon": "wind",
+    "typical_response_time": "Survey within 5 working days",
+    "price_from_note": "Design and quote free for commercial sites",
+    "is_featured": true,
+    "is_emergency": false,
+    "brands": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "related_services": [
+      2,
+      4
+    ],
+    "related_case_studies": []
+  }
+},
+{
+  "model": "services.service",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.339Z",
+    "updated_at": "2026-09-17T19:59:26.339Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.338Z",
+    "order": 1,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 2,
+    "name": "Planned Preventative Maintenance (PPM)",
+    "slug": "planned-preventative-maintenance",
+    "short_summary": "Scheduled servicing that keeps air conditioning compliant, efficient and out of the breakdown log.",
+    "intro": "A PPM contract is a schedule of visits — usually two or four a year — where we clean coils and filters, check refrigerant charge and leak-test the circuit, verify controls and drains, and record everything in a service report you can hand to an auditor.\n\nUnder the F-Gas regulation, systems containing the equivalent of 5 tonnes of CO₂ or more must be leak-checked at fixed intervals. We track the CO₂-equivalent charge of every asset on your schedule and time inspections accordingly, so compliance is automatic rather than a scramble.",
+    "hero_image": "placeholders/service-planned-preventative-maintenance.jpg",
+    "hero_image_alt": "Planned Preventative Maintenance (PPM) — placeholder image",
+    "icon": "calendar-check",
+    "typical_response_time": "Fixed visit dates, agreed annually",
+    "price_from_note": "From £45 per indoor unit per visit",
+    "is_featured": true,
+    "is_emergency": false,
+    "brands": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "related_services": [
+      1,
+      3
+    ],
+    "related_case_studies": [
+      2
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.343Z",
+    "updated_at": "2026-09-17T19:59:26.343Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.343Z",
+    "order": 2,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 2,
+    "name": "Air Conditioning Repairs",
+    "slug": "air-conditioning-repairs",
+    "short_summary": "Fault-finding and repair on all major brands: refrigerant leaks, compressors, PCBs, fans and controls.",
+    "intro": "Most air conditioning faults present as one of a handful of symptoms — not cooling, tripping, leaking water, error codes — and each has a short list of causes. Our engineers arrive with gauges, electronic leak detectors and the common parts for Daikin, Mitsubishi Electric, Toshiba and Fujitsu systems, so first-visit fix rates stay high.\n\nIf a repair is uneconomic we tell you, with a written comparison against replacement.",
+    "hero_image": "placeholders/service-air-conditioning-repairs.jpg",
+    "hero_image_alt": "Air Conditioning Repairs — placeholder image",
+    "icon": "wrench",
+    "typical_response_time": "Same or next working day",
+    "price_from_note": "Diagnostic visit from £120 + VAT",
+    "is_featured": false,
+    "is_emergency": false,
+    "brands": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "related_services": [
+      2,
+      9
+    ],
+    "related_case_studies": [
+      2
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.347Z",
+    "updated_at": "2026-09-17T19:59:26.347Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.346Z",
+    "order": 3,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 2,
+    "name": "Split System Installation",
+    "slug": "split-systems",
+    "short_summary": "Wall, cassette and ducted split systems for single rooms, small offices, shops and server rooms.",
+    "intro": "A split system pairs one outdoor unit with one (single split) or several (multi-split) indoor units. It is the right answer for a shop, a meeting room, a small office or a comms room that needs reliable cooling without the scale of VRF.\n\nServer and comms rooms get particular attention: we specify units rated for continuous low-ambient operation and, where uptime matters, install duty/standby pairs with automatic changeover.",
+    "hero_image": "placeholders/service-split-systems.jpg",
+    "hero_image_alt": "Split System Installation — placeholder image",
+    "icon": "wind",
+    "typical_response_time": "Installed within 10 working days of order",
+    "price_from_note": "Single wall-mounted system from £1,650 + VAT installed",
+    "is_featured": false,
+    "is_emergency": false,
+    "brands": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "related_services": [
+      1,
+      2
+    ],
+    "related_case_studies": [
+      4
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.351Z",
+    "updated_at": "2026-09-17T19:59:26.352Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.351Z",
+    "order": 4,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 1,
+    "name": "Walk-In Cold Rooms",
+    "slug": "walk-in-cold-rooms",
+    "short_summary": "Modular walk-in cold rooms designed, built and commissioned for kitchens, food retail and pharmacies.",
+    "intro": "A walk-in cold room is a building inside your building: insulated panels, a door that seals, an evaporator matched to the load and a condensing unit sited where it can reject heat. Get the sizing wrong and the room struggles on the first hot Saturday in July.\n\nWe calculate the load from product throughput, door openings, ambient temperature and lighting, then specify panels (typically 80–100 mm for chilled rooms) and plant with 20–25% headroom. Commissioning includes pull-down to temperature, defrost cycle proving and a temperature logger left running for 24 hours.",
+    "hero_image": "placeholders/service-walk-in-cold-rooms.jpg",
+    "hero_image_alt": "Walk-In Cold Rooms — placeholder image",
+    "icon": "snowflake",
+    "typical_response_time": "Survey within 3 working days",
+    "price_from_note": "Chilled rooms from £6,500 + VAT installed",
+    "is_featured": true,
+    "is_emergency": false,
+    "brands": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "related_services": [
+      6,
+      8,
+      9
+    ],
+    "related_case_studies": []
+  }
+},
+{
+  "model": "services.service",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.356Z",
+    "updated_at": "2026-09-17T19:59:26.356Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.356Z",
+    "order": 5,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 1,
+    "name": "Display Refrigeration",
+    "slug": "display-refrigeration",
+    "short_summary": "Multideck, serve-over and island display cabinets for food retail, delis and convenience stores.",
+    "intro": "Display refrigeration works hardest in the worst conditions: open-fronted, under shop lighting, opposite a door that never shuts. We supply, install and maintain multidecks, serve-overs, patisserie cabinets and island freezers — integral units for smaller stores and remote-plant cabinets on a pack system for supermarkets.\n\nMaintenance focuses on the things that fail: fan motors, door gaskets, defrost heaters and condenser cleanliness. A dirty condenser can add 20% to running costs before it causes a breakdown.",
+    "hero_image": "placeholders/service-display-refrigeration.jpg",
+    "hero_image_alt": "Display Refrigeration — placeholder image",
+    "icon": "thermometer",
+    "typical_response_time": "Repairs same or next day",
+    "price_from_note": "Maintenance from £38 per cabinet per visit",
+    "is_featured": true,
+    "is_emergency": false,
+    "brands": [
+      7,
+      8
+    ],
+    "related_services": [
+      5,
+      9
+    ],
+    "related_case_studies": [
+      3
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.360Z",
+    "updated_at": "2026-09-17T19:59:26.360Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.360Z",
+    "order": 6,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 1,
+    "name": "Cellar Cooling",
+    "slug": "cellar-cooling",
+    "short_summary": "Beer cellar cooling installation and repair for pubs, bars and restaurants — keeping kegs at 11–13 °C.",
+    "intro": "Cask and keg beer wants a cellar between 11 °C and 13 °C. Too warm and the beer fobs and spoils; too cold and cask ale goes hazy. Cellar cooling units are simple, but they run continuously in a damp room and fail quietly — usually on the hottest weekend of the year.\n\nWe install ceiling-mounted and split cellar coolers sized to cellar volume and keg throughput, and offer a pre-summer service that cleans coils, checks charge and tests the thermostat before the heat arrives.",
+    "hero_image": "placeholders/service-cellar-cooling.jpg",
+    "hero_image_alt": "Cellar Cooling — placeholder image",
+    "icon": "thermometer",
+    "typical_response_time": "Emergency attendance 24/7",
+    "price_from_note": "Pre-summer service from £145 + VAT",
+    "is_featured": false,
+    "is_emergency": false,
+    "brands": [
+      9,
+      10
+    ],
+    "related_services": [
+      5,
+      9
+    ],
+    "related_case_studies": []
+  }
+},
+{
+  "model": "services.service",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.364Z",
+    "updated_at": "2026-09-17T19:59:26.364Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.364Z",
+    "order": 7,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 1,
+    "name": "Freezer Rooms",
+    "slug": "freezer-rooms",
+    "short_summary": "Walk-in freezer rooms to -22 °C with insulated floors, heated door frames and alarmed controls.",
+    "intro": "Freezer rooms are cold rooms with less margin for error. Panels are thicker (100–150 mm), the floor must be insulated, door frames are heated to stop ice bridging, and the evaporator needs a reliable defrost so it does not become a block of ice.\n\nWe build freezer rooms for kitchens, food manufacturers and pharmaceutical storage, with temperature alarms that call your phone if the room drifts — because product loss in a freezer is measured in thousands of pounds.",
+    "hero_image": "placeholders/service-freezer-rooms.jpg",
+    "hero_image_alt": "Freezer Rooms — placeholder image",
+    "icon": "snowflake",
+    "typical_response_time": "Survey within 3 working days",
+    "price_from_note": "Freezer rooms from £9,800 + VAT installed",
+    "is_featured": false,
+    "is_emergency": false,
+    "brands": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "related_services": [
+      5,
+      9
+    ],
+    "related_case_studies": [
+      1
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.368Z",
+    "updated_at": "2026-09-17T19:59:26.369Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.368Z",
+    "order": 8,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "category": 3,
+    "name": "24/7 Emergency Callout",
+    "slug": "emergency-callout",
+    "short_summary": "Rapid-response diagnosis and repair for refrigeration and air conditioning breakdowns, day and night.",
+    "intro": "Call the emergency line and you speak to an engineer, not an answering service. We ask three questions — what has failed, where, and what the display says — then dispatch the nearest duty engineer with the likely parts.\n\nOn arrival we stabilise first (temporary plant, refrigerant top-up, bypass), then diagnose and repair or quote. Every emergency visit ends with a written report, including the refrigerant record.",
+    "hero_image": "placeholders/service-emergency-callout.jpg",
+    "hero_image_alt": "24/7 Emergency Callout — placeholder image",
+    "icon": "bolt",
+    "typical_response_time": "Engineer on site in under 2 hours across London",
+    "price_from_note": "Emergency callout from £180 + VAT (first hour)",
+    "is_featured": true,
+    "is_emergency": true,
+    "brands": [
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "related_services": [
+      2,
+      3
+    ],
+    "related_case_studies": [
+      1
+    ]
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 1,
+  "fields": {
+    "order": 0,
+    "service": 1,
+    "label": "System types",
+    "value": "Heat pump (2-pipe) and heat recovery (3-pipe) VRF/VRV"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "service": 1,
+    "label": "Refrigerants",
+    "value": "R32 and R410A depending on manufacturer range"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "service": 1,
+    "label": "Capacity range",
+    "value": "8 kW to 150 kW+ per system, modular"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 4,
+  "fields": {
+    "order": 3,
+    "service": 1,
+    "label": "Indoor units",
+    "value": "Cassette, ducted, wall-mounted, floor-standing, AHU kits"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 5,
+  "fields": {
+    "order": 4,
+    "service": 1,
+    "label": "Controls",
+    "value": "Centralised touchscreen, BMS integration (BACnet/Modbus), app control"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 6,
+  "fields": {
+    "order": 5,
+    "service": 1,
+    "label": "Warranty",
+    "value": "Manufacturer warranty up to 7 years with a PPM contract"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 7,
+  "fields": {
+    "order": 0,
+    "service": 2,
+    "label": "Visit frequency",
+    "value": "2 or 4 visits per year, per asset"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 8,
+  "fields": {
+    "order": 1,
+    "service": 2,
+    "label": "Included",
+    "value": "Coil and filter clean, drain check, electrical inspection, controls test, refrigerant leak check"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 9,
+  "fields": {
+    "order": 2,
+    "service": 2,
+    "label": "Reporting",
+    "value": "Digital service report per asset with photos and readings"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 10,
+  "fields": {
+    "order": 3,
+    "service": 2,
+    "label": "F-Gas",
+    "value": "Leak-check intervals tracked by CO₂-equivalent charge"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 11,
+  "fields": {
+    "order": 4,
+    "service": 2,
+    "label": "Response for contract clients",
+    "value": "Priority callout, discounted labour rate"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 12,
+  "fields": {
+    "order": 0,
+    "service": 3,
+    "label": "Common repairs",
+    "value": "Refrigerant leak location and repair, compressor and fan motor replacement, PCB and sensor faults, condensate pump and drain issues"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 13,
+  "fields": {
+    "order": 1,
+    "service": 3,
+    "label": "Diagnostics",
+    "value": "Manufacturer service tools, electronic leak detection, nitrogen pressure testing"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 14,
+  "fields": {
+    "order": 2,
+    "service": 3,
+    "label": "Parts",
+    "value": "Genuine or manufacturer-approved parts, van stock for common items"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 15,
+  "fields": {
+    "order": 0,
+    "service": 4,
+    "label": "Types",
+    "value": "Single split, multi-split (up to 5 indoor units), ducted, cassette, wall-mounted"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 16,
+  "fields": {
+    "order": 1,
+    "service": 4,
+    "label": "Capacity",
+    "value": "2.5 kW to 14 kW per system"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 17,
+  "fields": {
+    "order": 2,
+    "service": 4,
+    "label": "Refrigerant",
+    "value": "R32"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 18,
+  "fields": {
+    "order": 3,
+    "service": 4,
+    "label": "Options",
+    "value": "Duty/standby changeover, low-ambient kits, condensate pumps, Wi-Fi control"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 19,
+  "fields": {
+    "order": 0,
+    "service": 5,
+    "label": "Panels",
+    "value": "80 mm or 100 mm PIR insulated, food-safe white or stainless facing"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 20,
+  "fields": {
+    "order": 1,
+    "service": 5,
+    "label": "Temperature",
+    "value": "Chilled +1 °C to +4 °C; freezer -18 °C to -22 °C"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 21,
+  "fields": {
+    "order": 2,
+    "service": 5,
+    "label": "Refrigerants",
+    "value": "R290 (propane) and R448A/R449A low-GWP blends"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 22,
+  "fields": {
+    "order": 3,
+    "service": 5,
+    "label": "Plant",
+    "value": "Monobloc, remote condensing unit or pack system"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 23,
+  "fields": {
+    "order": 4,
+    "service": 5,
+    "label": "Controls",
+    "value": "Digital controller with alarm relay and optional remote temperature monitoring"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 24,
+  "fields": {
+    "order": 5,
+    "service": 5,
+    "label": "Floor",
+    "value": "Insulated floor or floorless on insulated slab"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 25,
+  "fields": {
+    "order": 0,
+    "service": 6,
+    "label": "Cabinet types",
+    "value": "Multideck, serve-over, patisserie, island freezer, upright glass-door"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 26,
+  "fields": {
+    "order": 1,
+    "service": 6,
+    "label": "Plant",
+    "value": "Integral (plug-in) or remote pack systems"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 27,
+  "fields": {
+    "order": 2,
+    "service": 6,
+    "label": "Refrigerants",
+    "value": "R290, R744 (CO₂), R448A/R449A"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 28,
+  "fields": {
+    "order": 3,
+    "service": 6,
+    "label": "Energy",
+    "value": "Night blinds, LED lighting, EC fan motors, glass-door retrofits"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 29,
+  "fields": {
+    "order": 0,
+    "service": 7,
+    "label": "Unit types",
+    "value": "Ceiling-mounted monobloc, split system with remote condenser"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 30,
+  "fields": {
+    "order": 1,
+    "service": 7,
+    "label": "Capacity",
+    "value": "Cellars from 15 m³ to 120 m³"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 31,
+  "fields": {
+    "order": 2,
+    "service": 7,
+    "label": "Set point",
+    "value": "11 °C to 13 °C, adjustable"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 32,
+  "fields": {
+    "order": 3,
+    "service": 7,
+    "label": "Refrigerant",
+    "value": "R290 or R449A"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 33,
+  "fields": {
+    "order": 0,
+    "service": 8,
+    "label": "Panels",
+    "value": "100 mm to 150 mm PIR with insulated floor"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 34,
+  "fields": {
+    "order": 1,
+    "service": 8,
+    "label": "Temperature",
+    "value": "-18 °C to -22 °C (lower on request)"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 35,
+  "fields": {
+    "order": 2,
+    "service": 8,
+    "label": "Door",
+    "value": "Heated frame, pressure relief port, safety release"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 36,
+  "fields": {
+    "order": 3,
+    "service": 8,
+    "label": "Defrost",
+    "value": "Electric or hot-gas, timed and demand-based"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 37,
+  "fields": {
+    "order": 4,
+    "service": 8,
+    "label": "Alarms",
+    "value": "High-temperature alarm with SMS/app notification option"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 38,
+  "fields": {
+    "order": 0,
+    "service": 9,
+    "label": "Coverage",
+    "value": "London, Greater London, Berkshire — 24 hours, 365 days"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 39,
+  "fields": {
+    "order": 1,
+    "service": 9,
+    "label": "Van stock",
+    "value": "Common compressors, fan motors, controllers, R32/R290/R449A refrigerant, nitrogen"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 40,
+  "fields": {
+    "order": 2,
+    "service": 9,
+    "label": "Temporary plant",
+    "value": "Portable cooling and hire cold-store arranged on request"
+  }
+},
+{
+  "model": "services.servicespecification",
+  "pk": 41,
+  "fields": {
+    "order": 3,
+    "service": 9,
+    "label": "Reporting",
+    "value": "Written report and F-Gas record after every visit"
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.337Z",
+    "updated_at": "2026-09-17T19:59:26.337Z",
+    "order": 0,
+    "service": 1,
+    "question": "How long does a VRF installation take?",
+    "answer": "A single-floor office of around 400 m² is typically installed and commissioned in one to two weeks. Larger or occupied buildings are phased floor by floor so tenants keep working."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.337Z",
+    "updated_at": "2026-09-17T19:59:26.337Z",
+    "order": 1,
+    "service": 1,
+    "question": "Can VRF heat as well as cool?",
+    "answer": "Yes. Heat pump VRF switches the whole system between heating and cooling; heat recovery VRF lets some rooms heat while others cool at the same time, moving energy between them."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.337Z",
+    "updated_at": "2026-09-17T19:59:26.337Z",
+    "order": 2,
+    "service": 1,
+    "question": "Do I need planning permission for the outdoor units?",
+    "answer": "Often not, but listed buildings, conservation areas and some leases have restrictions on external plant. We check this during the survey and prepare acoustic data where required."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.341Z",
+    "updated_at": "2026-09-17T19:59:26.342Z",
+    "order": 0,
+    "service": 2,
+    "question": "Is PPM a legal requirement?",
+    "answer": "F-Gas leak checking is a legal requirement for systems above 5 tonnes CO₂-equivalent. Beyond that, PPM is how you meet insurer, landlord and TM44 obligations and keep the manufacturer's warranty valid."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.342Z",
+    "updated_at": "2026-09-17T19:59:26.342Z",
+    "order": 1,
+    "service": 2,
+    "question": "What happens if you find a fault during a visit?",
+    "answer": "Minor items are fixed on the spot where parts allow. Anything larger is quoted the same day with a fixed price, and contract clients receive discounted labour."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.345Z",
+    "updated_at": "2026-09-17T19:59:26.345Z",
+    "order": 0,
+    "service": 3,
+    "question": "My unit shows an error code — what should I do?",
+    "answer": "Note the code and, if safe, switch the unit off at the isolator. Send us a photo of the display by WhatsApp and we can often tell you the likely fault and bring the right part."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.350Z",
+    "updated_at": "2026-09-17T19:59:26.350Z",
+    "order": 0,
+    "service": 4,
+    "question": "How noisy is the outdoor unit?",
+    "answer": "Modern inverter units run at 45–55 dB(A) at one metre — comparable to a quiet conversation. We position and mount them to keep noise away from neighbours and bedrooms."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.354Z",
+    "updated_at": "2026-09-17T19:59:26.354Z",
+    "order": 0,
+    "service": 5,
+    "question": "How long does it take to build a cold room?",
+    "answer": "A standard 3 m × 3 m chilled room is typically built and commissioned in two days. Freezer rooms and rooms with insulated floors take three to four."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.354Z",
+    "updated_at": "2026-09-17T19:59:26.354Z",
+    "order": 1,
+    "service": 5,
+    "question": "Can you fit a cold room in a basement kitchen?",
+    "answer": "Yes — panels are modular and carried in by hand. The main constraint is heat rejection: we route the condensing unit to an external wall or a ventilated plant area."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.355Z",
+    "updated_at": "2026-09-17T19:59:26.355Z",
+    "order": 2,
+    "service": 5,
+    "question": "Which refrigerant will you use?",
+    "answer": "For new plant we default to R290 (propane) or a low-GWP HFO blend. Both meet current and forthcoming F-Gas phase-down rules, so you are not buying obsolescence."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.359Z",
+    "updated_at": "2026-09-17T19:59:26.359Z",
+    "order": 0,
+    "service": 6,
+    "question": "Can you retrofit doors to open multidecks?",
+    "answer": "Yes. Glass-door retrofits typically cut cabinet energy use by 30–40% and hold temperature more consistently. We measure the cabinet and source doors to fit."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.362Z",
+    "updated_at": "2026-09-17T19:59:26.362Z",
+    "order": 0,
+    "service": 7,
+    "question": "The cellar is warm but the unit is running — what's wrong?",
+    "answer": "Usually a dirty condenser, a low refrigerant charge or a failed fan. Prop the cellar door shut, avoid loading warm stock, and call us — this is the most common summer emergency we attend."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 13,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.367Z",
+    "updated_at": "2026-09-17T19:59:26.367Z",
+    "order": 0,
+    "service": 8,
+    "question": "How long will a freezer hold temperature in a power cut?",
+    "answer": "A well-built, full freezer room with the door shut will typically stay below -12 °C for six to eight hours. Keep the door closed and call us; we can bring temporary plant if the outage is prolonged."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 14,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.371Z",
+    "updated_at": "2026-09-17T19:59:26.371Z",
+    "order": 0,
+    "service": 9,
+    "question": "What counts as an emergency?",
+    "answer": "Any failure that puts stock, product or people at risk: a cold or freezer room warming, display cabinets off, a server room overheating, or air conditioning failure in a care setting. If you are unsure, call — we will tell you honestly whether it can wait until morning."
+  }
+},
+{
+  "model": "services.servicefaq",
+  "pk": 15,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.372Z",
+    "updated_at": "2026-09-17T19:59:26.372Z",
+    "order": 1,
+    "service": 9,
+    "question": "Do you charge more at night and weekends?",
+    "answer": "Out-of-hours attendance carries an uplift, which we state on the phone before dispatching. Contract clients receive priority response and discounted rates."
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.381Z",
+    "updated_at": "2026-09-17T19:59:26.381Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.381Z",
+    "order": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Restaurants & hospitality",
+    "slug": "restaurants",
+    "headline": "",
+    "intro": "A restaurant loses money twice when refrigeration fails: the stock, and the covers turned away while the kitchen recovers. We plan cold room, display and kitchen air conditioning maintenance around service hours and hold priority slots for contract clients during summer.",
+    "hero_image": "placeholders/sector-restaurants.jpg",
+    "hero_image_alt": "Restaurants & hospitality — placeholder image",
+    "icon": "building",
+    "key_services": [
+      4,
+      5,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.383Z",
+    "updated_at": "2026-09-17T19:59:26.384Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.383Z",
+    "order": 1,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Supermarkets & food retail",
+    "slug": "supermarkets",
+    "headline": "",
+    "intro": "Display refrigeration runs 24 hours a day under lights and foot traffic. We maintain multideck and island cabinets, pack systems and cold stores for independent supermarkets and convenience groups, with energy upgrades such as glass doors and EC fans that pay back inside two years.",
+    "hero_image": "placeholders/sector-supermarkets.jpg",
+    "hero_image_alt": "Supermarkets & food retail — placeholder image",
+    "icon": "building",
+    "key_services": [
+      5,
+      6,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.385Z",
+    "updated_at": "2026-09-17T19:59:26.386Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.385Z",
+    "order": 2,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Hotels",
+    "slug": "hotels",
+    "headline": "",
+    "intro": "Guest comfort and kitchen compliance in one contract. VRF systems across bedrooms and function rooms, walk-in cold rooms behind the kitchen, cellar cooling under the bar — maintained on a schedule that works around occupancy and events.",
+    "hero_image": "placeholders/sector-hotels.jpg",
+    "hero_image_alt": "Hotels — placeholder image",
+    "icon": "building",
+    "key_services": [
+      1,
+      2,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.387Z",
+    "updated_at": "2026-09-17T19:59:26.388Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.387Z",
+    "order": 3,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Offices & commercial property",
+    "slug": "offices",
+    "headline": "",
+    "intro": "For landlords and facilities managers, air conditioning is a compliance asset as much as a comfort one: F-Gas leak checks, TM44 inspections and tenant complaints all land on the same desk. We run PPM contracts across multi-tenant buildings with consolidated reporting.",
+    "hero_image": "placeholders/sector-offices.jpg",
+    "hero_image_alt": "Offices & commercial property — placeholder image",
+    "icon": "building",
+    "key_services": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.389Z",
+    "updated_at": "2026-09-17T19:59:26.389Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.389Z",
+    "order": 4,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Healthcare & pharmacies",
+    "slug": "healthcare",
+    "headline": "",
+    "intro": "Vaccine fridges, pharmacy cold rooms and clinical air conditioning have documented temperature requirements and audit trails. We install alarmed, logged refrigeration and maintain it with the paperwork inspectors expect to see.",
+    "hero_image": "placeholders/sector-healthcare.jpg",
+    "hero_image_alt": "Healthcare & pharmacies — placeholder image",
+    "icon": "shield-check",
+    "key_services": [
+      2,
+      5,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "projects.sector",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.391Z",
+    "updated_at": "2026-09-17T19:59:26.391Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.391Z",
+    "order": 5,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Data centres & comms rooms",
+    "slug": "data-centres",
+    "headline": "",
+    "intro": "Heat is the enemy of uptime. We specify close-control and duty/standby split systems for server and comms rooms, with low-ambient operation, automatic changeover and remote alerting so a cooling fault never becomes an outage.",
+    "hero_image": "placeholders/sector-data-centres.jpg",
+    "hero_image_alt": "Data centres & comms rooms — placeholder image",
+    "icon": "bolt",
+    "key_services": [
+      2,
+      3,
+      4,
+      9
+    ]
+  }
+},
+{
+  "model": "projects.casestudy",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.413Z",
+    "updated_at": "2026-09-17T19:59:26.414Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.413Z",
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Walk-in freezer replacement for a Soho restaurant group",
+    "slug": "walk-in-freezer-replacement-soho-restaurant-group",
+    "client_name": "Dockside Dining Group",
+    "client_anonymised": false,
+    "anonymised_label": "",
+    "sector": 1,
+    "area": 3,
+    "scale_metric": "3 kitchens, 1 central freezer",
+    "summary": "A failing 1990s freezer room feeding three restaurants was replaced in a 48-hour window without a single lost service.",
+    "challenge": "The group's central production kitchen ran one ageing freezer room serving three Soho restaurants. The R404A plant was leaking, the floor had lifted, and each breakdown meant hiring a refrigerated trailer at short notice. A full replacement had been put off for two years because the kitchen could not close.",
+    "solution": "We surveyed on a Monday, agreed a Sunday-to-Tuesday programme, and hired a temporary cold store for the changeover. The old room was stripped and a new 100 mm PIR freezer room with insulated floor, heated door frame and R449A remote condensing unit was built and commissioned inside the window. A high-temperature alarm now calls the head chef and our duty engineer.",
+    "result": "Zero services lost. Energy monitoring over the first quarter showed a 31% reduction in refrigeration electricity against the old plant, and emergency callouts for the freezer dropped from six in the previous year to none. The group moved all three sites onto a PPM contract.",
+    "hero_image": "placeholders/case-walk-in-freezer-replacement-soho-restaur.jpg",
+    "hero_image_alt": "Walk-in freezer replacement for a Soho restaurant group — placeholder image",
+    "testimonial": 4,
+    "completed_on": "2025-02-20",
+    "is_featured": true,
+    "services": [
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "projects.casestudy",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.416Z",
+    "updated_at": "2026-09-17T19:59:26.417Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.416Z",
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Bringing 42 VRF indoor units back into F-Gas compliance",
+    "slug": "vrf-maintenance-canary-wharf-serviced-offices",
+    "client_name": "Meridian Offices",
+    "client_anonymised": true,
+    "anonymised_label": "A serviced-office operator in Canary Wharf",
+    "sector": 4,
+    "area": 1,
+    "scale_metric": "4 floors, 42 indoor units",
+    "summary": "An office operator inherited a VRF estate with no leak-check history. We audited every asset, repaired two leaks and put the building on a compliant PPM schedule.",
+    "challenge": "A new building manager discovered that the previous contractor had left no F-Gas records for four floors of Daikin VRV. With a landlord audit approaching, the operator needed the estate surveyed, any leaks fixed and a defensible maintenance schedule — quickly, and without disturbing tenants.",
+    "solution": "We tagged and logged all 42 indoor units and three outdoor systems, calculated CO₂-equivalent charge per circuit, and carried out electronic leak detection over two out-of-hours visits. Two leaking flare joints were repaired and recharged, coils and filters cleaned throughout, and a quarterly PPM schedule set with leak-check intervals matched to each circuit's charge.",
+    "result": "The landlord audit passed with a complete asset register and leak-check log. Tenant comfort complaints fell from an average of nine a month to two over the following quarter, and the operator has since added a second building to the contract.",
+    "hero_image": "placeholders/case-vrf-maintenance-canary-wharf-serviced-of.jpg",
+    "hero_image_alt": "Bringing 42 VRF indoor units back into F-Gas compliance — placeholder image",
+    "testimonial": 2,
+    "completed_on": "2025-04-30",
+    "is_featured": true,
+    "services": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "projects.casestudy",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.419Z",
+    "updated_at": "2026-09-17T19:59:26.419Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.419Z",
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Glass-door retrofit cuts a convenience store's cabinet energy by 36%",
+    "slug": "display-refrigeration-energy-upgrade-stratford-store",
+    "client_name": "Freshmarket Stores",
+    "client_anonymised": false,
+    "anonymised_label": "",
+    "sector": 2,
+    "area": 6,
+    "scale_metric": "14 display cabinets",
+    "summary": "Doors, EC fans and a condenser clean turned a struggling multideck line into the store's quietest, cheapest-to-run asset.",
+    "challenge": "Fourteen open multideck cabinets on a remote pack were struggling to hold temperature on warm afternoons, and the store's electricity bill had risen sharply. The owner assumed the pack needed replacing.",
+    "solution": "Inspection showed the pack was healthy but the condenser was heavily fouled and the cabinets were fighting a warm shop. We cleaned and pressure-washed the condenser, replaced the shaded-pole evaporator fans with EC motors, and fitted retrofit glass doors to all fourteen cabinets over two nights.",
+    "result": "Sub-metered cabinet energy fell by 36% against the same month the previous year, product temperatures stabilised within the 1–4 °C band, and the pack's run hours dropped enough to defer replacement by an estimated five years. Payback on the retrofit is projected at 22 months.",
+    "hero_image": "placeholders/case-display-refrigeration-energy-upgrade-str.jpg",
+    "hero_image_alt": "Glass-door retrofit cuts a convenience store's cabinet energy by 36% — placeholder image",
+    "testimonial": 3,
+    "completed_on": "2024-10-12",
+    "is_featured": true,
+    "services": [
+      6
+    ]
+  }
+},
+{
+  "model": "projects.casestudy",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.421Z",
+    "updated_at": "2026-09-17T19:59:26.422Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.421Z",
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "title": "Duty/standby cooling for a City law firm's comms room",
+    "slug": "duty-standby-cooling-city-law-firm-comms-room",
+    "client_name": "A City of London law firm",
+    "client_anonymised": true,
+    "anonymised_label": "A City of London law firm",
+    "sector": 6,
+    "area": 2,
+    "scale_metric": "12 kW IT load",
+    "summary": "A single ageing wall unit was the only thing keeping a firm's servers cool. We replaced it with a monitored duty/standby pair.",
+    "challenge": "The firm's comms room relied on one 7 kW wall-mounted split that had already failed twice, each time taking the practice management system offline. There was no alerting; the first sign of trouble was staff noticing the room was hot.",
+    "solution": "We installed two 8 kW low-ambient ducted units with an automatic changeover controller that alternates duty weekly and brings the standby online on fault or high temperature. A temperature and fault relay now alerts both the IT manager and our duty engineer.",
+    "result": "No cooling-related downtime since commissioning. The monitoring caught a condensate pump fault within weeks — the standby took over automatically and the repair was made during working hours without anyone in the office noticing.",
+    "hero_image": "placeholders/case-duty-standby-cooling-city-law-firm-comms.jpg",
+    "hero_image_alt": "Duty/standby cooling for a City law firm's comms room — placeholder image",
+    "testimonial": 5,
+    "completed_on": "2025-06-06",
+    "is_featured": false,
+    "services": [
+      4
+    ]
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.393Z",
+    "updated_at": "2026-09-17T19:59:26.393Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.393Z",
+    "order": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Canary Wharf",
+    "slug": "canary-wharf",
+    "region": "east",
+    "custom_h1": "",
+    "intro": "Canary Wharf is home. Our registered office is on East Ferry Road, which means engineers are already on the Isle of Dogs when a call comes in from a Canada Square office or a Westferry restaurant.\n\nTypical work here: VRF maintenance across multi-tenant office floors, close-control cooling for comms rooms, and cold room and cellar cooling for the bars and restaurants around the docks.",
+    "postcode_prefixes": "E14",
+    "typical_response_time": "Under 45 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.394Z",
+    "updated_at": "2026-09-17T19:59:26.394Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.394Z",
+    "order": 1,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "City of London",
+    "slug": "city-of-london",
+    "region": "central",
+    "custom_h1": "",
+    "intro": "The Square Mile runs on air conditioning and coffee. We look after VRF systems in serviced offices, split systems in comms rooms, and the refrigeration behind the lunchtime trade — display cabinets, cold rooms and cellar cooling in pubs and restaurants.\n\nAccess and out-of-hours working are the norm here; we carry the permits, RAMS and insurance evidence building managers ask for.",
+    "postcode_prefixes": "EC1, EC2, EC3, EC4",
+    "typical_response_time": "Under 60 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.395Z",
+    "updated_at": "2026-09-17T19:59:26.395Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.395Z",
+    "order": 2,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Westminster & West End",
+    "slug": "westminster",
+    "region": "central",
+    "custom_h1": "",
+    "intro": "From Soho kitchens to Victoria offices, Westminster mixes heritage buildings with dense hospitality. Listed-building constraints on external plant are common; we design around them with low-profile condensers, acoustic enclosures and internal plant rooms.",
+    "postcode_prefixes": "SW1, W1, WC2",
+    "typical_response_time": "Under 60 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.396Z",
+    "updated_at": "2026-09-17T19:59:26.396Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.396Z",
+    "order": 3,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Southwark & Bermondsey",
+    "slug": "southwark",
+    "region": "south",
+    "custom_h1": "",
+    "intro": "Borough Market traders, Bermondsey Street restaurants and the offices along the South Bank keep us busy in SE1. Display refrigeration and walk-in cold rooms dominate; we also maintain air conditioning for several converted-warehouse office buildings.",
+    "postcode_prefixes": "SE1, SE16",
+    "typical_response_time": "Under 60 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.397Z",
+    "updated_at": "2026-09-17T19:59:26.397Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.396Z",
+    "order": 4,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Hackney & Shoreditch",
+    "slug": "hackney",
+    "region": "east",
+    "custom_h1": "",
+    "intro": "Independent restaurants, bars and food producers in Shoreditch and Hackney need refrigeration that survives basement kitchens and tight sites. We fit compact cold rooms and cellar coolers and run pre-summer maintenance rounds across the borough.",
+    "postcode_prefixes": "E1, E2, E8",
+    "typical_response_time": "Under 60 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.398Z",
+    "updated_at": "2026-09-17T19:59:26.398Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.397Z",
+    "order": 5,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Stratford & Newham",
+    "slug": "stratford",
+    "region": "east",
+    "custom_h1": "",
+    "intro": "Retail at Westfield and the surrounding food outlets, plus the new residential and office blocks around the Olympic Park. Display refrigeration maintenance and split-system installs are our most common jobs in E15 and E20.",
+    "postcode_prefixes": "E15, E20",
+    "typical_response_time": "Under 60 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.398Z",
+    "updated_at": "2026-09-17T19:59:26.398Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.398Z",
+    "order": 6,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Islington & Camden",
+    "slug": "islington",
+    "region": "north",
+    "custom_h1": "",
+    "intro": "Upper Street, Camden Market and the King's Cross development bring a dense mix of restaurants, bars and offices. Cellar cooling repairs peak here every summer; we schedule pre-season services from April.",
+    "postcode_prefixes": "N1, NW1",
+    "typical_response_time": "Under 75 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.399Z",
+    "updated_at": "2026-09-17T19:59:26.399Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.399Z",
+    "order": 7,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Croydon",
+    "slug": "croydon",
+    "region": "south",
+    "custom_h1": "",
+    "intro": "South London's largest commercial centre, with supermarkets, offices and a growing restaurant quarter around Boxpark. We maintain display refrigeration and air conditioning across the town centre and Purley Way retail parks.",
+    "postcode_prefixes": "CR0, CR2",
+    "typical_response_time": "Under 90 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.400Z",
+    "updated_at": "2026-09-17T19:59:26.400Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.400Z",
+    "order": 8,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Ealing & Acton",
+    "slug": "ealing",
+    "region": "west",
+    "custom_h1": "",
+    "intro": "West London food retail and hospitality, plus light-industrial units in Park Royal with process cooling and cold storage needs. Freezer room builds and pack-system maintenance are regular work here.",
+    "postcode_prefixes": "W3, W5, W13",
+    "typical_response_time": "Under 90 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.401Z",
+    "updated_at": "2026-09-17T19:59:26.401Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.401Z",
+    "order": 9,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Heathrow & Hounslow",
+    "slug": "heathrow-hounslow",
+    "region": "west",
+    "custom_h1": "",
+    "intro": "Hotels and airport-adjacent logistics dominate around Heathrow. VRF maintenance across hotel bedrooms and temperature-controlled storage for freight forwarders are our core services in the area.",
+    "postcode_prefixes": "TW3, TW4, TW6",
+    "typical_response_time": "Under 90 minutes",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.402Z",
+    "updated_at": "2026-09-17T19:59:26.402Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.402Z",
+    "order": 10,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Reading",
+    "slug": "reading",
+    "region": "berkshire",
+    "custom_h1": "",
+    "intro": "Reading's business parks, data centres and town-centre hospitality extend our Berkshire coverage. We run PPM contracts for office VRF systems and close-control cooling for comms rooms along the M4 corridor.",
+    "postcode_prefixes": "RG1, RG2, RG30",
+    "typical_response_time": "Under 2 hours",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "locations.servicearea",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.403Z",
+    "updated_at": "2026-09-17T19:59:26.403Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.402Z",
+    "order": 11,
+    "meta_title": "",
+    "meta_description": "",
+    "canonical_url": "",
+    "og_image": "",
+    "noindex": false,
+    "name": "Slough & Windsor",
+    "slug": "slough",
+    "region": "berkshire",
+    "custom_h1": "",
+    "intro": "Slough Trading Estate's food manufacturers and distribution units need cold storage that meets audit standards; Windsor's hotels and restaurants need discreet plant and quiet condensers. We cover both from the M4.",
+    "postcode_prefixes": "SL1, SL3, SL4",
+    "typical_response_time": "Under 2 hours",
+    "latitude": null,
+    "longitude": null,
+    "hero_image": "",
+    "hero_image_alt": ""
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.405Z",
+    "updated_at": "2026-09-17T19:59:26.405Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.405Z",
+    "order": 0,
+    "author_name": "Daniel R.",
+    "author_role": "Operations Manager",
+    "company": "Restaurant group, Soho",
+    "quote": "Cellar cooler died on a Friday in July. Rang at 6pm, engineer on site by half seven, kegs back to temperature before the evening rush. Fitted a new unit the following week at the price quoted.",
+    "rating": 5,
+    "source": "google",
+    "source_url": "",
+    "date": "2025-07-14",
+    "is_featured": true,
+    "area": 3,
+    "service": 7
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.406Z",
+    "updated_at": "2026-09-17T19:59:26.406Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.406Z",
+    "order": 1,
+    "author_name": "Priya S.",
+    "author_role": "Facilities Manager",
+    "company": "Serviced offices, Canary Wharf",
+    "quote": "We moved our VRF maintenance to Mehr Cool this year. The F-Gas paperwork is finally in order, the reports are clear enough to forward to tenants, and they turn up when they say they will.",
+    "rating": 5,
+    "source": "google",
+    "source_url": "",
+    "date": "2025-05-02",
+    "is_featured": true,
+    "area": 1,
+    "service": 2
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.407Z",
+    "updated_at": "2026-09-17T19:59:26.407Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.407Z",
+    "order": 2,
+    "author_name": "Tom H.",
+    "author_role": "Store Manager",
+    "company": "Convenience store, Stratford",
+    "quote": "Multideck kept icing up and two previous companies couldn't fix it. Mehr Cool found a failed defrost sensor in twenty minutes. Straightforward people who know their kit.",
+    "rating": 5,
+    "source": "google",
+    "source_url": "",
+    "date": "2025-03-21",
+    "is_featured": true,
+    "area": 6,
+    "service": 6
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.408Z",
+    "updated_at": "2026-09-17T19:59:26.408Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.408Z",
+    "order": 3,
+    "author_name": "Marie L.",
+    "author_role": "Head Chef",
+    "company": "Hotel kitchen, Westminster",
+    "quote": "New walk-in built over two days between services with zero disruption. Temperature logger left running overnight and the report emailed the next morning. Exactly what we needed.",
+    "rating": 5,
+    "source": "direct",
+    "source_url": "",
+    "date": "2024-11-08",
+    "is_featured": true,
+    "area": 3,
+    "service": 5
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.409Z",
+    "updated_at": "2026-09-17T19:59:26.409Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.408Z",
+    "order": 4,
+    "author_name": "Kwame A.",
+    "author_role": "IT Manager",
+    "company": "Law firm, City of London",
+    "quote": "Duty/standby cooling for our comms room with automatic changeover. Clear explanation, tidy install, and the monitoring alerts have already caught one fault before it mattered.",
+    "rating": 5,
+    "source": "google",
+    "source_url": "",
+    "date": "2025-08-30",
+    "is_featured": false,
+    "area": 2,
+    "service": 4
+  }
+},
+{
+  "model": "testimonials.testimonial",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.409Z",
+    "updated_at": "2026-09-17T19:59:26.409Z",
+    "status": "published",
+    "published_at": "2026-09-17T19:59:26.409Z",
+    "order": 5,
+    "author_name": "Sarah B.",
+    "author_role": "Pharmacy Manager",
+    "company": "Pharmacy group, Southwark",
+    "quote": "Vaccine fridges and cold room serviced on schedule with the temperature records our inspector asked for. Responsive on the phone and honest about what does and doesn't need doing.",
+    "rating": 5,
+    "source": "google",
+    "source_url": "",
+    "date": "2025-01-17",
+    "is_featured": false,
+    "area": 4,
+    "service": 2
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.298Z",
+    "updated_at": "2026-09-17T19:59:26.298Z",
+    "order": 0,
+    "group": "enquiry_type",
+    "label": "Planned maintenance (PPM) contract",
+    "value": "ppm-contract",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.299Z",
+    "updated_at": "2026-09-17T19:59:26.299Z",
+    "order": 1,
+    "group": "enquiry_type",
+    "label": "New installation quote",
+    "value": "installation-quote",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.300Z",
+    "updated_at": "2026-09-17T19:59:26.300Z",
+    "order": 2,
+    "group": "enquiry_type",
+    "label": "Repair — not urgent",
+    "value": "repair",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.300Z",
+    "updated_at": "2026-09-17T19:59:26.300Z",
+    "order": 3,
+    "group": "enquiry_type",
+    "label": "Tender / procurement enquiry",
+    "value": "tender",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.301Z",
+    "updated_at": "2026-09-17T19:59:26.301Z",
+    "order": 4,
+    "group": "enquiry_type",
+    "label": "Something else",
+    "value": "other",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.302Z",
+    "updated_at": "2026-09-17T19:59:26.302Z",
+    "order": 0,
+    "group": "emergency_issue",
+    "label": "Walk-in cold room or freezer warming",
+    "value": "cold-room",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.302Z",
+    "updated_at": "2026-09-17T19:59:26.302Z",
+    "order": 1,
+    "group": "emergency_issue",
+    "label": "Display fridge / freezer cabinet failed",
+    "value": "display-cabinet",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.303Z",
+    "updated_at": "2026-09-17T19:59:26.303Z",
+    "order": 2,
+    "group": "emergency_issue",
+    "label": "Cellar cooling down",
+    "value": "cellar",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.304Z",
+    "updated_at": "2026-09-17T19:59:26.304Z",
+    "order": 3,
+    "group": "emergency_issue",
+    "label": "Air conditioning failed",
+    "value": "air-conditioning",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.304Z",
+    "updated_at": "2026-09-17T19:59:26.304Z",
+    "order": 4,
+    "group": "emergency_issue",
+    "label": "Server / comms room overheating",
+    "value": "server-room",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.305Z",
+    "updated_at": "2026-09-17T19:59:26.305Z",
+    "order": 5,
+    "group": "emergency_issue",
+    "label": "Leak, alarm or tripping breaker",
+    "value": "leak-alarm",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.305Z",
+    "updated_at": "2026-09-17T19:59:26.305Z",
+    "order": 6,
+    "group": "emergency_issue",
+    "label": "Not sure",
+    "value": "unknown",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 13,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.306Z",
+    "updated_at": "2026-09-17T19:59:26.306Z",
+    "order": 0,
+    "group": "building_type",
+    "label": "Restaurant / café / bar",
+    "value": "restaurant",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 14,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.307Z",
+    "updated_at": "2026-09-17T19:59:26.307Z",
+    "order": 1,
+    "group": "building_type",
+    "label": "Supermarket / convenience store",
+    "value": "retail",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 15,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.308Z",
+    "updated_at": "2026-09-17T19:59:26.308Z",
+    "order": 2,
+    "group": "building_type",
+    "label": "Hotel",
+    "value": "hotel",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 16,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.308Z",
+    "updated_at": "2026-09-17T19:59:26.308Z",
+    "order": 3,
+    "group": "building_type",
+    "label": "Office",
+    "value": "office",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 17,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.309Z",
+    "updated_at": "2026-09-17T19:59:26.309Z",
+    "order": 4,
+    "group": "building_type",
+    "label": "Healthcare / pharmacy",
+    "value": "healthcare",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 18,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.310Z",
+    "updated_at": "2026-09-17T19:59:26.310Z",
+    "order": 5,
+    "group": "building_type",
+    "label": "Data centre / comms room",
+    "value": "data-centre",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 19,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.310Z",
+    "updated_at": "2026-09-17T19:59:26.310Z",
+    "order": 6,
+    "group": "building_type",
+    "label": "Warehouse / industrial",
+    "value": "industrial",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 20,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.311Z",
+    "updated_at": "2026-09-17T19:59:26.311Z",
+    "order": 7,
+    "group": "building_type",
+    "label": "Other",
+    "value": "other",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 21,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.312Z",
+    "updated_at": "2026-09-17T19:59:26.312Z",
+    "order": 0,
+    "group": "floor_area",
+    "label": "Under 100 m²",
+    "value": "under-100",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 22,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.312Z",
+    "updated_at": "2026-09-17T19:59:26.312Z",
+    "order": 1,
+    "group": "floor_area",
+    "label": "100–500 m²",
+    "value": "100-500",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 23,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.313Z",
+    "updated_at": "2026-09-17T19:59:26.313Z",
+    "order": 2,
+    "group": "floor_area",
+    "label": "500–2,000 m²",
+    "value": "500-2000",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 24,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.314Z",
+    "updated_at": "2026-09-17T19:59:26.314Z",
+    "order": 3,
+    "group": "floor_area",
+    "label": "Over 2,000 m²",
+    "value": "over-2000",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 25,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.315Z",
+    "updated_at": "2026-09-17T19:59:26.315Z",
+    "order": 0,
+    "group": "system_type",
+    "label": "Walk-in cold room / freezer",
+    "value": "cold-room",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 26,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.317Z",
+    "updated_at": "2026-09-17T19:59:26.317Z",
+    "order": 1,
+    "group": "system_type",
+    "label": "Display refrigeration",
+    "value": "display",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 27,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.317Z",
+    "updated_at": "2026-09-17T19:59:26.317Z",
+    "order": 2,
+    "group": "system_type",
+    "label": "Cellar cooling",
+    "value": "cellar",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 28,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.318Z",
+    "updated_at": "2026-09-17T19:59:26.318Z",
+    "order": 3,
+    "group": "system_type",
+    "label": "VRF/VRV air conditioning",
+    "value": "vrf",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 29,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.319Z",
+    "updated_at": "2026-09-17T19:59:26.319Z",
+    "order": 4,
+    "group": "system_type",
+    "label": "Split system air conditioning",
+    "value": "split",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 30,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.319Z",
+    "updated_at": "2026-09-17T19:59:26.319Z",
+    "order": 5,
+    "group": "system_type",
+    "label": "Not sure — need advice",
+    "value": "advice",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 31,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.320Z",
+    "updated_at": "2026-09-17T19:59:26.320Z",
+    "order": 0,
+    "group": "timeline",
+    "label": "As soon as possible",
+    "value": "asap",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 32,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.321Z",
+    "updated_at": "2026-09-17T19:59:26.321Z",
+    "order": 1,
+    "group": "timeline",
+    "label": "Within 1 month",
+    "value": "1-month",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 33,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.321Z",
+    "updated_at": "2026-09-17T19:59:26.321Z",
+    "order": 2,
+    "group": "timeline",
+    "label": "1–3 months",
+    "value": "1-3-months",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 34,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.322Z",
+    "updated_at": "2026-09-17T19:59:26.322Z",
+    "order": 3,
+    "group": "timeline",
+    "label": "Planning for later this year",
+    "value": "later",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 35,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.323Z",
+    "updated_at": "2026-09-17T19:59:26.323Z",
+    "order": 0,
+    "group": "budget_band",
+    "label": "Under £5,000",
+    "value": "under-5k",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 36,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.323Z",
+    "updated_at": "2026-09-17T19:59:26.323Z",
+    "order": 1,
+    "group": "budget_band",
+    "label": "£5,000 – £15,000",
+    "value": "5-15k",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 37,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.324Z",
+    "updated_at": "2026-09-17T19:59:26.324Z",
+    "order": 2,
+    "group": "budget_band",
+    "label": "£15,000 – £50,000",
+    "value": "15-50k",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 38,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.325Z",
+    "updated_at": "2026-09-17T19:59:26.325Z",
+    "order": 3,
+    "group": "budget_band",
+    "label": "Over £50,000",
+    "value": "over-50k",
+    "is_active": true
+  }
+},
+{
+  "model": "leads.formfieldchoice",
+  "pk": 39,
+  "fields": {
+    "created_at": "2026-09-17T19:59:26.325Z",
+    "updated_at": "2026-09-17T19:59:26.325Z",
+    "order": 4,
+    "group": "budget_band",
+    "label": "Not yet set",
+    "value": "unknown",
+    "is_active": true
+  }
+}
+]

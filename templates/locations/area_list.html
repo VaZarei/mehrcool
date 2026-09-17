@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro show_actions=True %}
+  <section class="section">
+    <div class="container stack stack--lg">
+      {% for region in region_order %}
+        {% for label, items in grouped_areas.items %}
+          {% if label == region %}
+            <div>
+              <h2 class="mb-4">{{ label }}</h2>
+              <div class="cluster">{% for area in items %}<a class="chip chip--lg" href="{{ area.get_absolute_url }}">{% icon "map-pin" %}{{ area.name }}</a>{% endfor %}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+  {% include "partials/cta_band.html" %}
+{% endblock %}

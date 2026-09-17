@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Emergency banner — thin strip above the header. Collapses away on scroll.
+   ========================================================================== */
+
+.banner {
+  background: var(--color-navy-900);
+  color: var(--text-on-dark);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-small);
+  min-height: var(--banner-height);
+  display: flex;
+  align-items: center;
+}
+
+.banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-block: var(--space-1);
+  text-align: center;
+}
+
+.banner__pulse {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 0 rgb(31 138 91 / 0.6);
+  animation: banner-pulse 2.4s var(--ease-in-out) infinite;
+  flex: none;
+}
+
+@keyframes banner-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(31 138 91 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgb(31 138 91 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(31 138 91 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__pulse {
+    animation: none;
+  }
+}
+
+.banner__text {
+  color: var(--text-on-dark-muted);
+}
+
+.banner__phone {
+  color: var(--text-on-dark);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.banner__phone:hover {
+  color: var(--color-ice-300);
+}
+
+@media (max-width: 479.98px) {
+  .banner__text {
+    display: none;
+  }
+}

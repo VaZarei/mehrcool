@@ -1,0 +1,7 @@
+-r base.txt
+# Proves zero N+1 queries and exposes template/context debugging in development only.
+django-debug-toolbar>=8.0
+# Formatter (line length 100) — configured in pyproject.toml.
+black>=26.0
+# Linter, import sorter and docstring checker — configured in pyproject.toml.
+ruff>=0.16

@@ -1,0 +1,28 @@
+{% load cache %}
+<nav class="mobile-nav" aria-label="Main menu">
+  {% cache 900 mobile_nav %}
+  <ul class="mobile-nav__list">
+    {% for item in header_nav %}
+      <li>
+        {% if item.resolved_url %}
+          <a class="mobile-nav__link" href="{{ item.resolved_url }}">{{ item.label }}{% icon "arrow-right" size=18 %}</a>
+        {% else %}
+          <span class="mobile-nav__link">{{ item.label }}</span>
+        {% endif %}
+        {% if item.child_items %}
+          <ul class="mobile-nav__sub">
+            {% for child in item.child_items %}
+              <li><a class="mobile-nav__sub-link" href="{{ child.resolved_url }}">{{ child.label }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% endcache %}
+  <div class="mobile-nav__actions">
+    <a class="btn btn--primary btn--lg" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="mobile_nav">{% icon "phone" %}Call {{ site.emergency_phone }}</a>
+    {% if site.whatsapp_href %}<a class="btn btn--accent" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-label="mobile_nav">{% icon "whatsapp" %}WhatsApp us</a>{% endif %}
+    <a class="btn btn--outline" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+  </div>
+</nav>

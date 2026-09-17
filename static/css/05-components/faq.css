@@ -1,0 +1,93 @@
+/* ==========================================================================
+   FAQ accordion — native <details>, keyboard accessible, animated chevron.
+   ========================================================================== */
+
+.faq {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.faq__item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-page);
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.faq__item[open] {
+  border-color: var(--color-ice-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 3.5rem;
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-base);
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+}
+
+.faq__question:hover {
+  color: var(--color-navy-700);
+}
+
+.faq__question:active {
+  background: var(--color-ice-50);
+}
+
+.faq__question .icon {
+  color: var(--color-navy-500);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.faq__item[open] .faq__question .icon {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  padding: 0 var(--space-5) var(--space-5);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.faq__answer p + p {
+  margin-top: var(--space-3);
+}
+
+/* Progressive: animate open state where ::details-content is supported. */
+@supports selector(::details-content) {
+  .faq__item::details-content {
+    opacity: 0;
+    block-size: 0;
+    overflow-y: clip;
+    transition: content-visibility var(--duration-base) allow-discrete, opacity var(--duration-base) var(--ease-out),
+      block-size var(--duration-base) var(--ease-out);
+  }
+  .faq__item[open]::details-content {
+    opacity: 1;
+    block-size: auto;
+  }
+}
+
+.section--dark .faq__item,
+.section--darker .faq__item {
+  background: rgb(255 255 255 / 0.04);
+  border-color: rgb(255 255 255 / 0.12);
+}
+
+.section--dark .faq__question,
+.section--darker .faq__question {
+  color: var(--text-on-dark);
+}
+
+.section--dark .faq__answer,
+.section--darker .faq__answer {
+  color: var(--text-on-dark-muted);
+}

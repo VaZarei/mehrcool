@@ -1,0 +1,18 @@
+<article class="card reveal">
+  <div class="card__media {% if not service.hero_image %}card__media--icon{% endif %}">
+    {% if service.hero_image %}
+      {% picture service.hero_image alt=service.hero_image_alt sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" widths="480,768,1080" %}
+    {% else %}
+      {% icon service.icon %}
+    {% endif %}
+  </div>
+  <div class="card__body">
+    <div class="card__tags"><span class="chip chip--neutral">{{ service.category.name }}</span>{% if service.typical_response_time %}<span class="chip">{% icon "clock" %}{{ service.typical_response_time }}</span>{% endif %}</div>
+    <h3 class="card__title"><a href="{{ service.get_absolute_url }}">{{ service.name }}</a></h3>
+    <p class="card__text">{{ service.short_summary }}</p>
+    <div class="card__footer">
+      <span class="link-arrow">Learn more {% icon "arrow-right" size=18 %}</span>
+      {% if service.is_emergency %}{% call_button label="Call now" size="sm" %}{% endif %}
+    </div>
+  </div>
+</article>

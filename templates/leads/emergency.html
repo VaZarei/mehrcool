@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body_class %}is-emergency{% endblock %}
+{% block content %}
+<div class="emergency">
+  <section class="container emergency__hero" aria-labelledby="emergency-title">
+    <span class="eyebrow">24/7 emergency callout</span>
+    <h1 class="emergency__title" id="emergency-title">{{ copy.title }}</h1>
+    <a class="emergency__phone" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="emergency_hero">
+      <span class="emergency__phone-label">Tap to call the duty engineer</span>
+      <span class="emergency__phone-number">{{ site.emergency_phone }}</span>
+    </a>
+    <p class="emergency__promise">{% icon "clock" %}{{ site.response_time_claim }} · {{ site.opening_hours_text }}</p>
+    {% if site.whatsapp_href %}
+      <div class="emergency__alt">
+        <a class="btn btn--outline-light" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-label="emergency_page">{% icon "whatsapp" %}Send a photo of the fault on WhatsApp</a>
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="container emergency__form-wrap" aria-labelledby="callback-title">
+    <div class="emergency__card" data-form-region aria-live="polite">
+      {% include "leads/partials/emergency_form.html" %}
+    </div>
+
+    {% for block in copy.blocks %}
+      {% if block.block_type == 'feature_grid' %}
+        <div class="emergency__steps">
+          {% for item in block.parsed_items %}
+            <div class="emergency__step"><span class="emergency__step-num">{{ forloop.counter }}</span><strong>{{ item.title }}</strong> {{ item.body }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if areas %}
+      <div class="emergency__coverage">
+        <h2>Engineers covering</h2>
+        <div class="emergency__areas">
+          {% for area in areas %}<a href="{{ area.get_absolute_url }}">{{ area.name }}</a>{% endfor %}
+          <a href="{% url 'locations:index' %}">All areas</a>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

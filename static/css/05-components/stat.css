@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Stat row — big numbers with short labels.
+   ========================================================================== */
+
+.stats {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .stats,
+  .stats--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .stats--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .stats--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.stat {
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-navy-500);
+}
+
+.stat__value {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  color: var(--color-navy-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__label {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.section--dark .stat__value,
+.section--darker .stat__value {
+  color: var(--text-on-dark);
+}
+
+.section--dark .stat__label,
+.section--darker .stat__label {
+  color: var(--text-on-dark-muted);
+}
+
+.section--dark .stat,
+.section--darker .stat {
+  border-left-color: var(--color-ice-400);
+}

@@ -1,0 +1,76 @@
+{% load cache %}
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        {% if site.logo_dark %}
+          <img src="{{ site.logo_dark.url }}" alt="{{ site.trading_name }}" width="200" height="48" loading="lazy">
+        {% elif site.logo_light %}
+          <img src="{{ site.logo_light.url }}" alt="{{ site.trading_name }}" width="200" height="48" loading="lazy">
+        {% endif %}
+        <p>{{ site.footer_blurb }}</p>
+        {% if trust_badges %}
+          <div class="site-footer__badges">
+            {% for badge in trust_badges %}<img src="{{ badge.logo.url }}" alt="{{ badge.alt }}" title="{{ badge.name }}" loading="lazy" width="96" height="36">{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% cache 900 footer_nav %}
+      {% for column in footer_nav %}
+        <div>
+          <h2 class="site-footer__heading">{{ column.label }}</h2>
+          <ul class="site-footer__links">
+            {% if column.resolved_url and not column.child_items %}<li><a href="{{ column.resolved_url }}">{{ column.label }}</a></li>{% endif %}
+            {% for child in column.child_items %}
+              <li><a href="{{ child.resolved_url }}"{% if child.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ child.label }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+      {% endcache %}
+
+      <div>
+        <h2 class="site-footer__heading">{{ site.footer_contact_heading }}</h2>
+        <div class="site-footer__contact">
+          <div class="site-footer__contact-item">
+            {% icon "phone" %}
+            <div>
+              <a class="site-footer__phone" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="footer">{{ site.emergency_phone }}</a>
+              <div class="text-small">{{ site.opening_hours_text }}</div>
+            </div>
+          </div>
+          <div class="site-footer__contact-item">
+            {% icon "mail" %}
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          </div>
+          <div class="site-footer__contact-item">
+            {% icon "map-pin" %}
+            <address>{% for line in site.full_address_lines %}{{ line }}{% if not forloop.last %}<br>{% endif %}{% endfor %}</address>
+          </div>
+          <div class="site-footer__contact-item">
+            {% icon "qr" %}
+            <a href="{% url 'core:vcard' %}" download>Save our contact card (.vcf)</a>
+          </div>
+        </div>
+        {% if site.facebook_url or site.instagram_url or site.linkedin_url or site.x_url or site.google_business_url %}
+          <div class="site-footer__social mt-6" aria-label="Social profiles">
+            {% if site.linkedin_url %}<a href="{{ site.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>{% endif %}
+            {% if site.facebook_url %}<a href="{{ site.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">f</a>{% endif %}
+            {% if site.instagram_url %}<a href="{{ site.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">ig</a>{% endif %}
+            {% if site.x_url %}<a href="{{ site.x_url }}" target="_blank" rel="noopener" aria-label="X">x</a>{% endif %}
+            {% if site.google_business_url %}<a href="{{ site.google_business_url }}" target="_blank" rel="noopener" aria-label="Google reviews">G</a>{% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__legal">
+        <span>© {% now "Y" %} {{ site.legal_name }}{% if site.company_number %}. Company No. {{ site.company_number }}{% endif %}{% if site.vat_number %}. VAT {{ site.vat_number }}{% endif %}.</span>
+        {% if site.footer_legal_line %}<span>{{ site.footer_legal_line }}</span>{% endif %}
+        <span>Serving {{ site.areas_served }}.</span>
+      </div>
+    </div>
+  </div>
+</footer>

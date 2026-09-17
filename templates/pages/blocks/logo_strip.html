@@ -1,0 +1,7 @@
+{% if block.logo_source == 'badges' %}
+  {% include "partials/trust_strip.html" with badges=trust_badges brands=None clients=None %}
+{% elif block.logo_source == 'brands' %}
+  {% include "partials/trust_strip.html" with badges=None brands=brands clients=None %}
+{% else %}
+  {% include "partials/trust_strip.html" with badges=None brands=None clients=clients %}
+{% endif %}

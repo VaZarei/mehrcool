@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Sticky trust header
+   Translucent material with content scrolling underneath. Condenses on scroll
+   (height via custom property, transform-only where possible) but always keeps
+   logo, emergency phone and the F-Gas mark.
+   ========================================================================== */
+
+.site-header {
+  --hdr-h: var(--header-height);
+  --logo-h: 2.75rem;
+
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--material-light);
+  -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+
+/* Scroll-edge effect instead of a hard divider: appears only once content scrolls under. */
+.site-header.is-condensed {
+  --hdr-h: var(--header-height-condensed);
+  --logo-h: 2.125rem;
+  background: var(--material-light-solid);
+  border-bottom-color: var(--border-subtle);
+  box-shadow: var(--shadow-xs);
+}
+
+.site-header--dark {
+  background: var(--material-dark);
+  color: var(--text-on-dark);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--hdr-h);
+  transition: height var(--duration-base) var(--ease-out);
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.site-header__logo img {
+  height: var(--logo-h);
+  width: auto;
+  transition: height var(--duration-base) var(--ease-out);
+}
+
+.site-header__wordmark {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-heading);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
+.site-header__wordmark span {
+  color: var(--color-navy-700);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+}
+
+/* Small compliance mark next to the phone number. */
+.trust-mark {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.375rem 0.625rem 0.375rem 0.375rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-ice-100);
+  color: var(--color-navy-700);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-small);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.trust-mark img {
+  height: 1.5rem;
+  width: auto;
+  max-width: 3.5rem;
+  object-fit: contain;
+}
+
+.trust-mark .icon {
+  color: var(--color-success);
+}
+
+@media (min-width: 1160px) {
+  .trust-mark {
+    display: inline-flex;
+  }
+}
+
+.site-header__phone {
+  display: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .site-header__phone {
+    display: inline-flex;
+  }
+}
+
+/* Between the desktop nav appearing and the wide layout, keep the row compact. */
+@media (min-width: 1024px) and (max-width: 1159.98px) {
+  .site-header__phone {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* Minimal header (emergency flow): the call button is always visible; on very
+   narrow screens it collapses to the icon so logo + button fit in 320px. */
+.site-header__call {
+  white-space: nowrap;
+}
+
+@media (max-width: 479.98px) {
+  .site-header__call {
+    width: 3rem;
+    padding: 0;
+  }
+  .site-header__call-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+/* Mobile menu toggle (details/summary so it works without JS). */
+.menu-toggle {
+  position: relative;
+}
+
+.menu-toggle__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-navy-700);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.menu-toggle__button:hover {
+  background: var(--color-ice-100);
+}
+
+.menu-toggle__button:active {
+  transform: scale(0.94);
+}
+
+.menu-toggle__button .icon--close {
+  display: none;
+}
+
+.menu-toggle[open] .menu-toggle__button .icon--menu {
+  display: none;
+}
+
+.menu-toggle[open] .menu-toggle__button .icon--close {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+}

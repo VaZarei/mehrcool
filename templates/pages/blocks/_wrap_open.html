@@ -1,0 +1,2 @@
+{% if inline %}<section class="block block--inline" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>{% else %}<section class="section block block--{{ block.background }}" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}><div class="container">{% endif %}
+{% if block.heading %}<h2 class="block__heading">{{ block.heading }}</h2>{% endif %}

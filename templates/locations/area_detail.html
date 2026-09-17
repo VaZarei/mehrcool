@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="page-hero {% if area.hero_image %}page-hero--with-media{% endif %}">
+    <div class="container page-hero__inner">
+      <div class="page-hero__content">
+        {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+        <span class="eyebrow eyebrow--on-dark">{{ area.get_region_display }}</span>
+        <h1 class="page-hero__title">{{ area.display_h1 }}</h1>
+        <p class="page-hero__lead">{{ area.intro|truncatewords:40 }}</p>
+        <div class="page-hero__facts">
+          <span class="chip chip--on-dark chip--lg">{% icon "clock" %}{{ area.typical_response_time|default:site.response_time_claim }}</span>
+          {% if area.postcode_list %}<span class="chip chip--on-dark chip--lg">{% icon "map-pin" %}Covering {{ area.postcode_list|join:", " }}</span>{% endif %}
+        </div>
+        <div class="page-hero__actions">{% call_button label=site.hero_primary_cta_label %}<a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a></div>
+      </div>
+      {% if area.hero_image %}<div class="page-hero__media">{% picture area.hero_image alt=area.hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}</div>{% endif %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="prose prose--lg">{{ area.intro|richtext }}</div>
+      <aside class="split__aside panel panel--dark">
+        <h3>Engineers in {{ area.name }}</h3>
+        <p class="text-on-dark-muted">{{ site.response_time_claim }}. {{ site.opening_hours_text }}.</p>
+        {% call_button label=site.emergency_phone %}
+      </aside>
+    </div>
+  </section>
+
+  {% if services %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>Services in {{ area.name }}</h2></div>
+        <div class="grid-auto">{% for service in services %}{% include "partials/card_service.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if case_studies %}
+    <section class="section">
+      <div class="container">
+        <div class="section__header"><h2>{% if case_studies_are_local %}Recent work in {{ area.name }}{% else %}Recent work across London{% endif %}</h2>{% if not case_studies_are_local %}<p class="lead">We are writing up our first {{ area.name }} projects. Here is comparable recent work nearby.</p>{% endif %}</div>
+        <div class="grid-auto grid-auto--lg">{% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if reviews %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>{% if reviews_are_local %}What {{ area.name }} clients say{% else %}What clients say{% endif %}</h2></div>
+        <div class="review-grid">{% for review in reviews %}{% include "partials/review.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+  {% include "partials/cta_band.html" %}
+{% endblock %}

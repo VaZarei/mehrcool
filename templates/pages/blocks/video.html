@@ -1,0 +1,8 @@
+{% include "pages/blocks/_wrap_open.html" %}
+{% if block.body %}<p class="lead mb-8">{{ block.body }}</p>{% endif %}
+{% if block.video_embed_url %}
+  <div class="video-band">
+    <iframe src="{{ block.video_embed_url }}" title="{{ block.heading|default:'Video' }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+{% endif %}
+{% include "pages/blocks/_wrap_close.html" %}

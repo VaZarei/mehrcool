@@ -1,0 +1,25 @@
+<section class="cta-band" aria-labelledby="cta-band-title">
+  <div class="container cta-band__inner">
+    <div>
+      <h2 class="cta-band__title" id="cta-band-title">{{ cta_title|default:site.cta_band_title }}</h2>
+      <p class="cta-band__text">{{ cta_text|default:site.cta_band_text }}</p>
+      <div class="cta-band__actions">
+        {% call_button label=site.hero_primary_cta_label size="lg" event="phone_click" %}
+        <a class="btn btn--outline-light btn--lg" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+      </div>
+    </div>
+    <div class="cta-band__badges">
+      <p class="cta-band__badges-label">Compliance checklist</p>
+      {% if trust_badges %}
+        <div class="cta-band__badge-list">
+          {% for badge in trust_badges %}<img src="{{ badge.logo.url }}" alt="{{ badge.alt }}" title="{{ badge.name }}" loading="lazy" width="112" height="40">{% endfor %}
+        </div>
+      {% endif %}
+      <ul class="cta-band__checks">
+        {% for item in site.cta_checklist %}<li>{% icon "check" %}{{ item }}</li>{% endfor %}
+        <li>{% icon "check" %}{{ site.opening_hours_text }} — {{ site.response_time_claim }}</li>
+        {% if site.company_number %}<li>{% icon "check" %}{{ site.legal_name }}, company no. {{ site.company_number }}</li>{% endif %}
+      </ul>
+    </div>
+  </div>
+</section>

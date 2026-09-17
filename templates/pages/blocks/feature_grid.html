@@ -1,0 +1,12 @@
+{% include "pages/blocks/_wrap_open.html" %}
+{% if block.body %}<p class="lead mb-8">{{ block.body }}</p>{% endif %}
+<div class="features features--{{ block.columns }}">
+  {% for item in block.parsed_items %}
+    <div class="feature reveal">
+      <span class="feature__num">0{{ forloop.counter }}</span>
+      <h3 class="feature__title">{% if item.url %}<a href="{{ item.url }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+      {% if item.body %}<p class="feature__text">{{ item.body }}</p>{% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% include "pages/blocks/_wrap_close.html" %}

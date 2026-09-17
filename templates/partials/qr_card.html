@@ -1,0 +1,14 @@
+<div class="qr-card {{ modifier|default:'' }}">
+  <div class="qr-card__image">
+    {% if site.contact_qr_image %}
+      <img src="{{ site.contact_qr_image.url }}" alt="QR code — scan to save {{ site.trading_name }} to your contacts" width="112" height="112" loading="lazy">
+    {% else %}
+      <img src="{% url 'core:vcard_qr' %}" alt="QR code — scan to save {{ site.trading_name }} to your contacts" width="112" height="112" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="qr-card__body">
+    <h3 class="qr-card__title">{{ site.qr_card_title }}</h3>
+    <p class="qr-card__text">{{ site.contact_qr_caption }}</p>
+    <a class="link-arrow {% if modifier == 'qr-card--dark' %}link-arrow--light{% endif %}" href="{% url 'core:vcard' %}" download>Download contact card {% icon "arrow-right" size=16 %}</a>
+  </div>
+</div>

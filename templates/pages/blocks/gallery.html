@@ -1,0 +1,11 @@
+{% include "pages/blocks/_wrap_open.html" %}
+{% if block.body %}<p class="lead mb-8">{{ block.body }}</p>{% endif %}
+<div class="gallery">
+  {% for asset in block.gallery_images.all %}
+    <figure class="gallery__item reveal">
+      {% picture asset.image alt=asset.alt_text sizes="(min-width: 768px) 30vw, 45vw" widths="480,768" %}
+      {% if asset.caption %}<figcaption>{{ asset.caption }}</figcaption>{% endif %}
+    </figure>
+  {% endfor %}
+</div>
+{% include "pages/blocks/_wrap_close.html" %}

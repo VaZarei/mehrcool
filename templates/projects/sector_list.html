@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro %}
+  <section class="section">
+    <div class="container grid-auto">
+      {% for sector in sectors %}
+        <article class="card reveal">
+          <div class="card__media {% if not sector.hero_image %}card__media--icon{% endif %}">{% if sector.hero_image %}{% picture sector.hero_image alt=sector.hero_image_alt sizes="(min-width: 1024px) 30vw, 92vw" widths="480,768,1080" %}{% else %}{% icon sector.icon %}{% endif %}</div>
+          <div class="card__body">
+            <h2 class="card__title"><a href="{{ sector.get_absolute_url }}">{{ sector.name }}</a></h2>
+            <p class="card__text">{{ sector.intro|truncatewords:30 }}</p>
+            <div class="card__footer"><span class="link-arrow">Cooling for {{ sector.name|lower }} {% icon "arrow-right" size=18 %}</span></div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% include "partials/cta_band.html" %}
+{% endblock %}

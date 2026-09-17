@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Mobile thumb-zone action bar — bottom-anchored on phones, safe-area aware.
+   Body gets matching bottom padding (03-base.css) so nothing is covered.
+   ========================================================================== */
+
+.mobile-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-sticky);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+  background: var(--material-light-solid);
+  -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  border-top: 1px solid var(--border-subtle);
+  box-shadow: 0 -4px 24px rgb(21 31 71 / 0.08);
+  transform: translateY(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.mobile-bar--single {
+  grid-template-columns: 1fr;
+}
+
+.mobile-bar .btn {
+  min-height: 3rem;
+  font-size: var(--text-sm);
+  padding-inline: var(--space-3);
+}
+
+.mobile-bar .btn .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+@media (min-width: 768px) {
+  .mobile-bar {
+    display: none;
+  }
+}

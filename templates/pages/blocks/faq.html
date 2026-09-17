@@ -1,0 +1,4 @@
+{% include "pages/blocks/_wrap_open.html" %}
+{% if block.body %}<p class="lead mb-8">{{ block.body }}</p>{% endif %}
+{% include "partials/faq.html" with faqs=block.faq_entries %}
+{% include "pages/blocks/_wrap_close.html" %}

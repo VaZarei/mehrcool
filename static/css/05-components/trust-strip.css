@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Trust strip — accreditation, brand and client logos.
+   Greyscale, colour on hover; horizontally scrollable with snap on mobile.
+   ========================================================================== */
+
+.trust {
+  padding-block: var(--space-10);
+}
+
+.trust__row + .trust__row {
+  margin-top: var(--space-8);
+}
+
+.trust__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.logo-row {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-block: var(--space-2);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  padding-inline: var(--space-4);
+  margin-inline: calc(-1 * var(--space-4));
+}
+
+.logo-row::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .logo-row {
+    flex-wrap: wrap;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+    justify-content: flex-start;
+    row-gap: var(--space-6);
+  }
+}
+
+.logo-row__item {
+  flex: none;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  min-width: 6rem;
+  padding: 0;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter var(--duration-base) var(--ease-out), opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.logo-row__item:hover,
+.logo-row__item:focus-visible {
+  filter: none;
+  opacity: 1;
+}
+
+.logo-row__item:active {
+  transform: scale(0.97);
+}
+
+.logo-row__item img {
+  height: 100%;
+  width: auto;
+  max-width: 9rem;
+  object-fit: contain;
+}
+
+.logo-row--badges .logo-row__item {
+  height: 3.5rem;
+  filter: none;
+  opacity: 1;
+}
+
+.logo-row--on-dark .logo-row__item {
+  filter: grayscale(1) brightness(10);
+  opacity: 0.85;
+}
+
+.logo-row--on-dark .logo-row__item:hover {
+  filter: brightness(10);
+}
+
+/* Compact wrapped variant inside aside panels. */
+.logo-row--panel {
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  overflow: visible;
+  gap: var(--space-4);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.logo-row--panel .logo-row__item {
+  height: 2.25rem;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-row {
+    scroll-snap-type: none;
+  }
+}

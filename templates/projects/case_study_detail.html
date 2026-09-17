@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="page-hero {% if case_study.hero_image %}page-hero--with-media{% endif %}">
+    <div class="container page-hero__inner">
+      <div class="page-hero__content">
+        {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+        <span class="eyebrow eyebrow--on-dark">{{ case_study.sector.name }}{% if case_study.area %} · {{ case_study.area.name }}{% endif %}</span>
+        <h1 class="page-hero__title">{{ case_study.title }}</h1>
+        <p class="page-hero__lead">{{ case_study.summary }}</p>
+        <div class="page-hero__facts">
+          <span class="chip chip--on-dark chip--lg">{{ case_study.display_client }}</span>
+          {% if case_study.scale_metric %}<span class="chip chip--on-dark chip--lg">{{ case_study.scale_metric }}</span>{% endif %}
+          {% if case_study.completed_on %}<span class="chip chip--on-dark chip--lg">{{ case_study.completed_on|date:"F Y" }}</span>{% endif %}
+        </div>
+      </div>
+      {% if case_study.hero_image %}<div class="page-hero__media">{% picture case_study.hero_image alt=case_study.hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}</div>{% endif %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stack stack--lg">
+      <div class="csr">
+        <div class="csr__item"><h2>The challenge</h2><div class="prose">{{ case_study.challenge|richtext }}</div></div>
+        <div class="csr__item"><h2>The solution</h2><div class="prose">{{ case_study.solution|richtext }}</div></div>
+        <div class="csr__item csr__item--result"><h2>The result</h2><div class="prose">{{ case_study.result|richtext }}</div></div>
+      </div>
+      <div class="cluster">
+        <span class="text-small text-muted">Services delivered:</span>
+        {% for service in case_study.services.all %}<a class="chip chip--lg" href="{{ service.get_absolute_url }}">{{ service.name }}</a>{% endfor %}
+      </div>
+      {% if case_study.images.all %}
+        <div class="gallery">{% for image in case_study.images.all %}<figure class="gallery__item reveal">{% picture image.image alt=image.alt_text sizes="(min-width: 768px) 30vw, 45vw" widths="480,768" %}{% if image.caption %}<figcaption>{{ image.caption }}</figcaption>{% endif %}</figure>{% endfor %}</div>
+      {% endif %}
+      {% if case_study.testimonial %}
+        <div class="review-grid">{% include "partials/review.html" with review=case_study.testimonial %}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if related %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>More {{ case_study.sector.name|lower }} projects</h2></div>
+        <div class="grid-auto grid-auto--lg">{% for case_study in related %}{% include "partials/card_case_study.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+  {% include "partials/cta_band.html" %}
+{% endblock %}

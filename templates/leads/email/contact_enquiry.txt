@@ -1,0 +1,16 @@
+New website enquiry — {{ site.trading_name }}
+
+Name:        {{ lead.name }}
+Company:     {{ lead.company|default:"—" }}
+Phone:       {{ lead.phone }}
+Email:       {{ lead.email|default:"—" }}
+About:       {{ lead.enquiry_type.label|default:"General" }}
+Consent:     {{ lead.consent|yesno:"Yes,No" }}
+
+Message:
+{{ lead.message }}
+
+Sent from:   {{ lead.source_url }}
+Received:    {{ lead.created_at|date:"j M Y H:i" }}
+
+Manage this lead in the admin: {{ SITE_URL }}/admin/leads/contactenquiry/{{ lead.pk }}/change/

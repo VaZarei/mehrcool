@@ -1,0 +1,53 @@
+{% load cache %}
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="/" aria-label="{{ site.trading_name }} — home">
+      {% if site.logo_light %}
+        <img src="{{ site.logo_light.url }}" alt="{{ site.trading_name }}" width="240" height="60">
+      {% else %}
+        <span class="site-header__wordmark">Mehr<span>Cool</span></span>
+      {% endif %}
+    </a>
+
+    {% cache 900 header_nav current_path %}
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        {% for item in header_nav %}
+          <li class="nav__item">
+            {% if item.resolved_url %}
+              <a class="nav__link {% active_class item.resolved_url %}" href="{{ item.resolved_url }}"{% if item.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}{% if item.child_items %} aria-haspopup="true"{% endif %}>{{ item.label }}{% if item.child_items %}{% icon "chevron-down" size=16 %}{% endif %}</a>
+            {% else %}
+              <span class="nav__link" tabindex="0" aria-haspopup="true">{{ item.label }}{% if item.child_items %}{% icon "chevron-down" size=16 %}{% endif %}</span>
+            {% endif %}
+            {% if item.child_items %}
+              <ul class="nav__dropdown">
+                {% for child in item.child_items %}
+                  <li><a class="nav__dropdown-link" href="{{ child.resolved_url }}"{% if child.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ child.label }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endcache %}
+
+    <div class="site-header__actions">
+      {% if header_badge %}
+        <a class="trust-mark" href="{% if header_badge.certificate_url %}{{ header_badge.certificate_url }}{% else %}/about/{% endif %}" {% if header_badge.certificate_url %}target="_blank" rel="noopener"{% endif %} title="{{ header_badge.short_description|default:header_badge.name }}">
+          <img src="{{ header_badge.logo.url }}" alt="" width="56" height="24">
+          <span>{{ header_badge.name }}</span>
+        </a>
+      {% endif %}
+      <a class="btn btn--primary site-header__phone" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="header">
+        {% icon "phone" size=18 %}<span>{{ site.emergency_phone }}</span>
+      </a>
+      <details class="menu-toggle" data-menu>
+        <summary class="menu-toggle__button" aria-label="Open menu">
+          {% icon "menu" %}{% icon "close" %}
+        </summary>
+        {% include "partials/mobile_nav.html" %}
+      </details>
+    </div>
+  </div>
+</header>

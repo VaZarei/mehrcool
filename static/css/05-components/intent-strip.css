@@ -1,0 +1,144 @@
+/* ==========================================================================
+   "I need…" self-segmentation strip — three large tap targets.
+   ========================================================================== */
+
+.intent {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--space-8) 0;
+}
+
+@media (min-width: 1024px) {
+  .intent {
+    margin-top: calc(-1 * var(--space-16));
+    padding-top: 0;
+  }
+}
+
+.intent__heading {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .intent__heading {
+    color: var(--text-on-dark-muted);
+    position: absolute;
+    top: calc(-1 * var(--space-8));
+  }
+}
+
+.intent__grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .intent__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gap);
+  }
+}
+
+.intent-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 5.5rem;
+  padding: var(--space-5) var(--space-5);
+  background: var(--surface-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+@media (min-width: 640px) {
+  .intent-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    min-height: 12rem;
+    padding: var(--space-6);
+  }
+}
+
+.intent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-ice-300);
+  color: var(--text-primary);
+}
+
+.intent-card:active {
+  transform: translateY(0) scale(0.985);
+  box-shadow: var(--shadow-sm);
+}
+
+.intent-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: var(--color-ice-100);
+  color: var(--color-navy-700);
+}
+
+.intent-card__icon .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.intent-card__body {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.intent-card__label {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-heading);
+  line-height: 1.15;
+}
+
+.intent-card__desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.intent-card__arrow {
+  color: var(--color-navy-500);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.intent-card:hover .intent-card__arrow {
+  transform: translateX(4px);
+}
+
+@media (min-width: 640px) {
+  .intent-card__arrow {
+    justify-self: end;
+  }
+}
+
+/* Emergency tile: the icon well takes the action colour; the tile itself does
+   not become an orange block so orange stays tied to the act of calling. */
+.intent-card--emergency .intent-card__icon {
+  background: var(--action);
+  color: var(--text-on-action);
+}
+
+.intent-card--emergency:hover {
+  border-color: var(--action);
+}

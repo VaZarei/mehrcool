@@ -1,0 +1,11 @@
+*** EMERGENCY CALLBACK REQUEST ***
+
+Ring back:   {{ lead.phone }}
+Postcode:    {{ lead.postcode|default:"not given" }}
+Fault:       {{ lead.issue.label|default:"not given" }}
+Details:     {{ lead.details|default:"—" }}
+
+Received:    {{ lead.created_at|date:"j M Y H:i" }}
+Sent from:   {{ lead.source_url }}
+
+Mark as called back: {{ SITE_URL }}/admin/leads/emergencycallout/{{ lead.pk }}/change/

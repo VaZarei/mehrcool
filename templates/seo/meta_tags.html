@@ -1,0 +1,15 @@
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}<meta name="robots" content="noindex, nofollow">{% else %}<meta name="robots" content="index, follow, max-image-preview:large">{% endif %}
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:site_name" content="{{ site.trading_name }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:locale" content="en_GB">
+{% if og_image %}<meta property="og:image" content="{{ og_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ og_image }}">{% else %}<meta name="twitter:card" content="summary">{% endif %}
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">

@@ -1,0 +1,159 @@
+/* Mehr Cool admin theme — brand colours over Django's admin CSS variables. */
+:root,
+html[data-theme="light"] {
+  --primary: #2b3e8c;
+  --secondary: #1e2c66;
+  --accent: #f29d12;
+  --primary-fg: #fff;
+  --header-color: #fff;
+  --header-branding-color: #fff;
+  --header-link-color: #d5e1f5;
+  --breadcrumbs-fg: #d5e1f5;
+  --breadcrumbs-bg: #34499e;
+  --button-bg: #2b3e8c;
+  --button-hover-bg: #34499e;
+  --default-button-bg: #f29d12;
+  --default-button-hover-bg: #ffc82b;
+  --object-tools-bg: #4a72c0;
+  --object-tools-hover-bg: #2b3e8c;
+  --link-fg: #9cc2ff;
+  --link-hover-color: #c6dcff;
+  --link-selected-fg: #c6dcff;
+  --body-fg: #e6ebf7;
+  --body-bg: #0e1a3d;
+  --body-quiet-color: #a7b4d6;
+  --body-loud-color: #ffffff;
+  --selected-bg: #223466;
+  --selected-row: #24356b;
+  --darkened-bg: #142450;
+  --hairline-color: #263a72;
+  --border-color: #33457f;
+  --font-family-primary: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+#header {
+  padding: 12px 40px;
+}
+
+#branding h1,
+#site-name {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.mc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.mc-brand__mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, #f29d12, #ffc82b 40%, #4a72c0 55%, #2b3e8c 100%);
+  box-shadow: inset 0 0 0 3px #1e2c66;
+}
+
+.mc-brand__sub {
+  font-weight: 400;
+  opacity: 0.7;
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+.mc-viewsite {
+  color: var(--header-link-color);
+  margin-right: 20px;
+}
+
+.mc-dashboard {
+  margin-bottom: 24px;
+}
+
+.mc-dashboard__card {
+  background: var(--darkened-bg);
+  border: 1px solid var(--hairline-color);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: var(--body-fg);
+}
+
+.mc-dashboard__card h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: var(--link-fg);
+}
+
+.mc-dashboard__card ul {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.7;
+}
+
+.mc-dashboard__hint {
+  margin: 12px 0 0;
+  color: var(--body-quiet-color);
+  font-size: 12.5px;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: var(--primary);
+  border-radius: 6px 6px 0 0;
+}
+
+.module {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--hairline-color);
+}
+
+fieldset.collapse summary,
+fieldset.module h2 {
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.help,
+div.help,
+p.help,
+.form-row div.help {
+  color: var(--body-quiet-color);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.submit-row {
+  border-radius: 8px;
+  background: var(--darkened-bg);
+  border: 1px solid var(--hairline-color);
+}
+
+.submit-row input.default {
+  color: #111;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+
+#changelist table thead th {
+  background: var(--darkened-bg);
+  color: var(--body-fg);
+}
+
+.object-tools a {
+  border-radius: 999px;
+}

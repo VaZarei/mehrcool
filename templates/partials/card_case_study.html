@@ -1,0 +1,20 @@
+<article class="card reveal">
+  <div class="card__media {% if not case_study.hero_image %}card__media--icon{% endif %}">
+    {% if case_study.hero_image %}
+      {% picture case_study.hero_image alt=case_study.hero_image_alt sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" widths="480,768,1080" %}
+    {% else %}
+      {% icon "snowflake" %}
+    {% endif %}
+  </div>
+  <div class="card__body">
+    <div class="card__tags">
+      <span class="chip">{{ case_study.sector.name }}</span>
+      {% if case_study.area %}<span class="chip chip--neutral">{% icon "map-pin" %}{{ case_study.area.name }}</span>{% endif %}
+    </div>
+    <h3 class="card__title"><a href="{{ case_study.get_absolute_url }}">{{ case_study.title }}</a></h3>
+    <p class="card__text">{{ case_study.summary }}</p>
+    <div class="card__footer">
+      <span class="card__meta">{{ case_study.display_client }}{% if case_study.scale_metric %} · {{ case_study.scale_metric }}{% endif %}</span>
+    </div>
+  </div>
+</article>

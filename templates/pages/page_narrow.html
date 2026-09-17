@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "partials/page_hero.html" with title=page.title lead=page.intro modifier="page-hero--light" %}
+  <div class="section">
+    <div class="container container--narrow stack stack--lg">
+      <p class="text-small text-muted">Last updated {{ page.updated_at|date:"j F Y" }}</p>
+      {% for block in blocks %}{% include block.template_name with block=block inline=True %}{% endfor %}
+    </div>
+  </div>
+  {% if page.show_contact_cta %}{% include "partials/cta_band.html" %}{% endif %}
+{% endblock %}

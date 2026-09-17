@@ -1,0 +1,18 @@
+<h2 id="callback-title" data-focus>Can't talk right now? We'll call you.</h2>
+<p class="mt-4">{{ copy.intro }}</p>
+<form class="form mt-6" method="post" action="{% url 'leads:emergency' %}" hx-post="{% url 'leads:emergency' %}" hx-target="closest [data-form-region]" hx-swap="innerHTML" hx-indicator="closest [data-form-region]" novalidate data-once>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="form__nonfield" role="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+  <div class="hp-field" aria-hidden="true">{{ form.website_url }}</div>
+  {% include "partials/field.html" with field=form.phone extra_class="field--xl" %}
+  <button class="btn btn--primary btn--lg btn--block" type="submit" data-event="callback_submit">Call me back {% icon "phone" size=18 %}</button>
+  <span class="htmx-indicator form__status"><span class="spinner" aria-hidden="true"></span>&nbsp;Sending…</span>
+  <details {% if form.postcode.errors or form.issue.errors or form.details.errors %}open{% endif %}>
+    <summary>{% icon "chevron-down" size=16 %}Add the postcode and what has failed (optional)</summary>
+    <div class="form-grid">
+      {% include "partials/field.html" with field=form.postcode %}
+      {% include "partials/field.html" with field=form.issue %}
+      {% include "partials/field.html" with field=form.details %}
+    </div>
+  </details>
+</form>

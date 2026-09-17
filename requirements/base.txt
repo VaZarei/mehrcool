@@ -1,0 +1,11 @@
+# Core framework. Latest stable LTS-track release; Python 3.12+.
+Django>=6.1,<6.2
+# 12-factor settings from environment variables; keeps every secret out of the repo.
+django-environ>=0.14
+# Image processing for uploads, dimension validation and WebP/AVIF rendition generation.
+Pillow>=12.0
+# Serves hashed static files with long cache headers behind Cloudflare without a separate web server.
+whitenoise>=6.12
+# Pure-Python QR code generator (no compiled deps); builds the "save our contact" vCard QR when
+# the admin has not uploaded a designed one.
+segno>=1.6

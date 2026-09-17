@@ -1,0 +1,36 @@
+{% if badges or brands or clients %}
+<section class="trust {{ modifier|default:'' }}" aria-label="Accreditations, brands and clients">
+  <div class="container">
+    {% if badges %}
+      <div class="trust__row">
+        <p class="trust__label">Accredited &amp; compliant</p>
+        <ul class="logo-row logo-row--badges">
+          {% for badge in badges %}
+            <li class="logo-row__item">
+              {% if badge.certificate_url %}<a href="{{ badge.certificate_url }}" target="_blank" rel="noopener" title="{{ badge.short_description|default:badge.name }}">{% endif %}
+              <img src="{{ badge.logo.url }}" alt="{{ badge.alt }}" loading="lazy" width="144" height="56">
+              {% if badge.certificate_url %}</a>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if brands %}
+      <div class="trust__row">
+        <p class="trust__label">Brands we install &amp; maintain</p>
+        <ul class="logo-row">
+          {% for brand in brands %}<li class="logo-row__item"><img src="{{ brand.logo.url }}" alt="{{ brand.alt }}" loading="lazy" width="144" height="48"></li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if clients %}
+      <div class="trust__row">
+        <p class="trust__label">Trusted by</p>
+        <ul class="logo-row">
+          {% for client in clients %}<li class="logo-row__item"><img src="{{ client.logo.url }}" alt="{{ client.alt }}" loading="lazy" width="144" height="48"></li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

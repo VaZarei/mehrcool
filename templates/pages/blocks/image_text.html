@@ -1,0 +1,9 @@
+{% include "pages/blocks/_wrap_open.html" %}
+<div class="media-text {% if block.image_position == 'right' %}media-text--right{% endif %}">
+  <div class="media-text__media">{% if block.image %}{% picture block.image alt=block.image_alt sizes="(min-width: 900px) 45vw, 92vw" widths="480,768,1080" %}{% endif %}</div>
+  <div class="media-text__body">
+    <div class="prose {% if block.background == 'navy' %}prose--on-dark{% endif %}">{{ block.body|richtext }}</div>
+    {% if block.cta_label %}<div>{% if block.cta_is_phone %}{% call_button label=block.cta_label %}{% else %}<a class="btn btn--secondary" href="{{ block.cta_url }}">{{ block.cta_label }}</a>{% endif %}</div>{% endif %}
+  </div>
+</div>
+{% include "pages/blocks/_wrap_close.html" %}

@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Inner page hero — navy band with breadcrumb, H1, lead and optional image.
+   ========================================================================== */
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-navy-700);
+  color: var(--text-on-dark);
+  padding-block: clamp(var(--space-10), 6vw, var(--space-20));
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(50rem 25rem at 90% 10%, rgb(74 114 192 / 0.5), transparent 60%),
+    linear-gradient(180deg, transparent, rgb(21 31 71 / 0.35));
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .page-hero--with-media .page-hero__inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-12);
+  }
+}
+
+.page-hero__content {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 44rem;
+}
+
+.page-hero__title {
+  color: var(--text-on-dark);
+}
+
+.page-hero__lead {
+  color: var(--text-on-dark-muted);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  max-width: 56ch;
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.page-hero__media {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  box-shadow: var(--shadow-lg);
+  background: var(--color-navy-800);
+}
+
+.page-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* Light variant for content/legal pages */
+.page-hero--light {
+  background: var(--surface-tint);
+  color: var(--text-primary);
+}
+
+.page-hero--light::before {
+  display: none;
+}
+
+.page-hero--light .page-hero__title {
+  color: var(--text-primary);
+}
+
+.page-hero--light .page-hero__lead {
+  color: var(--text-secondary);
+}

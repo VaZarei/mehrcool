@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "partials/page_hero.html" with title="Design system" lead="Every token, button state, form field and component. Development only." modifier="page-hero--light" noindex=True %}
+<div class="container">
+
+  <section class="sg-section">
+    <h2>Colour</h2>
+    <p class="text-secondary">Amber is reserved for primary actions. Navy carries authority; ice blue is the refrigeration cue.</p>
+    <div class="sg-swatches mt-6">
+      {% for name in "navy-900,navy-800,navy-700,navy-600,navy-500,ice-400,ice-300,ice-200,ice-100,ice-50,amber-600,amber-500,amber-400,yellow-400,yellow-100,grey-900,grey-800,grey-700,grey-600,grey-500,grey-400,grey-300,grey-200,grey-100,success,error"|split_csv %}
+        <div class="sg-swatch"><div class="sg-swatch__color sg-swatch__color--{{ name }}"></div><div class="sg-swatch__meta"><strong>{{ name }}</strong><code>--color-{{ name }}</code></div></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="sg-section sg-type">
+    <h2>Type scale</h2>
+    <p class="text-secondary">System font stack, optical sizing on, tracking tightens as size grows.</p>
+    <div class="mt-6"><span class="hero__title">Display — cold rooms, kept cold.</span><small>--text-display · tracking -0.025em · leading 1.05</small></div>
+    <div><p class="sg-as-h1">H1 — Commercial refrigeration in London</p><small>--text-3xl</small></div>
+    <div><h2>H2 — What facilities teams need</h2><small>--text-2xl</small></div>
+    <div><h3>H3 — Walk-in cold rooms</h3><small>--text-xl</small></div>
+    <div><h4>H4 — Technical specification</h4><small>--text-md</small></div>
+    <div><p class="lead">Lead — F-Gas certified engineers for cold rooms, display fridges, cellar cooling and VRF air conditioning.</p><small>--text-md · leading 1.65</small></div>
+    <div><p>Body — R290 and R32 are lower-GWP refrigerants now standard on new plant. Existing R404A systems can be maintained but leak checks are mandatory under the F-Gas regulation.</p><small>--text-base · leading 1.5</small></div>
+    <div><small class="text-small">Small — letter-spacing +0.01em for legibility.</small><small>--text-sm</small></div>
+    <div><span class="eyebrow">Eyebrow label</span><small>--text-xs · caps · tracking 0.08em</small></div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Spacing scale</h2>
+    <div class="sg-spacing mt-6">
+      {% for step in "1,2,3,4,5,6,8,10,12,16,20,24"|split_csv %}
+        <div class="sg-spacing__row"><span>--space-{{ step }}</span><span class="sg-spacing__bar sg-spacing__bar--{{ step }}"></span></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Buttons</h2>
+    <p class="text-secondary">Press feedback is instant (scale 0.97 on :active). Primary = amber = call/quote only.</p>
+    <div class="cluster mt-6">
+      {% call_button label="Call the 24/7 emergency line" %}
+      <a class="btn btn--secondary" href="#">Secondary</a>
+      <a class="btn btn--accent" href="#">{% icon "whatsapp" %}Accent</a>
+      <a class="btn btn--outline" href="#">Outline</a>
+      <a class="btn btn--ghost" href="#">Ghost</a>
+      <a class="btn btn--primary btn--lg" href="#">Large primary</a>
+      <a class="btn btn--secondary btn--sm" href="#">Small</a>
+      <button class="btn btn--secondary" disabled>Disabled</button>
+    </div>
+    <div class="sg-dark mt-6 cluster">
+      <a class="btn btn--primary" href="#">Primary on dark</a>
+      <a class="btn btn--outline-light" href="#">Outline light</a>
+      <a class="link-arrow link-arrow--light" href="#">Arrow link {% icon "arrow-right" size=18 %}</a>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Chips &amp; rating</h2>
+    <div class="cluster mt-6">
+      <span class="chip">Default</span><span class="chip chip--neutral">Neutral</span><span class="chip chip--success">Success</span><span class="chip chip--lg">{% icon "clock" %}Large with icon</span>
+    </div>
+    <div class="mt-6">{% include "partials/rating.html" with rating=4.9 review_count=48 %}</div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Form fields</h2>
+    <form class="form mt-6" onsubmit="return false">
+      <div class="form-grid form-grid--2">
+        <div class="field"><label class="field__label" for="sg-name">Your name <span class="field__required">*</span></label><input id="sg-name" type="text" placeholder="Jane Doe"></div>
+        <div class="field field--error"><label class="field__label" for="sg-phone">Phone number</label><input id="sg-phone" type="tel" value="0123"><p class="field__error">{% icon "close" %}Please enter a full phone number including the area code.</p></div>
+        <div class="field field--full"><label class="field__label" for="sg-select">What is this about?</label><select id="sg-select"><option>Choose one…</option><option>Planned maintenance contract</option></select></div>
+        <div class="field field--full"><label class="field__label" for="sg-text">Message</label><textarea id="sg-text" rows="3"></textarea><p class="field__help">Helper text sits under the field.</p></div>
+        <div class="field field--check field--full"><input id="sg-check" type="checkbox"><label class="field__label" for="sg-check">I'm happy to be contacted.</label></div>
+      </div>
+      <div class="form__actions"><button class="btn btn--secondary" type="submit">Submit</button><span class="form__status"><span class="spinner" aria-hidden="true"></span>&nbsp;Sending…</span></div>
+    </form>
+    <div class="notice mt-6"><h3 class="notice__title">{% icon "check" %}Success notice</h3><p>Confirmation copy.</p></div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Cards</h2>
+    <div class="grid-auto mt-6">
+      {% if sample_service %}{% include "partials/card_service.html" with service=sample_service %}{% endif %}
+      <a class="intent-card intent-card--emergency" href="#"><span class="intent-card__icon">{% icon "wrench" %}</span><span class="intent-card__body"><span class="intent-card__label">Repair</span><span class="intent-card__desc">Something has stopped working.</span></span><span class="intent-card__arrow">{% icon "arrow-right" %}</span></a>
+      <a class="intent-card" href="#"><span class="intent-card__icon">{% icon "calendar-check" %}</span><span class="intent-card__body"><span class="intent-card__label">Maintenance</span><span class="intent-card__desc">Planned servicing and compliance.</span></span><span class="intent-card__arrow">{% icon "arrow-right" %}</span></a>
+    </div>
+    {% if sample_review %}<div class="review-grid mt-6">{% include "partials/review.html" with review=sample_review %}</div>{% endif %}
+  </section>
+
+  <section class="sg-section">
+    <h2>FAQ accordion</h2>
+    <div class="mt-6">
+      <div class="faq">
+        <details class="faq__item" open><summary class="faq__question">What does F-Gas certification mean?{% icon "chevron-down" size=20 %}</summary><div class="faq__answer"><p>It is the legal requirement for any engineer who handles fluorinated refrigerant gases. Every Mehr Cool engineer holds it.</p></div></details>
+        <details class="faq__item"><summary class="faq__question">How fast can you attend?{% icon "chevron-down" size=20 %}</summary><div class="faq__answer"><p>{{ site.response_time_claim }}.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Icons</h2>
+    <div class="sg-icons mt-6">{% for name in icon_names %}<div class="sg-icon">{% icon name %}<span>{{ name }}</span></div>{% endfor %}</div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Shadows &amp; radii</h2>
+    <div class="sg-shadows mt-6">
+      <div class="sg-shadow sg-shadow--xs">xs</div><div class="sg-shadow sg-shadow--sm">sm</div><div class="sg-shadow sg-shadow--md">md</div><div class="sg-shadow sg-shadow--lg">lg</div><div class="sg-shadow sg-shadow--action">action</div>
+    </div>
+  </section>
+</div>
+{% include "partials/trust_strip.html" %}
+{% include "partials/cta_band.html" %}
+{% endblock %}

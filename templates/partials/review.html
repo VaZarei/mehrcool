@@ -1,0 +1,14 @@
+<article class="review reveal">
+  <div class="rating__stars rating__stars--sm" role="img" aria-label="{{ review.rating }} out of 5 stars">
+    {% for _ in review.rating|stars %}{% icon "star" size=14 %}{% endfor %}
+  </div>
+  <blockquote class="review__quote">{{ review.quote }}</blockquote>
+  <footer class="review__footer">
+    <span class="review__avatar" aria-hidden="true">{{ review.author_name|initials }}</span>
+    <div>
+      <div class="review__author">{{ review.author_name }}</div>
+      <div class="review__meta">{% if review.attribution %}{{ review.attribution }} · {% endif %}{{ review.date|date:"M Y" }}</div>
+    </div>
+    {% if review.source_url %}<a class="review__source" href="{{ review.source_url }}" target="_blank" rel="noopener">{{ review.get_source_display }}</a>{% else %}<span class="review__source">{{ review.get_source_display }}</span>{% endif %}
+  </footer>
+</article>

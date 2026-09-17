@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container container--narrow text-center stack--lg stack">
+    <span class="eyebrow">Error 404</span>
+    <h1>That page has moved or never existed</h1>
+    <p class="lead mx-auto">If you are standing in front of equipment that has stopped working, do not hunt around the site — ring us and an engineer will pick up.</p>
+    <div class="cluster cluster--center">
+      {% call_button label=site.emergency_phone size="lg" %}
+      <a class="btn btn--outline btn--lg" href="/">Back to the homepage</a>
+    </div>
+    <p class="text-small text-muted">Or try <a href="{% url 'services:index' %}">all services</a>, <a href="{% url 'projects:case_study_list' %}">case studies</a> or <a href="{% url 'leads:contact' %}">contact</a>.</p>
+  </div>
+</section>
+{% endblock %}

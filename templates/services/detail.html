@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="page-hero {% if service.hero_image %}page-hero--with-media{% endif %}">
+    <div class="container page-hero__inner">
+      <div class="page-hero__content">
+        {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+        <span class="eyebrow eyebrow--on-dark">{{ service.category.name }}</span>
+        <h1 class="page-hero__title">{{ service.name }}</h1>
+        <p class="page-hero__lead">{{ service.short_summary }}</p>
+        <div class="page-hero__facts">
+          {% if service.typical_response_time %}<span class="chip chip--on-dark chip--lg">{% icon "clock" %}{{ service.typical_response_time }}</span>{% endif %}
+          {% if service.price_from_note %}<span class="chip chip--on-dark chip--lg">{{ service.price_from_note }}</span>{% endif %}
+          <span class="chip chip--on-dark chip--lg">{% icon "map-pin" %}{{ site.areas_served }}</span>
+        </div>
+        <div class="page-hero__actions">
+          {% if service.is_emergency %}{% call_button label=site.hero_primary_cta_label size="lg" %}{% else %}{% call_button label=site.hero_primary_cta_label %}{% endif %}
+          <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+        </div>
+      </div>
+      {% if service.hero_image %}
+        <div class="page-hero__media">{% picture service.hero_image alt=service.hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="stack stack--lg">
+        {% if service.intro %}<div class="prose prose--lg">{{ service.intro|richtext }}</div>{% endif %}
+
+        {% for block in blocks %}{% include block.template_name with block=block inline=True %}{% endfor %}
+
+        {% if faqs %}
+          <section aria-labelledby="faq-heading">
+            <h2 id="faq-heading" class="mb-4">Frequently asked questions</h2>
+            {% include "partials/faq.html" with faqs=faqs open_first=True %}
+          </section>
+        {% endif %}
+      </div>
+
+      <aside class="split__aside stack">
+        {% if specs %}
+          <div class="panel">
+            <h3>Technical specification</h3>
+            <table class="spec-table">
+              <tbody>{% for spec in specs %}<tr><th scope="row">{{ spec.label }}</th><td>{{ spec.value }}</td></tr>{% endfor %}</tbody>
+            </table>
+          </div>
+        {% endif %}
+        {% if brands %}
+          <div class="panel">
+            <h3>Brands we work with</h3>
+            <ul class="logo-row logo-row--panel">
+              {% for brand in brands %}<li class="logo-row__item"><img src="{{ brand.logo.url }}" alt="{{ brand.alt }}" loading="lazy" width="96" height="36"></li>{% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        <div class="panel panel--dark">
+          <h3>Need this sorted today?</h3>
+          <p class="text-on-dark-muted">{{ site.response_time_claim }}. {{ site.opening_hours_text }}.</p>
+          {% call_button label=site.emergency_phone %}
+          {% if site.whatsapp_href %}<a class="btn btn--outline-light btn--block" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click">{% icon "whatsapp" %}Send a photo on WhatsApp</a>{% endif %}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {% if reviews %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>What clients say about this service</h2></div>
+        <div class="review-grid">{% for review in reviews %}{% include "partials/review.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if case_studies %}
+    <section class="section">
+      <div class="container">
+        <div class="section__header"><h2>Recent {{ service.name|lower }} projects</h2></div>
+        <div class="grid-auto grid-auto--lg">{% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if related_services %}
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__header"><h2>You may also need</h2></div>
+        <div class="grid-auto">{% for service in related_services %}{% include "partials/card_service.html" %}{% endfor %}</div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% include "partials/cta_band.html" %}
+{% endblock %}
