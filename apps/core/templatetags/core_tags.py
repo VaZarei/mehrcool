@@ -195,32 +195,6 @@ def json_ld(data: dict[str, Any] | list[Any] | None) -> SafeString:
     return mark_safe(f'<script type="application/ld+json">{payload}</script>')  # noqa: S308
 
 
-@register.simple_tag
-def critical_css() -> SafeString:
-    """Inline the built critical CSS (``critical.min.css``) into ``<head>``.
-
-    Falls back to nothing if the file has not been built; the deferred main
-    stylesheet still loads, so the page renders correctly either way.
-
-    Returns:
-        A ``<style>`` block or empty string.
-    """
-    from django.conf import settings
-    from django.contrib.staticfiles import finders
-    from django.core.cache import cache
-
-    key = "core:critical_css:v1"
-    css = cache.get(key)
-    if css is None:
-        path = finders.find("css/critical.min.css")
-        css = ""
-        if path:
-            with open(path, encoding="utf-8") as fh:
-                css = fh.read()
-        cache.set(key, css, None if not settings.DEBUG else 5)
-    return mark_safe(f"<style>{css}</style>") if css else mark_safe("")  # noqa: S308
-
-
 @register.simple_tag(takes_context=True)
 def active_class(context: dict[str, Any], url: str, css_class: str = "is-active") -> str:
     """Return ``css_class`` when the current path starts with ``url``.

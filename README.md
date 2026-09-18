@@ -34,7 +34,7 @@ apps/
   testimonials/    Testimonial
   leads/           ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote
 templates/         base.html, partials/, one folder per app
-static/css/        02-reset … 08-preferences, 05-components/*.css, main.css (import index)
+static/css/        style.css (single stylesheet)
 static/js/         main.js entry + one module per behaviour, vendor/htmx.min.js
 media/placeholders demo media shipped with the repo (see ASSETS_NEEDED.md)
 fixtures/demo.json full demo dataset (python manage.py loaddata fixtures/demo.json)
@@ -73,7 +73,6 @@ fully populated from a clean checkout.
 | Run tests | `python manage.py test apps` |
 | Format | `black .` |
 | Lint | `ruff check .` |
-| Build CSS bundles (after editing any CSS) | `python manage.py build_css` |
 | Regenerate placeholder media | `python manage.py make_placeholders` |
 | Create admin groups (Content Editor / Sales) | `python manage.py setup_groups` |
 | URL smoke test against the local DB | `python scripts/smoke_urls.py` |
@@ -81,24 +80,14 @@ fully populated from a clean checkout.
 
 ### CSS workflow
 
-Edit the source layers in `static/css/`. Locally `DEBUG=True` loads `main.css`, which
-`@import`s every layer so changes appear immediately. Before deploying run
-`python manage.py build_css`, which concatenates the layers in `main.css` order into
-`main.min.css` (loaded deferred) and `critical.min.css` (inlined into `<head>`).
-`collectstatic` then hashes both.
+Edit `static/css/style.css` directly; it is served as-is in both DEBUG and production, no
+build step or `collectstatic` transform required beyond the normal static file hashing.
 
-Two rules the layers rely on:
+One rule the stylesheet relies on:
 
 - **No CSS custom properties.** Every declaration carries its literal value, so a selector can
   be read on its own. The palette and the type/spacing ladders are listed on `/styleguide/`
-  (dev only) and in `apps/core/views.py`; change a value in the layer that paints it.
-- **`08-preferences.css` is the accessibility layer, and it is generated.** Because there is no
-  `:root` block to re-declare, `prefers-reduced-motion`, `prefers-reduced-transparency` and
-  `prefers-contrast` are honoured by per-selector overrides in that one file, loaded last so it
-  wins on equal specificity. After adding a transition, a blurred surface or a hairline border,
-  run `python scripts/gen_preferences.py` (then `build_css`) rather than editing it. It is not
-  inlined as critical CSS; the above-the-fold motion it would suppress is handled by a small
-  `prefers-reduced-motion` block at the end of `06-animations.css`.
+  (dev only) and in `apps/core/views.py`.
 
 ## Environment variables
 
@@ -124,7 +113,7 @@ See `.env.example`. Summary:
 
 1. Provision PostgreSQL and set the variables above (`DJANGO_SETTINGS_MODULE=config.settings.production`).
 2. `pip install -r requirements/production.txt`
-3. `python manage.py build_css && python manage.py collectstatic --noinput`
+3. `python manage.py collectstatic --noinput`
 4. `python manage.py migrate && python manage.py createcachetable`
 5. Either `python manage.py loaddata fixtures/demo.json` for a demo, or `seed_demo`, or start empty and
    fill Site settings in the admin (the singleton is created on first request with sensible defaults).

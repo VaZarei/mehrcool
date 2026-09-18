@@ -174,20 +174,29 @@ class NoHardcodedContactDetailsTests(TestCase):
 
     def test_orange_only_in_button_and_emergency_components(self):
         """The action colour token may only be referenced by primary-action components."""
-        css_root = Path(settings.BASE_DIR) / "static" / "css"
-        allowed = {
-            "01-tokens.css",
-            "button.css",
-            "emergency.css",
-            "intent-strip.css",
-            "contact-card.css",
-            "styleguide.css",
-        }
-        offenders = [
-            p.name
-            for p in css_root.rglob("*.css")
-            if not p.name.endswith(".min.css")
-            and p.name not in allowed
-            and re.search(r"var\(--action\)|#f29d12", p.read_text(encoding="utf-8"), re.I)
-        ]
+        allowed_selector_markers = (
+            ".btn",
+            ".emergency",
+            ".intent-card--emergency",
+            ".contact-line--emergency",
+            ".sg-swatch",
+        )
+        css_path = Path(settings.BASE_DIR) / "static" / "css" / "style.css"
+        css = re.sub(r"/\*.*?\*/", "", css_path.read_text(encoding="utf-8"), flags=re.S)
+        offenders = []
+        for match in re.finditer(r"var\(--action\)|#f29d12", css, re.I):
+            depth = 0
+            i = match.start()
+            while i > 0:
+                i -= 1
+                if css[i] == "}":
+                    depth += 1
+                elif css[i] == "{":
+                    if depth == 0:
+                        break
+                    depth -= 1
+            selector_start = css.rfind("}", 0, i) + 1
+            selector = css[selector_start:i].strip()
+            if not any(marker in selector for marker in allowed_selector_markers):
+                offenders.append(selector)
         self.assertEqual(offenders, [])
