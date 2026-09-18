@@ -222,8 +222,19 @@ def seed_navigation() -> None:
     page = {p.slug: p for p in Page.objects.all()}
 
     services = item(
-        "Services", 0, target_type=LinkTarget.URL, url="/services/", show_in_footer=True
+        "Services",
+        0,
+        subtitle="Install, service, repair",
+        icon="wrench",
+        target_type=LinkTarget.URL,
+        url="/services/",
+        show_in_footer=True,
     )
+    category_captions = {
+        "commercial-refrigeration": "Cold rooms, cellars, display",
+        "air-conditioning": "VRF, splits and heat pumps",
+        "emergency-services": "24/7 breakdown response",
+    }
     for i, slug in enumerate(
         ("commercial-refrigeration", "air-conditioning", "emergency-services")
     ):
@@ -231,21 +242,51 @@ def seed_navigation() -> None:
             item(
                 cat[slug].name,
                 i,
+                subtitle=category_captions.get(slug, ""),
+                icon=cat[slug].icon,
                 parent=services,
                 target_type=LinkTarget.SERVICE_CATEGORY,
                 service_category=cat[slug],
                 show_in_footer=True,
             )
-    item("Sectors", 1, target_type=LinkTarget.URL, url="/sectors/")
-    item("Case studies", 2, target_type=LinkTarget.URL, url="/case-studies/")
-    item("Areas", 3, target_type=LinkTarget.URL, url="/areas/")
+    item(
+        "Sectors",
+        1,
+        subtitle="Who we work for",
+        icon="building",
+        target_type=LinkTarget.URL,
+        url="/sectors/",
+    )
+    item(
+        "Case studies",
+        2,
+        subtitle="Proof from live sites",
+        icon="shield-check",
+        target_type=LinkTarget.URL,
+        url="/case-studies/",
+    )
+    item(
+        "Areas",
+        3,
+        subtitle="Boroughs we cover",
+        icon="map-pin",
+        target_type=LinkTarget.URL,
+        url="/areas/",
+    )
     about_kwargs = (
         {"target_type": LinkTarget.PAGE, "page": page["about"]}
         if "about" in page
         else {"target_type": LinkTarget.URL, "url": "/about/"}
     )
-    item("About", 4, **about_kwargs)
-    item("Contact", 5, target_type=LinkTarget.URL, url="/contact/")
+    item("About", 4, subtitle="Our story", icon="snowflake", **about_kwargs)
+    item(
+        "Contact",
+        5,
+        subtitle="Talk to an engineer",
+        icon="phone",
+        target_type=LinkTarget.URL,
+        url="/contact/",
+    )
 
     company = item(
         "Company", 10, target_type=LinkTarget.NONE, show_in_header=False, show_in_footer=True

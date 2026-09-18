@@ -16,7 +16,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+  scroll-padding-top: calc(4.5rem + 1rem);
   hanging-punctuation: first last;
 }
 
@@ -71,8 +71,11 @@ h6 {
   overflow-wrap: break-word;
 }
 
-ul[class],
-ol[class] {
+/* Wrapped in :where() so this carries no specificity. Written as plain
+   `ul[class]` it scored higher than a single class and silently beat component
+   rules that set their own list padding. */
+:where(ul[class]),
+:where(ol[class]) {
   list-style: none;
   padding: 0;
 }
@@ -95,5 +98,5 @@ iframe {
 }
 
 :target {
-  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+  scroll-margin-top: calc(4.5rem + 1rem);
 }

@@ -95,6 +95,21 @@ true**.
 | "Written quotes and service reports for every site" | Site settings → CTA checklist |
 | Careers page: "competitive salary with paid on-call", "company van" | Pages → Careers |
 
+## Menu captions (seeded, all invented)
+
+Short lines under each header menu item. Edit or clear them in **Navigation → *item* → Caption**.
+
+| Menu item | Seeded caption |
+| --- | --- |
+| Services | Install, service, repair |
+| Commercial refrigeration | Cold rooms, cellars, display |
+| Air conditioning | VRF, splits and heat pumps |
+| Emergency services | 24/7 breakdown response |
+| Sectors | Who we work for |
+| Case studies | Proof from live sites |
+| Areas | Boroughs we cover |
+| Contact | Talk to an engineer |
+
 ## Legal pages (have a solicitor review)
 
 Terms of business, Privacy policy and Cookie policy are reasonable templates, not legal

@@ -3,27 +3,27 @@
    ========================================================================== */
 
 .breadcrumb {
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-small);
-  color: var(--text-muted);
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  letter-spacing: 0.01em;
+  color: #737b8a;
 }
 
 .breadcrumb ol {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.5rem;
 }
 
 .breadcrumb li {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.5rem;
 }
 
 .breadcrumb li + li::before {
   content: "/";
-  color: var(--color-grey-300);
+  color: #c3c8d1;
 }
 
 .breadcrumb a {
@@ -35,16 +35,16 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--link);
+  color: #2b3e8c;
 }
 
 .breadcrumb [aria-current] {
-  color: var(--text-secondary);
+  color: #58606f;
 }
 
 .breadcrumb--on-dark,
 .breadcrumb--on-dark [aria-current] {
-  color: var(--text-on-dark-muted);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .breadcrumb--on-dark li + li::before {
@@ -52,5 +52,5 @@
 }
 
 .breadcrumb--on-dark a:hover {
-  color: var(--text-on-dark);
+  color: #ffffff;
 }

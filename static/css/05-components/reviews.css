@@ -6,13 +6,13 @@
 .rating {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
 }
 
 .rating__stars {
   display: inline-flex;
   gap: 2px;
-  color: var(--color-yellow-400);
+  color: #ffc82b;
 }
 
 .rating__stars .icon {
@@ -28,25 +28,25 @@
 }
 
 .rating__value {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-bold);
-  font-size: var(--text-lg);
-  letter-spacing: var(--tracking-heading);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  letter-spacing: -0.015em;
 }
 
 .rating__count {
-  color: var(--text-muted);
-  font-size: var(--text-sm);
+  color: #737b8a;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
 }
 
 .section--dark .rating__count,
 .section--darker .rating__count {
-  color: var(--text-on-dark-muted);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .review-grid {
   display: grid;
-  gap: var(--grid-gap);
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 @media (min-width: 640px) {
@@ -64,25 +64,25 @@
 .review {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6);
-  background: var(--surface-page);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xs);
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e1e4ea;
+  border-radius: 1.125rem;
+  box-shadow: 0 1px 2px rgb(21 31 71 / 0.06);
 }
 
 .review__quote {
-  font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
-  color: var(--text-primary);
+  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.0625rem);
+  line-height: 1.65;
+  color: #111111;
   flex: 1;
 }
 
 .review__quote::before {
   content: "\201C";
-  color: var(--color-ice-300);
-  font-family: var(--font-heading);
+  color: #a7bfe8;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 2em;
   line-height: 0;
   vertical-align: -0.35em;
@@ -92,7 +92,7 @@
 .review__footer {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
 }
 
 .review__avatar {
@@ -101,33 +101,33 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: var(--color-navy-700);
-  color: var(--text-on-dark);
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-sm);
+  background: #2b3e8c;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
   flex: none;
 }
 
 .review__author {
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-sm);
+  font-weight: 600;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
   line-height: 1.2;
 }
 
 .review__meta {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  letter-spacing: var(--tracking-small);
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  color: #737b8a;
+  letter-spacing: 0.01em;
 }
 
 .review__source {
   margin-left: auto;
-  font-size: var(--text-xs);
-  color: var(--text-muted);
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  color: #737b8a;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .review__source:hover {
-  color: var(--link);
+  color: #2b3e8c;
 }

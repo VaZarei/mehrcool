@@ -1,6 +1,6 @@
 <section class="cta-band" aria-labelledby="cta-band-title">
   <div class="container cta-band__inner">
-    <div>
+    <div class="reveal">
       <h2 class="cta-band__title" id="cta-band-title">{{ cta_title|default:site.cta_band_title }}</h2>
       <p class="cta-band__text">{{ cta_text|default:site.cta_band_text }}</p>
       <div class="cta-band__actions">
@@ -8,7 +8,7 @@
         <a class="btn btn--outline-light btn--lg" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
       </div>
     </div>
-    <div class="cta-band__badges">
+    <div class="cta-band__badges reveal">
       <p class="cta-band__badges-label">Compliance checklist</p>
       {% if trust_badges %}
         <div class="cta-band__badge-list">

@@ -1,13 +1,26 @@
 {% load cache %}
 <nav class="mobile-nav" aria-label="Main menu">
-  {% cache 900 mobile_nav %}
+  {% cache 900 mobile_nav_v2 %}
   <ul class="mobile-nav__list">
     {% for item in header_nav %}
       <li>
         {% if item.resolved_url %}
-          <a class="mobile-nav__link" href="{{ item.resolved_url }}">{{ item.label }}{% icon "arrow-right" size=18 %}</a>
+          <a class="mobile-nav__link" href="{{ item.resolved_url }}">
+            {% if item.icon %}{% icon item.icon css_class="nav__icon" size=22 %}{% endif %}
+            <span class="nav__text">
+              <span class="nav__label">{{ item.label }}</span>
+              {% if item.subtitle %}<span class="nav__subtitle">{{ item.subtitle }}</span>{% endif %}
+            </span>
+            {% icon "arrow-right" css_class="nav__arrow" size=18 %}
+          </a>
         {% else %}
-          <span class="mobile-nav__link">{{ item.label }}</span>
+          <span class="mobile-nav__link">
+            {% if item.icon %}{% icon item.icon css_class="nav__icon" size=22 %}{% endif %}
+            <span class="nav__text">
+              <span class="nav__label">{{ item.label }}</span>
+              {% if item.subtitle %}<span class="nav__subtitle">{{ item.subtitle }}</span>{% endif %}
+            </span>
+          </span>
         {% endif %}
         {% if item.child_items %}
           <ul class="mobile-nav__sub">

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   06 — Utilities: single-purpose helpers (kept deliberately few)
+   07 — Utilities: single-purpose helpers (kept deliberately few)
    ========================================================================== */
 
 .visually-hidden {
@@ -19,39 +19,39 @@
 }
 
 .text-muted {
-  color: var(--text-muted);
+  color: #737b8a;
 }
 
 .text-secondary {
-  color: var(--text-secondary);
+  color: #58606f;
 }
 
 .text-on-dark-muted {
-  color: var(--text-on-dark-muted);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .mt-4 {
-  margin-top: var(--space-4);
+  margin-top: 1rem;
 }
 
 .mt-6 {
-  margin-top: var(--space-6);
+  margin-top: 1.5rem;
 }
 
 .mt-8 {
-  margin-top: var(--space-8);
+  margin-top: 2rem;
 }
 
 .mt-12 {
-  margin-top: var(--space-12);
+  margin-top: 3rem;
 }
 
 .mb-4 {
-  margin-bottom: var(--space-4);
+  margin-bottom: 1rem;
 }
 
 .mb-8 {
-  margin-bottom: var(--space-8);
+  margin-bottom: 2rem;
 }
 
 .mx-auto {
@@ -59,7 +59,7 @@
 }
 
 .flow > * + * {
-  margin-top: var(--space-4);
+  margin-top: 1rem;
 }
 
 .hide-mobile {
@@ -80,27 +80,7 @@
   vertical-align: middle;
 }
 
-/* Scroll-in reveal: opacity + small translate, critically damped, once. */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-}
-
-.reveal.is-visible,
-.no-js .reveal {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+/* Scroll-in reveal lives in 06-animations.css. */
 
 /* Google Tag Manager no-JS fallback frame. */
 .gtm-noscript {

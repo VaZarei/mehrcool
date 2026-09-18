@@ -28,6 +28,7 @@ class NavigationItemAdmin(OrderedActiveAdminMixin, admin.ModelAdmin):
 
     list_display = (
         "label",
+        "subtitle",
         "parent",
         "target_type",
         "resolved_link",
@@ -41,7 +42,14 @@ class NavigationItemAdmin(OrderedActiveAdminMixin, admin.ModelAdmin):
     search_fields = ("label", "url")
     autocomplete_fields = ("parent", "service_category", "service", "page", "location")
     fieldsets = (
-        (None, {"fields": ("label", "parent", "order", "is_active")}),
+        (
+            None,
+            {
+                "fields": ("label", "subtitle", "icon", "parent", "order", "is_active"),
+                "description": "The caption and icon are optional — the menu looks "
+                "right without them.",
+            },
+        ),
         (
             "Where it goes",
             {

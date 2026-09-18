@@ -53,7 +53,29 @@
       "Bash(./.venv/Scripts/python.exe /tmp/admin_shot.py)",
       "Bash(PYTHONIOENCODING=utf-8 ./.venv/Scripts/python.exe manage.py shell -c \"from django.contrib.auth.models import User; User.objects.filter\\(username='qa_admin'\\).delete\\(\\); print\\('qa user removed'\\)\")",
       "Bash(find / -path /proc -prune -o -name \"base.css\" -print 2>/dev/null | grep -i admin)",
-      "Read(//f//**)"
+      "Read(//f//**)",
+      "PowerShell(git -C F:\\\\websites\\\\Mehrcool diff -- templates/partials/header.html)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; python manage.py makemigrations core)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py makemigrations core)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; \\(Get-Content static\\\\css\\\\06-animations.css -Raw\\) -replace ' 1\\\\\\) both;',' 1\\) backwards;' -replace ' 1\\\\\\) \\(\\\\d+ms\\) both;',' 1\\) $1 backwards;' | Set-Content static\\\\css\\\\06-animations.css -NoNewline -Encoding utf8; Select-String -Path static\\\\css\\\\06-animations.css -Pattern 'animation:' | ForEach-Object { $_.Line.Trim\\(\\) })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path static\\\\css\\\\08-preferences.css -Pattern 'prefers-|^\\\\}' | Select-Object -First 8 | ForEach-Object { \"$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" }; Write-Output \"---- transparency section ----\"; Get-Content static\\\\css\\\\08-preferences.css | Select-Object -Skip 314 -First 60)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py build_css)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q 2>&1 | Select-Object -Last 25)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py test --settings=config.settings.local 2>&1 | Select-Object -Last 30)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py build_css; .\\\\.venv\\\\Scripts\\\\python.exe manage.py test --settings=config.settings.local 2>&1 | Select-Object -Last 8)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path README.md,ADMIN_GUIDE.md,COPY_TO_VERIFY.md,ASSETS_NEEDED.md -Pattern 'token|01-tokens|06-utilities|custom propert|Navigation' | ForEach-Object { \"$\\($_.Filename\\):$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path README.md -Pattern 'build_css|^## |^### ' | ForEach-Object { \"$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path COPY_TO_VERIFY.md -Pattern '^## ' | ForEach-Object { \"$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" }; \\(Get-Content COPY_TO_VERIFY.md | Measure-Object -Line\\).Lines)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path README.md,ADMIN_GUIDE.md -Pattern 'dumpdata|demo.json|seed_demo' | ForEach-Object { \"$\\($_.Filename\\):$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $raw = Get-Content fixtures\\\\demo.json -Raw; $raw.Length; $raw.Substring\\(0,300\\); Write-Output \"`n---- navigationitem sample ----\"; \\([regex]::Matches\\($raw,'\\\\{\"model\": \"core.navigationitem\".{0,320}'\\) | Select-Object -First 2 | ForEach-Object { $_.Value }\\))",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Select-String -Path fixtures\\\\demo.json -Pattern '\"model\": \"services.servicecategory\"' -Context 0,12 | Select-Object -First 3 | ForEach-Object { $_.Context.PostContext -join \"`n\" })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe scripts\\\\_patch_fixture_nav.py; git diff --stat -- fixtures/demo.json)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe scripts\\\\_patch_fixture_nav.py; git diff --stat -- fixtures/demo.json; git diff -- fixtures/demo.json | Select-Object -First 30)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Get-Content config\\\\settings\\\\local.py; Select-String -Path config\\\\settings\\\\base.py -Pattern 'DATABASE' -Context 0,6 | Select-Object -First 1 | ForEach-Object { $_.Line; $_.Context.PostContext -join \"`n\" })",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; Get-Content apps\\\\core\\\\tests\\\\test_models.py | Select-Object -Last 25; \\(Get-Content apps\\\\core\\\\tests\\\\test_models.py | Measure-Object -Line\\).Lines)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py test --settings=config.settings.local 2>&1 | Select-Object -Last 12)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe manage.py runserver 8011 --noreload --settings=config.settings.local)",
+      "PowerShell(cd F:\\\\websites\\\\Mehrcool; $env:PYTHONUTF8=\"1\"; .\\\\.venv\\\\Scripts\\\\python.exe scripts\\\\responsive_check.py http://127.0.0.1:8011 screenshots 2>&1 | Select-Object -Last 20)"
     ]
   }
 }

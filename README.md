@@ -1,9 +1,9 @@
 # Mehr Cool Refrigeration & Air Conditioning — website
 
 Production-grade Django site for MEHR COOL REFRIGERATION & AIR CONDITIONING LTD (Canary Wharf,
-London). Server-rendered HTML, HTMX for interactivity, hand-written CSS with a token-based
-design system, and an admin panel in which every word, image, number and link on the public
-site is editable.
+London). Server-rendered HTML, HTMX for interactivity, hand-written CSS in explicit literal
+values, and an admin panel in which every word, image, number and link on the public site is
+editable.
 
 ## Stack
 
@@ -11,7 +11,7 @@ site is editable.
 | --- | --- | --- |
 | Framework | Django 6.1, Python 3.12+ | Latest stable; batteries included (admin, sitemaps, redirects) |
 | Interactivity | HTMX 2 (vendored) + small ES modules | No SPA; every page works with JavaScript disabled |
-| CSS | Hand-written, ITCSS layers, CSS custom properties | No framework; tokens in `static/css/01-tokens.css` |
+| CSS | Hand-written, ITCSS layers, literal values only | No framework, and no custom properties: a selector states the colour or size it paints |
 | Database | SQLite (local), PostgreSQL (production) | Configured via `DATABASE_URL` |
 | Static files | WhiteNoise + `CompressedManifestStaticFilesStorage` | Hashed filenames, one-year cache, Cloudflare-ready |
 | Images | Pillow renditions (AVIF/WebP/JPEG, `srcset`) | In-house `apps/core/images.py`; no extra dependency |
@@ -34,7 +34,7 @@ apps/
   testimonials/    Testimonial
   leads/           ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote
 templates/         base.html, partials/, one folder per app
-static/css/        01-tokens … 06-utilities, 05-components/*.css, main.css (import index)
+static/css/        02-reset … 08-preferences, 05-components/*.css, main.css (import index)
 static/js/         main.js entry + one module per behaviour, vendor/htmx.min.js
 media/placeholders demo media shipped with the repo (see ASSETS_NEEDED.md)
 fixtures/demo.json full demo dataset (python manage.py loaddata fixtures/demo.json)
@@ -86,6 +86,19 @@ Edit the source layers in `static/css/`. Locally `DEBUG=True` loads `main.css`, 
 `python manage.py build_css`, which concatenates the layers in `main.css` order into
 `main.min.css` (loaded deferred) and `critical.min.css` (inlined into `<head>`).
 `collectstatic` then hashes both.
+
+Two rules the layers rely on:
+
+- **No CSS custom properties.** Every declaration carries its literal value, so a selector can
+  be read on its own. The palette and the type/spacing ladders are listed on `/styleguide/`
+  (dev only) and in `apps/core/views.py`; change a value in the layer that paints it.
+- **`08-preferences.css` is the accessibility layer, and it is generated.** Because there is no
+  `:root` block to re-declare, `prefers-reduced-motion`, `prefers-reduced-transparency` and
+  `prefers-contrast` are honoured by per-selector overrides in that one file, loaded last so it
+  wins on equal specificity. After adding a transition, a blurred surface or a hairline border,
+  run `python scripts/gen_preferences.py` (then `build_css`) rather than editing it. It is not
+  inlined as critical CSS; the above-the-fold motion it would suppress is handled by a small
+  `prefers-reduced-motion` block at the end of `06-animations.css`.
 
 ## Environment variables
 

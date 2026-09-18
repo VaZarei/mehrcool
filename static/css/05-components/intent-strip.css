@@ -5,42 +5,42 @@
 .intent {
   position: relative;
   z-index: 2;
-  padding-block: var(--space-8) 0;
+  padding-block: 2rem 0;
 }
 
 @media (min-width: 1024px) {
   .intent {
-    margin-top: calc(-1 * var(--space-16));
+    margin-top: calc(-1 * 4rem);
     padding-top: 0;
   }
 }
 
 .intent__heading {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-caps);
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-4);
+  color: #58606f;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 1024px) {
   .intent__heading {
-    color: var(--text-on-dark-muted);
+    color: rgb(255 255 255 / 0.72);
     position: absolute;
-    top: calc(-1 * var(--space-8));
+    top: calc(-1 * 2rem);
   }
 }
 
 .intent__grid {
   display: grid;
-  gap: var(--space-3);
+  gap: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .intent__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--grid-gap);
+    gap: clamp(1rem, 2vw, 1.5rem);
   }
 }
 
@@ -48,17 +48,17 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: var(--space-4);
+  gap: 1rem;
   min-height: 5.5rem;
-  padding: var(--space-5) var(--space-5);
-  background: var(--surface-page);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  color: var(--text-primary);
+  padding: 1.25rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e1e4ea;
+  border-radius: 1.125rem;
+  box-shadow: 0 2px 4px rgb(21 31 71 / 0.05), 0 8px 24px rgb(21 31 71 / 0.1);
+  color: #111111;
   text-decoration: none;
-  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (min-width: 640px) {
@@ -67,20 +67,20 @@
     grid-template-rows: auto 1fr auto;
     align-items: start;
     min-height: 12rem;
-    padding: var(--space-6);
+    padding: 1.5rem;
   }
 }
 
 .intent-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-ice-300);
-  color: var(--text-primary);
+  box-shadow: 0 4px 8px rgb(21 31 71 / 0.06), 0 16px 48px rgb(21 31 71 / 0.16);
+  border-color: #a7bfe8;
+  color: #111111;
 }
 
 .intent-card:active {
   transform: translateY(0) scale(0.985);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 2px rgb(21 31 71 / 0.06), 0 2px 8px rgb(21 31 71 / 0.06);
 }
 
 .intent-card__icon {
@@ -89,9 +89,9 @@
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  border-radius: var(--radius-md);
-  background: var(--color-ice-100);
-  color: var(--color-navy-700);
+  border-radius: 0.75rem;
+  background: #eaf0fa;
+  color: #2b3e8c;
 }
 
 .intent-card__icon .icon {
@@ -101,25 +101,25 @@
 
 .intent-card__body {
   display: grid;
-  gap: var(--space-1);
+  gap: 0.25rem;
 }
 
 .intent-card__label {
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-heading);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
   line-height: 1.15;
 }
 
 .intent-card__desc {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  color: #58606f;
 }
 
 .intent-card__arrow {
-  color: var(--color-navy-500);
-  transition: transform var(--duration-fast) var(--ease-out);
+  color: #4a72c0;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .intent-card:hover .intent-card__arrow {
@@ -135,10 +135,10 @@
 /* Emergency tile: the icon well takes the action colour; the tile itself does
    not become an orange block so orange stays tied to the act of calling. */
 .intent-card--emergency .intent-card__icon {
-  background: var(--action);
-  color: var(--text-on-action);
+  background: #f29d12;
+  color: #111111;
 }
 
 .intent-card--emergency:hover {
-  border-color: var(--action);
+  border-color: #f29d12;
 }

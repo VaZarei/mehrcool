@@ -4,7 +4,7 @@
     {% if badges %}
       <div class="trust__row">
         <p class="trust__label">Accredited &amp; compliant</p>
-        <ul class="logo-row logo-row--badges">
+        <ul class="logo-row logo-row--badges reveal reveal--stagger">
           {% for badge in badges %}
             <li class="logo-row__item">
               {% if badge.certificate_url %}<a href="{{ badge.certificate_url }}" target="_blank" rel="noopener" title="{{ badge.short_description|default:badge.name }}">{% endif %}

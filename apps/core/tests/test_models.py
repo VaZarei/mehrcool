@@ -1,6 +1,8 @@
 """Model tests: singleton behaviour, derived helpers, navigation resolution."""
 
+from django.conf import settings
 from django.core.cache import cache
+from django.core.management import call_command
 from django.test import TestCase
 
 from apps.core.constants import SITE_SETTINGS_PK
@@ -77,6 +79,16 @@ class NavigationItemTests(TestCase):
     def test_external(self):
         item = NavigationItem(label="X", target_type=LinkTarget.URL, url="https://example.com")
         self.assertTrue(item.is_external)
+
+
+class DemoFixtureTests(TestCase):
+    """The shipped fixture must keep loading as models gain fields."""
+
+    def test_fixture_loads_with_navigation_captions(self):
+        call_command("loaddata", str(settings.BASE_DIR / "fixtures" / "demo.json"), verbosity=0)
+        services = NavigationItem.objects.get(label="Services", parent__isnull=True)
+        self.assertEqual(services.subtitle, "Install, service, repair")
+        self.assertEqual(services.icon, "wrench")
 
 
 class TrustBadgeTests(TestCase):

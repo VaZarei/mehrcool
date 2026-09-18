@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-{% include "partials/page_hero.html" with title="Design system" lead="Every token, button state, form field and component. Development only." modifier="page-hero--light" noindex=True %}
+{% include "partials/page_hero.html" with title="Design system" lead="Every colour, size, button state, form field and component. Development only." modifier="page-hero--light" noindex=True %}
 <div class="container">
 
   <section class="sg-section">
     <h2>Colour</h2>
     <p class="text-secondary">Amber is reserved for primary actions. Navy carries authority; ice blue is the refrigeration cue.</p>
     <div class="sg-swatches mt-6">
-      {% for name in "navy-900,navy-800,navy-700,navy-600,navy-500,ice-400,ice-300,ice-200,ice-100,ice-50,amber-600,amber-500,amber-400,yellow-400,yellow-100,grey-900,grey-800,grey-700,grey-600,grey-500,grey-400,grey-300,grey-200,grey-100,success,error"|split_csv %}
-        <div class="sg-swatch"><div class="sg-swatch__color sg-swatch__color--{{ name }}"></div><div class="sg-swatch__meta"><strong>{{ name }}</strong><code>--color-{{ name }}</code></div></div>
+      {% for name, value in palette %}
+        <div class="sg-swatch"><div class="sg-swatch__color sg-swatch__color--{{ name }}"></div><div class="sg-swatch__meta"><strong>{{ name }}</strong><code>{{ value }}</code></div></div>
       {% endfor %}
     </div>
   </section>
@@ -16,22 +16,22 @@
   <section class="sg-section sg-type">
     <h2>Type scale</h2>
     <p class="text-secondary">System font stack, optical sizing on, tracking tightens as size grows.</p>
-    <div class="mt-6"><span class="hero__title">Display — cold rooms, kept cold.</span><small>--text-display · tracking -0.025em · leading 1.05</small></div>
-    <div><p class="sg-as-h1">H1 — Commercial refrigeration in London</p><small>--text-3xl</small></div>
-    <div><h2>H2 — What facilities teams need</h2><small>--text-2xl</small></div>
-    <div><h3>H3 — Walk-in cold rooms</h3><small>--text-xl</small></div>
-    <div><h4>H4 — Technical specification</h4><small>--text-md</small></div>
-    <div><p class="lead">Lead — F-Gas certified engineers for cold rooms, display fridges, cellar cooling and VRF air conditioning.</p><small>--text-md · leading 1.65</small></div>
-    <div><p>Body — R290 and R32 are lower-GWP refrigerants now standard on new plant. Existing R404A systems can be maintained but leak checks are mandatory under the F-Gas regulation.</p><small>--text-base · leading 1.5</small></div>
-    <div><small class="text-small">Small — letter-spacing +0.01em for legibility.</small><small>--text-sm</small></div>
-    <div><span class="eyebrow">Eyebrow label</span><small>--text-xs · caps · tracking 0.08em</small></div>
+    <div class="mt-6"><span class="hero__title">Display — cold rooms, kept cold.</span><small>2.5 → 4.5rem · tracking -0.025em · leading 1.05</small></div>
+    <div><p class="sg-as-h1">H1 — Commercial refrigeration in London</p><small>2.25 → 3.5rem · tracking -0.025em</small></div>
+    <div><h2>H2 — What facilities teams need</h2><small>1.875 → 2.625rem · tracking -0.015em</small></div>
+    <div><h3>H3 — Walk-in cold rooms</h3><small>1.5 → 2rem · tracking -0.015em</small></div>
+    <div><h4>H4 — Technical specification</h4><small>1.125 → 1.25rem · tracking -0.005em</small></div>
+    <div><p class="lead">Lead — F-Gas certified engineers for cold rooms, display fridges, cellar cooling and VRF air conditioning.</p><small>1.125 → 1.25rem · leading 1.65</small></div>
+    <div><p>Body — R290 and R32 are lower-GWP refrigerants now standard on new plant. Existing R404A systems can be maintained but leak checks are mandatory under the F-Gas regulation.</p><small>1 → 1.0625rem · leading 1.5</small></div>
+    <div><small class="text-small">Small — letter-spacing +0.01em for legibility.</small><small>0.875 → 0.9375rem</small></div>
+    <div><span class="eyebrow">Eyebrow label</span><small>0.75 → 0.8125rem · caps · tracking 0.08em</small></div>
   </section>
 
   <section class="sg-section">
     <h2>Spacing scale</h2>
     <div class="sg-spacing mt-6">
-      {% for step in "1,2,3,4,5,6,8,10,12,16,20,24"|split_csv %}
-        <div class="sg-spacing__row"><span>--space-{{ step }}</span><span class="sg-spacing__bar sg-spacing__bar--{{ step }}"></span></div>
+      {% for step, value in spacing_scale %}
+        <div class="sg-spacing__row"><span>step {{ step }} · {{ value }}</span><span class="sg-spacing__bar sg-spacing__bar--{{ step }}"></span></div>
       {% endfor %}
     </div>
   </section>

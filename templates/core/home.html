@@ -66,14 +66,14 @@
   {# ---------- Services ---------- #}
   <section class="section section--tint" aria-labelledby="services-heading">
     <div class="container">
-      <div class="section__header">
+      <div class="section__header reveal">
         <span class="eyebrow">Services</span>
         <h2 id="services-heading">{{ site.home_services_heading }}</h2>
         {% if site.home_services_intro %}<p class="lead">{{ site.home_services_intro }}</p>{% endif %}
       </div>
-      <div class="grid-auto grid-auto--lg">
+      <div class="grid-auto grid-auto--lg reveal reveal--stagger">
         {% for category in categories %}
-          <article class="card card--dark reveal">
+          <article class="card card--dark">
             <div class="card__media card__media--icon card__media--navy">
               {% if category.hero_image %}{% picture category.hero_image alt=category.hero_image_alt sizes="(min-width: 1024px) 30vw, 92vw" widths="480,768,1080" %}{% else %}{% icon category.icon %}{% endif %}
             </div>
@@ -89,7 +89,7 @@
         {% endfor %}
       </div>
       {% if featured_services %}
-        <div class="grid-auto mt-8">
+        <div class="grid-auto mt-8 reveal reveal--stagger">
           {% for service in featured_services %}{% include "partials/card_service.html" %}{% endfor %}
         </div>
       {% endif %}
@@ -100,13 +100,13 @@
   {% if site.why_items %}
     <section class="section" aria-labelledby="why-heading">
       <div class="container">
-        <div class="section__header">
+        <div class="section__header reveal">
           <span class="eyebrow">Why Mehr Cool</span>
           <h2 id="why-heading">{{ site.home_why_heading }}</h2>
         </div>
-        <div class="features {% if site.why_items|length > 3 %}features--4{% else %}features--3{% endif %}">
+        <div class="features reveal reveal--stagger {% if site.why_items|length > 3 %}features--4{% else %}features--3{% endif %}">
           {% for item in site.why_items %}
-            <div class="feature reveal">
+            <div class="feature">
               <span class="feature__num">0{{ forloop.counter }}</span>
               <h3 class="feature__title">{{ item.title }}</h3>
               <p class="feature__text">{{ item.body }}</p>
@@ -121,14 +121,14 @@
   {% if case_studies %}
     <section class="section section--tint" aria-labelledby="proof-heading">
       <div class="container">
-        <div class="section__header cluster cluster--between">
+        <div class="section__header cluster cluster--between reveal">
           <div>
             <span class="eyebrow">Case studies</span>
             <h2 id="proof-heading">{{ site.home_proof_heading }}</h2>
           </div>
           <a class="link-arrow" href="{% url 'projects:case_study_list' %}">All case studies {% icon "arrow-right" size=18 %}</a>
         </div>
-        <div class="grid-auto grid-auto--lg">
+        <div class="grid-auto grid-auto--lg reveal reveal--stagger">
           {% for case_study in case_studies %}{% include "partials/card_case_study.html" %}{% endfor %}
         </div>
       </div>
@@ -139,12 +139,12 @@
   {% if reviews %}
     <section class="section" aria-labelledby="reviews-heading">
       <div class="container">
-        <div class="section__header">
+        <div class="section__header reveal">
           <span class="eyebrow">Reviews</span>
           <h2 id="reviews-heading">{{ site.home_reviews_heading }}</h2>
           <div class="mt-4">{% include "partials/rating.html" %}</div>
         </div>
-        <div class="review-grid">
+        <div class="review-grid reveal reveal--stagger">
           {% for review in reviews %}{% include "partials/review.html" %}{% endfor %}
         </div>
       </div>

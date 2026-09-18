@@ -1,5 +1,15 @@
-/* Mehr Cool — main stylesheet. ITCSS-style layering; one concern per file. */
-@import url("01-tokens.css");
+/* Mehr Cool — main stylesheet. ITCSS-style layering; one concern per file.
+   Every value is literal: there are no CSS custom properties anywhere in this
+   stylesheet, so what a selector says is what it renders.
+   Order matters — later layers override earlier ones on equal specificity.
+
+   02  Reset            normalise, box sizing, media defaults
+   03  Base             typography, links, headings, focus ring
+   04  Layout           containers, grid, sections, page shell
+   05  Components       one file per component (nav, hero, card, form, …)
+   06  Animations       homepage entrance + scroll reveals
+   07  Utilities        single-purpose helpers
+   08  Preferences      reduced motion / increased contrast overrides */
 @import url("02-reset.css");
 @import url("03-base.css");
 @import url("04-layout.css");
@@ -25,4 +35,6 @@
 @import url("05-components/chip.css");
 @import url("05-components/contact-card.css");
 @import url("05-components/styleguide.css");
-@import url("06-utilities.css");
+@import url("06-animations.css");
+@import url("07-utilities.css");
+@import url("08-preferences.css");

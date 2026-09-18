@@ -1,6 +1,9 @@
 /* ==========================================================================
-   Navigation — desktop inline with hover/focus dropdowns; mobile sheet.
-   The mobile sheet is a <details> panel so it opens without JavaScript.
+   Navigation
+   Desktop: inline items carrying an icon, a label and an optional caption,
+   with hover/focus dropdowns anchored to their trigger.
+   Mobile: a <details> sheet so it opens without JavaScript.
+   Amber is reserved for call/quote actions, so nav icons travel ice → navy.
    ========================================================================== */
 
 .nav {
@@ -10,71 +13,176 @@
 .nav__list {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 0.125rem;
 }
 
 .nav__item {
   position: relative;
 }
 
+/* --- Top-level item ------------------------------------------------------- */
 .nav__link {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 0.375rem;
   min-height: 2.75rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--radius-pill);
-  color: var(--text-primary);
-  font-weight: var(--weight-medium);
-  font-size: var(--text-sm);
-  letter-spacing: 0;
+  padding: 0.375rem 0.75rem 0.5rem;
+  border-radius: 1.125rem;
+  color: #111111;
   text-decoration: none;
-  transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.15;
+}
+
+.nav__label {
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* A menu item never wraps to two lines: if the row runs out of room the icons
+   go first (see the media query at the foot of this file). */
+.nav__link .nav__label {
+  white-space: nowrap;
+}
+
+/* Caption. Hidden in the top-level bar: six items with a second line need
+   945px against a 1200px container, which pushes the phone number off screen.
+   It is shown in the dropdown and the phone menu, where the room exists —
+   see the overrides further down. */
+.nav__subtitle {
+  display: none;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #58606f;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Leading icon: cool at rest, deepens to navy and grows slightly on hover.
+   Hidden in the top-level bar until 1280px, where the row has the width for
+   it alongside a full-size logo and the F-Gas mark. */
+.nav__icon {
+  width: 1rem;
+  height: 1rem;
+  color: #6f93d4;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav__link .nav__icon {
+  display: none;
+}
+
+.nav__chevron {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.125rem;
+  color: #9aa1ad;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Soft underline that wipes out from the centre on hover. */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.1875rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4a72c0 0%, #2b3e8c 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .nav__link:hover,
 .nav__link:focus-visible,
 .nav__item:focus-within > .nav__link {
-  background: var(--color-ice-100);
-  color: var(--color-navy-700);
+  background: #eaf0fa;
+  color: #2b3e8c;
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgb(43 62 140 / 0.14);
 }
 
-.nav__link.is-active {
-  color: var(--color-navy-700);
-  box-shadow: inset 0 -2px 0 var(--color-navy-500);
-  border-radius: var(--radius-sm);
+.nav__link:hover::after,
+.nav__link:focus-visible::after,
+.nav__item:focus-within > .nav__link::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
-.nav__link .icon {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--duration-fast) var(--ease-out);
+.nav__link:hover .nav__icon,
+.nav__link:focus-visible .nav__icon,
+.nav__item:focus-within > .nav__link .nav__icon {
+  color: #2b3e8c;
+  transform: scale(1.12);
 }
 
-.nav__item:hover > .nav__link .icon,
-.nav__item:focus-within > .nav__link .icon {
+.nav__link:hover .nav__subtitle,
+.nav__link:focus-visible .nav__subtitle,
+.nav__item:focus-within > .nav__link .nav__subtitle {
+  color: #34499e;
+}
+
+.nav__link:hover .nav__chevron,
+.nav__item:hover > .nav__link .nav__chevron,
+.nav__item:focus-within > .nav__link .nav__chevron {
+  color: #2b3e8c;
   transform: rotate(180deg);
 }
 
-/* Dropdown anchored to its trigger; scales from the top (its origin). */
+.nav__link:active {
+  transform: scale(0.99);
+}
+
+.nav__link.is-active {
+  color: #2b3e8c;
+}
+
+.nav__link.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.nav__link.is-active .nav__icon {
+  color: #2b3e8c;
+}
+
+/* --- Dropdown ------------------------------------------------------------- */
+/* Anchored to its trigger and materialising from the top-left origin: blur and
+   scale arrive together so it reads as glass rather than a fading rectangle. */
 .nav__dropdown {
   position: absolute;
-  top: calc(100% + var(--space-2));
+  top: calc(100% + 0.5rem);
   left: 0;
-  min-width: 16rem;
-  padding: var(--space-2);
-  background: var(--material-light-solid);
-  -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
-  backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  min-width: 19rem;
+  padding: 0.5rem;
+  background: rgb(255 255 255 / 0.96);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid #e1e4ea;
+  border-radius: 1.125rem;
+  box-shadow: 0 4px 8px rgb(21 31 71 / 0.06), 0 16px 48px rgb(21 31 71 / 0.16);
   opacity: 0;
   transform: translateY(-4px) scale(0.98);
   transform-origin: top left;
   visibility: hidden;
-  transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out),
-    visibility 0s linear var(--duration-fast);
+  transition: opacity 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 180ms;
 }
 
 .nav__item:hover > .nav__dropdown,
@@ -86,36 +194,50 @@
 }
 
 .nav__dropdown-link {
+  position: relative;
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   min-height: 2.75rem;
   padding: 0.5rem 0.875rem;
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-size: var(--text-sm);
+  border-radius: 0.75rem;
+  color: #111111;
   text-decoration: none;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav__dropdown-link .nav__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.nav__dropdown-link .nav__label {
+  font-weight: 600;
+}
+
+/* In the dropdown there is room, so the caption is always on and may wrap. */
+.nav__dropdown-link .nav__subtitle {
+  display: block;
+  line-height: 1.35;
 }
 
 .nav__dropdown-link:hover,
 .nav__dropdown-link:focus-visible {
-  background: var(--color-ice-100);
-  color: var(--color-navy-700);
+  background: #eaf0fa;
+  color: #2b3e8c;
+  transform: translateX(2px);
 }
 
-@media (min-width: 1024px) {
-  .nav {
-    display: block;
-  }
+.nav__dropdown-link:hover .nav__icon,
+.nav__dropdown-link:focus-visible .nav__icon {
+  color: #2b3e8c;
+  transform: scale(1.12);
 }
 
-@media (min-width: 1024px) and (max-width: 1159.98px) {
-  .nav__list {
-    gap: 0;
-  }
-  .nav__link {
-    padding-inline: 0.625rem;
-  }
+.nav__dropdown-link:hover .nav__subtitle,
+.nav__dropdown-link:focus-visible .nav__subtitle {
+  color: #34499e;
 }
 
 /* --- Mobile sheet --------------------------------------------------------- */
@@ -124,17 +246,18 @@
   top: 100%;
   left: 0;
   right: 0;
-  max-height: calc(100dvh - var(--header-height));
+  max-height: calc(100dvh - 4.5rem);
   overflow-y: auto;
-  padding: var(--space-4) var(--gutter) var(--space-8);
-  background: var(--material-light-solid);
-  -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
-  backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-lg);
+  padding: 1rem clamp(1rem, 4vw, 2rem) 2rem;
+  /* Solid, not glass. This sheet sits over the already-translucent header, and
+     stacking one light material on another destroys legibility — the page
+     behind reads straight through the menu. */
+  background: #ffffff;
+  border-top: 1px solid #e1e4ea;
+  border-bottom: 1px solid #e1e4ea;
+  box-shadow: 0 4px 8px rgb(21 31 71 / 0.06), 0 16px 48px rgb(21 31 71 / 0.16);
   transform-origin: top center;
-  animation: mobile-nav-in var(--duration-base) var(--ease-out);
+  animation: mobile-nav-in 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @keyframes mobile-nav-in {
@@ -149,51 +272,146 @@
 }
 
 .mobile-nav__list > li + li {
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid #e1e4ea;
+}
+
+/* Items arrive in sequence behind the sheet, top to bottom. */
+.mobile-nav__list > li {
+  animation: mobile-nav-item-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.mobile-nav__list > li:nth-child(1) {
+  animation-delay: 40ms;
+}
+
+.mobile-nav__list > li:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.mobile-nav__list > li:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.mobile-nav__list > li:nth-child(4) {
+  animation-delay: 160ms;
+}
+
+.mobile-nav__list > li:nth-child(n + 5) {
+  animation-delay: 200ms;
+}
+
+@keyframes mobile-nav-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .mobile-nav__link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.75rem;
   min-height: 3.25rem;
-  padding: var(--space-3) 0;
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-md);
+  padding: 0.75rem 0;
+  color: #111111;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
   text-decoration: none;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mobile-nav__link .nav__icon {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.mobile-nav__link .nav__text {
+  flex: 1 1 auto;
+}
+
+.mobile-nav__link .nav__label {
+  font-weight: 600;
+  font-size: clamp(1.125rem, 1.08rem + 0.25vw, 1.25rem);
+}
+
+.mobile-nav__link .nav__subtitle {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.mobile-nav__link .nav__arrow {
+  color: #9aa1ad;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .mobile-nav__link:active {
-  color: var(--color-navy-700);
+  color: #2b3e8c;
+}
+
+.mobile-nav__link:active .nav__icon,
+.mobile-nav__link:active .nav__arrow {
+  color: #2b3e8c;
+}
+
+.mobile-nav__link:active .nav__arrow {
+  transform: translateX(3px);
 }
 
 .mobile-nav__sub {
-  padding: 0 0 var(--space-3) var(--space-4);
+  padding: 0 0 0.75rem 2.125rem;
 }
 
 .mobile-nav__sub-link {
   display: block;
   min-height: 2.75rem;
-  padding: var(--space-2) 0;
-  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  color: #58606f;
   text-decoration: none;
-  font-size: var(--text-base);
+  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.0625rem);
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .mobile-nav__sub-link:active {
-  color: var(--color-navy-700);
+  color: #2b3e8c;
 }
 
 .mobile-nav__actions {
   display: grid;
-  gap: var(--space-3);
-  margin-top: var(--space-6);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
+/* --- Responsive ----------------------------------------------------------- */
 @media (min-width: 1024px) {
+  .nav {
+    display: block;
+  }
   .mobile-nav {
     display: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .nav__list {
+    gap: 0;
+  }
+  .nav__link {
+    padding-inline: 0.625rem;
+  }
+  .nav__link::after {
+    left: 0.625rem;
+    right: 0.625rem;
+  }
+}
+
+/* Wide layouts have the width for the leading icons. */
+@media (min-width: 1280px) {
+  .nav__link .nav__icon {
+    display: block;
   }
 }

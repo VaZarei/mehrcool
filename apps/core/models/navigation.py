@@ -28,6 +28,20 @@ class NavigationItem(OrderableModel, TimeStampedModel):
         max_length=40,
         help_text="Text shown in the menu. Keep it short — under 20 characters for the header.",
     )
+    subtitle = models.CharField(
+        max_length=60,
+        blank=True,
+        verbose_name="Caption",
+        help_text="Optional line shown under the label, e.g. 'Same-day repairs'. "
+        "Three or four words at most; it is hidden on narrow screens and once the "
+        "header shrinks on scroll.",
+    )
+    icon = models.CharField(
+        max_length=32,
+        blank=True,
+        choices=constants.ICON_CHOICES,
+        help_text="Optional icon shown beside the label in the menu.",
+    )
     parent = models.ForeignKey(
         "self",
         null=True,

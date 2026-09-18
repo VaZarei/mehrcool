@@ -10,7 +10,7 @@ export function initHeader() {
 
   const sentinel = document.createElement("div");
   sentinel.setAttribute("aria-hidden", "true");
-  sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;";
+  sentinel.className = "site-header-sentinel";
   header.before(sentinel);
 
   if ("IntersectionObserver" in window) {
@@ -35,8 +35,12 @@ export function initHeader() {
     if (menu.open && !menu.contains(event.target)) menu.open = false;
   });
 
-  // Lock body scroll while the sheet is open on small screens.
+  // Lock body scroll while the sheet is open on small screens. A class, not an
+  // inline style, so every rule that paints the page lives in the stylesheet.
   menu.addEventListener("toggle", () => {
-    document.documentElement.style.overflow = menu.open && window.innerWidth < 1024 ? "hidden" : "";
+    document.documentElement.classList.toggle(
+      "is-scroll-locked",
+      menu.open && window.innerWidth < 1024
+    );
   });
 }

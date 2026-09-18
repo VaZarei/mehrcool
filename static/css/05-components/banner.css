@@ -3,11 +3,11 @@
    ========================================================================== */
 
 .banner {
-  background: var(--color-navy-900);
-  color: var(--text-on-dark);
-  font-size: var(--text-sm);
-  letter-spacing: var(--tracking-small);
-  min-height: var(--banner-height);
+  background: #151f47;
+  color: #ffffff;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  letter-spacing: 0.01em;
+  min-height: 2.25rem;
   display: flex;
   align-items: center;
 }
@@ -16,9 +16,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
   flex-wrap: wrap;
-  padding-block: var(--space-1);
+  padding-block: 0.25rem;
   text-align: center;
 }
 
@@ -26,9 +26,9 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: var(--color-success);
+  background: #1f8a5b;
   box-shadow: 0 0 0 0 rgb(31 138 91 / 0.6);
-  animation: banner-pulse 2.4s var(--ease-in-out) infinite;
+  animation: banner-pulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   flex: none;
 }
 
@@ -51,18 +51,18 @@
 }
 
 .banner__text {
-  color: var(--text-on-dark-muted);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .banner__phone {
-  color: var(--text-on-dark);
-  font-weight: var(--weight-semibold);
+  color: #ffffff;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .banner__phone:hover {
-  color: var(--color-ice-300);
+  color: #a7bfe8;
 }
 
 @media (max-width: 479.98px) {

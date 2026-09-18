@@ -144,6 +144,11 @@ hold. When a certificate is issued:
 **Navigation** lists every menu item. Each item has:
 
 - **Label** — the words shown.
+- **Caption** — optional. A short second line under the label, e.g. "Same-day repairs". Three
+  or four words at most. It shows on wide screens and in the phone menu, and tucks away when
+  the header shrinks as the visitor scrolls. Leave it blank and the menu item is a single line.
+- **Icon** — optional. Pick from the same icon list used elsewhere; it sits to the left of the
+  label and deepens from ice blue to navy when the visitor hovers over it.
 - **Links to** — choose a service category, a service, a page, an area, or type a web address.
 - **Parent** — leave blank for a top-level item, or pick a parent to put it in that item's
   dropdown (header) or column (footer).

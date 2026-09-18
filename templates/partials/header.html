@@ -9,20 +9,42 @@
       {% endif %}
     </a>
 
-    {% cache 900 header_nav current_path %}
+    {% cache 900 header_nav_v2 current_path %}
     <nav class="nav" aria-label="Main">
       <ul class="nav__list">
         {% for item in header_nav %}
           <li class="nav__item">
             {% if item.resolved_url %}
-              <a class="nav__link {% active_class item.resolved_url %}" href="{{ item.resolved_url }}"{% if item.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}{% if item.child_items %} aria-haspopup="true"{% endif %}>{{ item.label }}{% if item.child_items %}{% icon "chevron-down" size=16 %}{% endif %}</a>
+              <a class="nav__link {% active_class item.resolved_url %}" href="{{ item.resolved_url }}"{% if item.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}{% if item.child_items %} aria-haspopup="true"{% endif %}>
+                {% if item.icon %}{% icon item.icon css_class="nav__icon" size=18 %}{% endif %}
+                <span class="nav__text">
+                  <span class="nav__label">{{ item.label }}</span>
+                  {% if item.subtitle %}<span class="nav__subtitle">{{ item.subtitle }}</span>{% endif %}
+                </span>
+                {% if item.child_items %}{% icon "chevron-down" css_class="nav__chevron" size=16 %}{% endif %}
+              </a>
             {% else %}
-              <span class="nav__link" tabindex="0" aria-haspopup="true">{{ item.label }}{% if item.child_items %}{% icon "chevron-down" size=16 %}{% endif %}</span>
+              <span class="nav__link" tabindex="0" aria-haspopup="true">
+                {% if item.icon %}{% icon item.icon css_class="nav__icon" size=18 %}{% endif %}
+                <span class="nav__text">
+                  <span class="nav__label">{{ item.label }}</span>
+                  {% if item.subtitle %}<span class="nav__subtitle">{{ item.subtitle }}</span>{% endif %}
+                </span>
+                {% if item.child_items %}{% icon "chevron-down" css_class="nav__chevron" size=16 %}{% endif %}
+              </span>
             {% endif %}
             {% if item.child_items %}
               <ul class="nav__dropdown">
                 {% for child in item.child_items %}
-                  <li><a class="nav__dropdown-link" href="{{ child.resolved_url }}"{% if child.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ child.label }}</a></li>
+                  <li>
+                    <a class="nav__dropdown-link" href="{{ child.resolved_url }}"{% if child.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>
+                      {% if child.icon %}{% icon child.icon css_class="nav__icon" size=20 %}{% endif %}
+                      <span class="nav__text">
+                        <span class="nav__label">{{ child.label }}</span>
+                        {% if child.subtitle %}<span class="nav__subtitle">{{ child.subtitle }}</span>{% endif %}
+                      </span>
+                    </a>
+                  </li>
                 {% endfor %}
               </ul>
             {% endif %}

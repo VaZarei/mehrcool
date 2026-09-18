@@ -86,8 +86,56 @@ class HomeView(TemplateView):
         return context
 
 
+# The stylesheet holds literal values, not custom properties, so the styleguide
+# carries its own copy of the palette and spacing ladder purely to label the
+# swatches. Keep it in step with static/css when a value changes.
+PALETTE = [
+    ("navy-900", "#151f47"),
+    ("navy-800", "#1e2c66"),
+    ("navy-700", "#2b3e8c"),
+    ("navy-600", "#34499e"),
+    ("navy-500", "#4a72c0"),
+    ("ice-400", "#6f93d4"),
+    ("ice-300", "#a7bfe8"),
+    ("ice-200", "#d5e1f5"),
+    ("ice-100", "#eaf0fa"),
+    ("ice-50", "#f4f7fb"),
+    ("amber-600", "#d3860c"),
+    ("amber-500", "#f29d12"),
+    ("amber-400", "#f7b23d"),
+    ("yellow-400", "#ffc82b"),
+    ("yellow-100", "#fff4d1"),
+    ("grey-900", "#111111"),
+    ("grey-800", "#262a33"),
+    ("grey-700", "#3d4350"),
+    ("grey-600", "#58606f"),
+    ("grey-500", "#737b8a"),
+    ("grey-400", "#9aa1ad"),
+    ("grey-300", "#c3c8d1"),
+    ("grey-200", "#e1e4ea"),
+    ("grey-100", "#f1f3f6"),
+    ("success", "#1f8a5b"),
+    ("error", "#c2372b"),
+]
+
+SPACING_SCALE = [
+    ("1", "0.25rem"),
+    ("2", "0.5rem"),
+    ("3", "0.75rem"),
+    ("4", "1rem"),
+    ("5", "1.25rem"),
+    ("6", "1.5rem"),
+    ("8", "2rem"),
+    ("10", "2.5rem"),
+    ("12", "3rem"),
+    ("16", "4rem"),
+    ("20", "5rem"),
+    ("24", "6rem"),
+]
+
+
 class StyleguideView(TemplateView):
-    """Developer-only page rendering every token and component."""
+    """Developer-only page rendering every colour, size and component."""
 
     template_name = "core/styleguide.html"
 
@@ -108,6 +156,8 @@ class StyleguideView(TemplateView):
             {
                 "sample_service": Service.objects.published().for_cards().first(),
                 "sample_review": Testimonial.objects.published().first(),
+                "palette": PALETTE,
+                "spacing_scale": SPACING_SCALE,
                 "icon_names": [
                     "wrench",
                     "calendar-check",

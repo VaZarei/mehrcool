@@ -1,46 +1,58 @@
 /* ==========================================================================
    Sticky trust header
    Translucent material with content scrolling underneath. Condenses on scroll
-   (height via custom property, transform-only where possible) but always keeps
-   logo, emergency phone and the F-Gas mark.
+   and always keeps logo, emergency phone and the F-Gas mark.
+   All sizes are stated outright; the condensed state re-states the ones that
+   change rather than re-pointing a shared value.
    ========================================================================== */
 
 .site-header {
-  --hdr-h: var(--header-height);
-  --logo-h: 2.75rem;
-
   position: sticky;
   top: 0;
-  z-index: var(--z-header);
-  background: var(--material-light);
-  -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
-  backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  z-index: 200;
+  background: rgb(255 255 255 / 0.78);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid transparent;
-  transition: background-color var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+  transition: background-color 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 280ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Scroll-edge effect instead of a hard divider: appears only once content scrolls under. */
+/* Scroll-edge effect instead of a hard divider: appears only once content
+   scrolls under the bar. */
 .site-header.is-condensed {
-  --hdr-h: var(--header-height-condensed);
-  --logo-h: 2.125rem;
-  background: var(--material-light-solid);
-  border-bottom-color: var(--border-subtle);
-  box-shadow: var(--shadow-xs);
+  background: rgb(255 255 255 / 0.96);
+  border-bottom-color: #e1e4ea;
+  box-shadow: 0 1px 2px rgb(21 31 71 / 0.06);
+}
+
+/* A 1px probe above the header; its intersection drives .is-condensed without
+   a scroll handler. Styled here so no script has to write inline CSS. */
+.site-header-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 }
 
 .site-header--dark {
-  background: var(--material-dark);
-  color: var(--text-on-dark);
+  background: rgb(21 31 71 / 0.72);
+  color: #ffffff;
 }
 
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  height: var(--hdr-h);
-  transition: height var(--duration-base) var(--ease-out);
+  gap: 1rem;
+  height: 4.5rem;
+  transition: height 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.site-header.is-condensed .site-header__inner {
+  height: 3.5rem;
 }
 
 .site-header__logo {
@@ -48,31 +60,52 @@
   align-items: center;
   flex: none;
   text-decoration: none;
-  color: var(--text-primary);
+  color: #111111;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.site-header__logo:hover {
+  transform: scale(1.02);
+}
+
+.site-header__logo:active {
+  transform: scale(0.98);
+}
+
+/* The logo is admin-uploaded, so its aspect ratio is unknown. Cap the width:
+   the row's budget is logo + nav + phone + F-Gas mark inside a 1200px
+   container, and an unusually wide mark would otherwise push the phone number
+   past the container edge. object-fit keeps it undistorted. */
 .site-header__logo img {
-  height: var(--logo-h);
+  height: 2.75rem;
   width: auto;
-  transition: height var(--duration-base) var(--ease-out);
+  max-width: 11rem;
+  object-fit: contain;
+  object-position: left center;
+  transition: height 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.site-header.is-condensed .site-header__logo img {
+  height: 2.125rem;
+  max-width: 8.5rem;
 }
 
 .site-header__wordmark {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-heading);
-  font-size: var(--text-lg);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
   line-height: 1;
 }
 
 .site-header__wordmark span {
-  color: var(--color-navy-700);
+  color: #2b3e8c;
 }
 
 .site-header__actions {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
   flex: none;
 }
 
@@ -80,16 +113,23 @@
 .trust-mark {
   display: none;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.5rem;
   padding: 0.375rem 0.625rem 0.375rem 0.375rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-ice-100);
-  color: var(--color-navy-700);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-small);
+  border-radius: 999px;
+  background: #eaf0fa;
+  color: #2b3e8c;
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
   text-decoration: none;
   white-space: nowrap;
+  transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.trust-mark:hover {
+  background: #d5e1f5;
+  box-shadow: 0 1px 2px rgb(21 31 71 / 0.06);
 }
 
 .trust-mark img {
@@ -100,31 +140,12 @@
 }
 
 .trust-mark .icon {
-  color: var(--color-success);
-}
-
-@media (min-width: 1160px) {
-  .trust-mark {
-    display: inline-flex;
-  }
+  color: #1f8a5b;
 }
 
 .site-header__phone {
   display: none;
   white-space: nowrap;
-}
-
-@media (min-width: 640px) {
-  .site-header__phone {
-    display: inline-flex;
-  }
-}
-
-/* Between the desktop nav appearing and the wide layout, keep the row compact. */
-@media (min-width: 1024px) and (max-width: 1159.98px) {
-  .site-header__phone {
-    padding-inline: var(--space-4);
-  }
 }
 
 /* Minimal header (emergency flow): the call button is always visible; on very
@@ -133,23 +154,13 @@
   white-space: nowrap;
 }
 
-@media (max-width: 479.98px) {
-  .site-header__call {
-    width: 3rem;
-    padding: 0;
-  }
-  .site-header__call-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-  }
-}
-
-/* Mobile menu toggle (details/summary so it works without JS). */
+/* Mobile menu toggle (details/summary so it works without JS).
+   Deliberately not positioned: the sheet inside it is absolutely positioned
+   with left:0/right:0 and must resolve against the sticky .site-header so it
+   spans the full width. Give this element `position: relative` and the sheet
+   collapses to the width of the 48px button. */
 .menu-toggle {
-  position: relative;
+  position: static;
 }
 
 .menu-toggle__button {
@@ -158,13 +169,14 @@
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  border-radius: var(--radius-pill);
-  color: var(--color-navy-700);
-  transition: background-color var(--duration-fast) var(--ease-out);
+  border-radius: 999px;
+  color: #2b3e8c;
+  transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 100ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .menu-toggle__button:hover {
-  background: var(--color-ice-100);
+  background: #eaf0fa;
 }
 
 .menu-toggle__button:active {
@@ -183,8 +195,48 @@
   display: block;
 }
 
+/* Scroll lock while the mobile sheet is open. Set by header.js as a class so
+   nothing writes an inline style onto the document element. */
+.is-scroll-locked {
+  overflow: hidden;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 479.98px) {
+  .site-header__call {
+    width: 3rem;
+    padding: 0;
+  }
+  .site-header__call-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+@media (min-width: 640px) {
+  .site-header__phone {
+    display: inline-flex;
+  }
+}
+
+/* Between the desktop nav appearing and the wide layout, keep the row compact. */
+@media (min-width: 1024px) and (max-width: 1159.98px) {
+  .site-header__phone {
+    padding-inline: 1rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .menu-toggle {
     display: none;
+  }
+}
+
+@media (min-width: 1160px) {
+  .trust-mark {
+    display: inline-flex;
   }
 }

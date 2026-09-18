@@ -19,7 +19,6 @@ COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
 
 # Files whose rules affect above-the-fold layout on every page.
 CRITICAL_FILES = [
-    "01-tokens.css",
     "02-reset.css",
     "03-base.css",
     "04-layout.css",
@@ -32,8 +31,12 @@ CRITICAL_FILES = [
     "05-components/mobile-bar.css",
     "05-components/breadcrumb.css",
     "05-components/emergency.css",
-    "06-utilities.css",
+    "06-animations.css",
+    "07-utilities.css",
 ]
+# 08-preferences.css is deliberately NOT inlined: it carries an override for
+# every component on the site, most of it below the fold. The motion it needs
+# to suppress above the fold is handled inside 06-animations.css instead.
 
 
 def minify(css: str) -> str:
