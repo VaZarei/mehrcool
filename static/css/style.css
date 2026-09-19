@@ -999,8 +999,21 @@ table {
   border-radius: 50%;
   background: #1f8a5b;
   box-shadow: 0 0 0 0 rgb(31 138 91 / 0.6);
-  animation: banner-pulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  /* Added 'banner-blink' to the animation property */
+  animation: 
+    banner-pulse 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    banner-blink 1.2s ease-in-out infinite alternate;
   flex: none;
+}
+
+/* Keyframe for smooth fading */
+@keyframes banner-blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1; /* Set to 0 for complete disappearance */
+  }
 }
 
 @keyframes banner-pulse {
