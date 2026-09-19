@@ -12,3 +12,48 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+
+
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Django ---------------------------------------------------------------
+db.sqlite3
+db.sqlite3-journal
+*.log
+/media/
+/staticfiles/
+.env
+
+# Generated vector artwork — rebuild with `python manage.py gen_assets`
+/static/img/brands/
+/static/img/profiles/prof-*.svg
+
+# Compiled Tailwind output — rebuild with `npm run build:css`
+/static/css/site.css
+/static/vendor/
+
+# --- Node -----------------------------------------------------------------
+node_modules/
+npm-debug.log*
+
+# --- Editors & OS ---------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Tooling --------------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
