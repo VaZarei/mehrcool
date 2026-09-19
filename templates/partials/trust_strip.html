@@ -15,14 +15,39 @@
         </ul>
       </div>
     {% endif %}
-    {% if brands %}
+    {% comment %} {% if brands %}
       <div class="trust__row">
         <p class="trust__label">Brands we install &amp; maintain</p>
         <ul class="logo-row">
           {% for brand in brands %}<li class="logo-row__item"><img src="{{ brand.logo.url }}" alt="{{ brand.alt }}" loading="lazy" width="144" height="48"></li>{% endfor %}
         </ul>
       </div>
+    {% endif %} {% endcomment %}
+    {% comment %} ------------------- {% endcomment %}
+    {% if brands %}
+      <div class="trust__row">
+        <p class="trust__label">Brands we install &amp; maintain</p>
+
+        <!-- Marquee Track Wrapper -->
+        <div class="brand-marquee">
+          <ul class="logo-row brand-marquee__track">
+            {% for brand in brands %}
+              <li class="logo-row__item">
+                <img src="{{ brand.logo.url }}" alt="{{ brand.alt }}" loading="lazy" width="144" height="48">
+              </li>
+            {% endfor %}
+
+            <!-- Duplicate set for seamless looping -->
+            {% for brand in brands %}
+              <li class="logo-row__item" aria-hidden="true">
+                <img src="{{ brand.logo.url }}" alt="{{ brand.alt }}" loading="lazy" width="144" height="48">
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     {% endif %}
+    {% comment %} ------------------- {% endcomment %}
     {% if clients %}
       <div class="trust__row">
         <p class="trust__label">Trusted by</p>

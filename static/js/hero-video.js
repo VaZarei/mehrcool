@@ -13,7 +13,7 @@ export function initHeroVideo() {
   if (!sources.length) return;
 
   const wantsVideo =
-    window.matchMedia("(min-width: 768px)").matches &&
+    window.matchMedia("(min-width: 100px)").matches &&
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
     !navigator.connection?.saveData &&
     !/(^|-)2g$/.test(navigator.connection?.effectiveType || "");

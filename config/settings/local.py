@@ -4,7 +4,7 @@ from .base import *  # noqa: F403
 from .base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE, STORAGES
 
 DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "testserver"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1","10.161.51.41", "[::1]", "testserver"]
 STYLEGUIDE_ENABLED = True
 
 INSTALLED_APPS += ["debug_toolbar"]

@@ -46,13 +46,28 @@
         <h2 class="intent__heading" id="intent-heading">{{ site.intent_strip_heading }}</h2>
         <div class="intent__grid">
           {% for card in intent_cards %}
-            <a class="intent-card {% if card.is_emergency %}intent-card--emergency{% endif %}" href="{{ card.url }}" data-event="intent_click" data-event-label="{{ card.label }}">
-              <span class="intent-card__icon">{% icon card.icon %}</span>
+
+            <a 
+              class="
+                intent-card
+                {% if card.is_emergency %}intent-card--emergency{% endif %}
+              "
+              href="{{ card.url }}"
+              data-event="intent_click"
+              data-event-label="{{ card.label }}"
+            >
+              <span class="intent-card__icon">
+                {% icon card.icon %}
+              </span>
+              
               <span class="intent-card__body">
                 <span class="intent-card__label">{{ card.label }}</span>
                 <span class="intent-card__desc">{{ card.description }}</span>
               </span>
-              <span class="intent-card__arrow">{% icon "arrow-right" %}</span>
+
+              <span class="intent-card__arrow">
+                {% icon "arrow-right" %}
+              </span>
             </a>
           {% endfor %}
         </div>

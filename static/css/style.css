@@ -313,6 +313,7 @@ table {
   max-width: 75rem;
   margin-inline: auto;
   padding-inline: clamp(1rem, 4vw, 2rem);
+  
 }
 
 .container--wide {
@@ -1622,6 +1623,7 @@ table {
   position: relative;
   z-index: 2;
   padding-block: 2rem 0;
+  
 }
 
 @media (min-width: 1024px) {
@@ -1638,6 +1640,7 @@ table {
   text-transform: uppercase;
   color: #58606f;
   margin-bottom: 1rem;
+  
 }
 
 @media (min-width: 1024px) {
@@ -1651,6 +1654,7 @@ table {
 .intent__grid {
   display: grid;
   gap: 0.75rem;
+  
 }
 
 @media (min-width: 640px) {
@@ -1675,6 +1679,7 @@ table {
   text-decoration: none;
   transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
     border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+   
 }
 
 @media (min-width: 640px) {
@@ -1688,10 +1693,12 @@ table {
 }
 
 .intent-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgb(21 31 71 / 0.06), 0 16px 48px rgb(21 31 71 / 0.16);
-  border-color: #a7bfe8;
-  color: #111111;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  
+  /* Hover gradient */
+  background: linear-gradient(135deg, #f0f0f1 30%, #e6ae17 70%);
+  border-color: #a855f7;
 }
 
 .intent-card:active {
@@ -1706,8 +1713,8 @@ table {
   width: 3rem;
   height: 3rem;
   border-radius: 0.75rem;
-  background: #eaf0fa;
-  color: #2b3e8c;
+  background: #3edd53;
+  color: #070707;
 }
 
 .intent-card__icon .icon {
@@ -1730,7 +1737,7 @@ table {
 
 .intent-card__desc {
   font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
-  color: #58606f;
+  color: #000000;
 }
 
 .intent-card__arrow {
@@ -1764,6 +1771,70 @@ table {
    Greyscale, colour on hover; horizontally scrollable with snap on mobile.
    ========================================================================== */
 
+/* ==========================================================================
+   Refrigeraton's Brands 
+   ========================================================================== */
+   /* 1. Main outer wrapper hides overflow */
+.brand-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  ); /* Adds a smooth fade effect on the left/right edges */
+}
+
+/* 2. Flex track that moves continuously */
+.brand-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  margin: 0;
+  list-style: none;
+  width: max-content;
+  
+  /* Infinite sliding animation */
+  animation: marquee-slide 60s linear infinite;
+}
+
+/* Pause animation when user hovers */
+.brand-marquee:hover .brand-marquee__track {
+  animation-play-state: paused;
+}
+
+/* 3. Each logo sizing for 5 items viewable */
+.logo-row__item {
+  flex: 0 0 calc((100% - (2rem * 4)) / 5); /* Shows exactly 5 items across */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-row__item img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 4. Smooth infinite loop keyframes */
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves exactly half the distance (one duplicate set) */
+  }
+}
+
+/* ==========================================================================
+   End - Refrigeraton's Brands 
+   ========================================================================== */
+
 .trust {
   padding-block: 2.5rem;
 }
@@ -1777,7 +1848,7 @@ table {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #737b8a;
+  color: #464545;
   margin-bottom: 1rem;
 }
 
@@ -1819,7 +1890,7 @@ table {
   height: 3rem;
   min-width: 6rem;
   padding: 0;
-  filter: grayscale(1);
+  /* filter: grayscale(1); */
   opacity: 0.7;
   transition: filter 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
