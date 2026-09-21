@@ -96,18 +96,37 @@
               <h3 class="card__title"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h3>
               <p class="card__text">{{ category.intro|truncatewords:28 }}</p>
               <ul class="card__tags">
-                {% for service in category.published_services|slice:":4" %}<li><span class="chip chip--on-dark">{{ service.name }}</span></li>{% endfor %}
+                
+              <ul style="padding-left: 20px;">
+                {% for service in category.published_services|slice:":4" %}
+                  <li style="margin-bottom: 2px; display: list-item !important;">
+                    <a href="{{ service.get_absolute_url }}" style="position: relative; z-index: 2;">
+                      <span class="chip chip--on-dark">{{ service.name }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
               </ul>
-              <div class="card__footer"><span class="link-arrow link-arrow--light">See all {{ category.published_services|length }} service{{ category.published_services|length|pluralize }} {% icon "arrow-right" size=18 %}</span></div>
+                
+                {% comment %} {% for service in category.published_services|slice:":4" %}<li><span class="chip chip--on-dark">{{ service.name }}</span></li>{% endfor %}
+              </ul> {% endcomment %}
+              
+            </div>
+            <div class="card__footer card__footer--custom">
+              <a href="{{ category.get_absolute_url }}" class="custom-card-link">
+                <span class="link-arrow link-arrow--light">
+                  See all {{ category.published_services|length }} service{{ category.published_services|length|pluralize }} 
+                  {% icon "arrow-right" size=18 %}
+                </span>
+              </a>
             </div>
           </article>
         {% endfor %}
       </div>
-      {% if featured_services %}
+      {% comment %} {% if featured_services %}
         <div class="grid-auto mt-8 reveal reveal--stagger">
           {% for service in featured_services %}{% include "partials/card_service.html" %}{% endfor %}
         </div>
-      {% endif %}
+      {% endif %} {% endcomment %}
     </div>
   </section>
 

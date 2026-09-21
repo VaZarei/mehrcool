@@ -285,9 +285,11 @@ table {
 
 .lead {
   font-size: clamp(1.125rem, 1.08rem + 0.25vw, 1.25rem);
-  line-height: 1.65;
-  color: #58606f;
-  max-width: 60ch;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.35;
+  color: #565658;
+  width: 100%;
+  max-width: 85ch;
 }
 
 .eyebrow {
@@ -436,7 +438,7 @@ table {
 
 .section__header {
   margin-bottom: clamp(2rem, 4vw, 3rem);
-  max-width: 44rem;
+  max-width: 150rem;
 }
 
 .section__header--center {
@@ -2007,14 +2009,14 @@ table {
 }
 
 .card:hover .card__media img {
-  transform: scale(1.03);
+  transform: scale(1.00);
 }
 
 .card__media--icon {
   display: grid;
   place-items: center;
   color: #4a72c0;
-  background: linear-gradient(135deg, #eaf0fa, #d5e1f5);
+  background: linear-gradient(135deg, #faeaf1, #d5e1f5);
 }
 
 .card__media--icon .icon {
@@ -2023,7 +2025,7 @@ table {
 }
 
 .card__media--navy {
-  background: linear-gradient(135deg, #1e2c66, #34499e);
+  background: linear-gradient(120deg, #160d8b, 40%, #87cff8);
   color: #a7bfe8;
 }
 
@@ -2033,7 +2035,10 @@ table {
   gap: 0.75rem;
   padding: 1.25rem;
   flex: 1;
+  
 }
+
+
 
 .card__tags {
   display: flex;
@@ -2065,19 +2070,42 @@ table {
   line-height: 1.65;
 }
 
-.card__footer {
-  margin-top: auto;
-  padding-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+.card-list {
+  padding-left: 20px;
 }
 
+.card-list li {
+  margin-bottom: 2px;
+}
+
+.card__footer--custom {
+  display: flex;
+  justify-content: flex-end; /* Moves content to the right */
+  margin-top: 12px;         /* Nudges the link higher */
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+/* Customize font, color, and appearance */
+.custom-card-link {
+  color: #0066cc;                     /* Change to your desired color */
+  font-family: 'Inter', sans-serif;  /* Change to your preferred font */
+  font-size: 14px;                    /* Adjust font size */
+  font-weight: 600;                   /* Adjust font weight (boldness) */
+  text-decoration: none;              /* Removes default link underline */
+  transition: color 0.2s ease;
+  
+}
+
+/* Optional hover state */
+.custom-card-link:hover {
+  color: #1a82eb;
+}
 .card__footer .btn,
 .card__footer .link-arrow {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  
 }
 
 .card__meta {
@@ -3643,9 +3671,9 @@ table {
 }
 
 .chip--on-dark {
-  background: rgb(255 255 255 / 0.12);
+  background: rgba(224, 13, 13, 0);
   color: #ffffff;
-  border: 1px solid rgb(255 255 255 / 0.18);
+  border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .chip--lg {
@@ -3655,11 +3683,11 @@ table {
 }
 
 a.chip:hover {
-  background: #d5e1f5;
+  background: #f5d6d5;
 }
 
 a.chip--on-dark:hover {
-  background: rgb(255 255 255 / 0.2);
+  background: rgba(240, 5, 5, 0.2);
   color: #ffffff;
 }
 
