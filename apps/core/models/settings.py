@@ -283,7 +283,7 @@ class SiteSettings(TimeStampedModel):
         help_text="Heading above the services grid on the homepage.",
     )
     home_services_intro = models.CharField(
-        max_length=240,
+        max_length=540,
         blank=True,
         default="Design, installation, planned maintenance and repair for commercial cooling — "
         "one contractor, one point of contact, one set of compliance records.",
