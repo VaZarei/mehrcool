@@ -99,9 +99,9 @@
                 
               <ul style="padding-left: 20px;">
                 {% for service in category.published_services|slice:":4" %}
-                  <li style="margin-bottom: 2px; display: list-item !important;">
-                    <a href="{{ service.get_absolute_url }}" style="position: relative; z-index: 2;">
-                      <span class="chip chip--on-dark">{{ service.name }}</span>
+                  <li style="margin-bottom: 2px; display: list-item !important; list-style-type: disc !important;">
+                    <a href="{{ service.get_absolute_url }}" class="service-link">
+                      {{ service.name }}
                     </a>
                   </li>
                 {% endfor %}
@@ -171,19 +171,37 @@
 
   {# ---------- Reviews ---------- #}
   {% if reviews %}
-    <section class="section" aria-labelledby="reviews-heading">
+    <section class="section section--reels" aria-labelledby="reviews-heading">
       <div class="container">
         <div class="section__header reveal">
           <span class="eyebrow">Reviews</span>
           <h2 id="reviews-heading">{{ site.home_reviews_heading }}</h2>
           <div class="mt-4">{% include "partials/rating.html" %}</div>
         </div>
-        <div class="review-grid reveal reveal--stagger">
-          {% for review in reviews %}{% include "partials/review.html" %}{% endfor %}
+
+        <!-- Horizontal Marquee Track -->
+        <div class="horizontal-reels-container">
+          <div class="horizontal-reels-track">
+            <!-- First set of items -->
+            {% for review in reviews %}
+              <article class="horizontal-reel-card">
+                {% include "partials/review.html" %}
+              </article>
+            {% endfor %}
+
+            <!-- Duplicated set for seamless infinite loop -->
+            {% for review in reviews %}
+              <article class="horizontal-reel-card" aria-hidden="true">
+                {% include "partials/review.html" %}
+              </article>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </section>
   {% endif %}
+
+
 
   {% include "partials/cta_band.html" %}
 {% endblock %}

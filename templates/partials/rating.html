@@ -4,6 +4,18 @@
   <span class="rating__stars" role="img" aria-label="Rated {{ rating|floatformat:1 }} out of 5">
     {% for _ in 5|stars %}{% icon "star" %}{% endfor %}
   </span>
-  <span class="rating__count">from {{ review_count }} review{{ review_count|pluralize }}{% if site.google_business_url %} · <a href="{{ site.google_business_url }}" target="_blank" rel="noopener">Read on Google</a>{% endif %}</span>
+  <span class="rating__count">rom customers{% if site.google_business_url %} · <a href="{{ site.google_business_url }}" target="_blank" rel="noopener">Read on Google</a>{% endif %}</span>
 </div>
 {% endif %}
+
+
+{% comment %} 
+{% if rating %}
+<div class="rating">
+  <span class="rating__value">{{ rating|floatformat:1 }}</span>
+  <span class="rating__stars" role="img" aria-label="Rated {{ rating|floatformat:1 }} out of 5">
+    {% for _ in 5|stars %}{% icon "star" %}{% endfor %}
+  </span>
+  <span class="rating__count">from {{ review_count }} review{{ review_count|pluralize }}{% if site.google_business_url %} · <a href="{{ site.google_business_url }}" target="_blank" rel="noopener">Read on Google</a>{% endif %}</span>
+</div>
+{% endif %} {% endcomment %}

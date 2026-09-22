@@ -721,11 +721,11 @@ table {
 }
 
 .link-arrow--light {
-  color: #a7bfe8;
+  color: #f59504;
 }
 
 .link-arrow--light:hover {
-  color: #ffffff;
+  color: #a7bfe8;
 }
 
 /* ==========================================================================
@@ -1986,13 +1986,13 @@ table {
 
 .card:hover,
 .card:focus-within {
-  transform: translateY(-3px);
+  transform: translateY(0px);
   box-shadow: 0 2px 4px rgb(21 31 71 / 0.05), 0 8px 24px rgb(21 31 71 / 0.1);
   border-color: #a7bfe8;
 }
 
 .card:active {
-  transform: translateY(0) scale(0.99);
+  transform: translateY(0) scale(1.00);
 }
 
 .card__media {
@@ -2015,7 +2015,7 @@ table {
 .card__media--icon {
   display: grid;
   place-items: center;
-  color: #4a72c0;
+  color: #003cb4;
   background: linear-gradient(135deg, #faeaf1, #d5e1f5);
 }
 
@@ -2075,8 +2075,30 @@ table {
 }
 
 .card-list li {
-  margin-bottom: 2px;
+  margin-bottom: 20px;
 }
+
+
+
+/* Link Base Styling */
+.service-link {
+  position: relative;
+  z-index: 2;
+  color: #fdfeff;                /* Base link color */
+  text-decoration: none;
+  font-weight: 400;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  font-family: 'Inter', sans-serif;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hover Effect */
+.service-link:hover {
+  color: #fcd602;                /* Darker shade on hover */
+  text-decoration: none;    /* Underline on hover */
+  opacity: 0.85;                 /* Slight visual feedback */
+}
+
 
 .card__footer--custom {
   display: flex;
@@ -2104,7 +2126,7 @@ table {
 .card__footer .btn,
 .card__footer .link-arrow {
   position: relative;
-  z-index: 10;
+  z-index: 1;
   
 }
 
@@ -2510,6 +2532,79 @@ table {
   color: #2b3e8c;
 }
 
+/* Reviews reels Settings */
+
+/* Outer Container */
+.horizontal-reels-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 16px 0;
+  
+  /* Subtle fade gradient on edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+/* Moving Track */
+.horizontal-reels-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  
+  /* Infinite linear movement */
+  animation: slowScroll 50s linear infinite;
+  will-change: transform;
+}
+
+/* Pause animation on hover or touch so user can read */
+.horizontal-reels-container:hover .horizontal-reels-track {
+  animation-play-state: paused;
+}
+
+/* Individual Review Card */
+.horizontal-reel-card {
+  flex: 0 0 320px;               /* Fixed card width */
+  max-width: 85vw;               /* Prevents overflow on mobile screens */
+  box-sizing: border-box;
+}
+
+.horizontal-reel-card > * {
+  height: 100%;                  /* Ensures review cards match height */
+}
+
+/* Continuous Animation keyframes */
+@keyframes slowScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves half track width for seamless infinite loop */
+  }
+}
+
+/* Mobile Responsiveness Adjustment */
+@media (max-width: 600px) {
+  .horizontal-reel-card {
+    flex: 0 0 280px;             /* Sights smaller cards on mobile */
+  }
+  
+  .horizontal-reels-track {
+    animation-duration: 25s;    /* Slightly faster relative speed on smaller devices */
+  }
+}
 /* ==========================================================================
    CTA band — navy band; CTA sits beside compliance badges so B2B buyers
    working from a checklist do not bounce.
