@@ -4,7 +4,6 @@ Name:        {{ lead.name }}
 Company:     {{ lead.company|default:"—" }}
 Phone:       {{ lead.phone }}
 Email:       {{ lead.email|default:"—" }}
-postcode:       {{ lead.postcode|default:"—" }}
 About:       {{ lead.enquiry_type.label|default:"General" }}
 Consent:     {{ lead.consent|yesno:"Yes,No" }}
 

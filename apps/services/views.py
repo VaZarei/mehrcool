@@ -10,6 +10,7 @@ from django.views.generic import ListView
 
 from apps.core.models import SiteSettings
 from apps.core.views import trust_strip_context
+from apps.leads.forms import RequestEnquiryForm
 from apps.pages.models import BlockType
 from apps.pages.services import page_copy
 from apps.projects.models import CaseStudy
@@ -67,6 +68,7 @@ def render_category(request: HttpRequest, category: ServiceCategory) -> HttpResp
     )
     context = {
         "category": category,
+        "form": RequestEnquiryForm(),
         "seo": category,
         "services": category.published_services,
         "case_studies": case_studies,

@@ -23,8 +23,8 @@ class LeadStatus(models.TextChoices):
 class ChoiceGroup(models.TextChoices):
     """Lookup groups an admin can extend without a migration."""
 
-    ENQUIRY_TYPE = "enquiry_type", "Contact form: enquiry type"
-    EMERGENCY_ISSUE = "emergency_issue", "Emergency form: what has failed"
+    ENQUIRY_TYPE = "enquiry_type", ""
+    EMERGENCY_ISSUE = "emergency_issue", "Emergency"
     BUILDING_TYPE = "building_type", "Quote wizard: building type"
     FLOOR_AREA = "floor_area", "Quote wizard: floor area band"
     SYSTEM_TYPE = "system_type", "Quote wizard: system type"
@@ -143,6 +143,7 @@ class ContactEnquiry(LeadBase):
         related_name="+",
     )
     message = models.TextField()
+    
 
     class Meta(LeadBase.Meta):
         verbose_name = "Contact enquiry"
@@ -160,10 +161,40 @@ class ContactEnquiry(LeadBase):
         kind = self.enquiry_type.label if self.enquiry_type else "General"
         return f"[{kind}] Website enquiry from {self.display_name}"
 
+class RequestEnquiry(LeadBase):
+    """A general enquiry from the contact page (Path B: contract buyers)."""
+
+    company = models.CharField(max_length=120, blank=True)
+    enquiry_type = models.ForeignKey(
+        FormFieldChoice,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        limit_choices_to={"group": ChoiceGroup.ENQUIRY_TYPE},
+        related_name="+",
+    )
+    message = models.TextField()
+    postcode = models.CharField(max_length=15)
+
+    class Meta(LeadBase.Meta):
+        verbose_name = "Request enquiry"
+        verbose_name_plural = "Request enquiries"
+
+    def __str__(self) -> str:
+        return f"Enquiry from {self.display_name}"
+
+    def notification_subject(self) -> str:
+        """Subject line including the enquiry type.
+
+        Returns:
+            Subject string.
+        """
+        kind = self.enquiry_type.label if self.enquiry_type else "General"
+        return f"[{kind}] Website enquiry from {self.display_name}"
 
 class EmergencyCallout(LeadBase):
     """A one-field callback request from the emergency page (Path A)."""
-
+    name = models.CharField(max_length=50, blank=False)
     postcode = models.CharField(max_length=12, blank=True)
     issue = models.ForeignKey(
         FormFieldChoice,

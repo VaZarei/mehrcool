@@ -3,15 +3,63 @@
   {% include "partials/page_hero.html" with title=category.display_headline lead=category.intro hero_image=category.hero_image hero_image_alt=category.hero_image_alt show_actions=True %}
 
   <section class="section" aria-labelledby="services-heading">
+    <div class="container contact-grid">
+      <div class="stack stack--lg">
+        {% comment %} ---------------------- {% endcomment %}
+        <h1>{{category.display_headline}}<h1>
+        <div></div>
+        <div>
+          <h1 id="category-intro">{{category.intro}}</h1>
+        </div>
+
+        <!-- Add this script right below it -->
+        <script>
+          let introElement = document.getElementById("category-intro");
+          
+          // This takes the text inside the h4, finds every "|", and replaces it with an HTML line break
+          introElement.innerHTML = introElement.innerHTML.split("|").join("<br>");
+        </script>
+        {% comment %} {{category.intro}} {% endcomment %}
+
+
+    
+        
+
+        
+        
+        
+        
+      
+        {% comment %} ---------------------- {% endcomment %}
+      </div>
+
+      <div>
+        <div class="panel" id="enquiry" data-form-region aria-live="polite">
+          {% include "leads/partials/request_form.html" %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="services-heading">
     <div class="container">
       <div class="section__header">
         <h2 id="services-heading">{{ category.name }} services</h2>
       </div>
+
       <div class="grid-auto">
         {% for service in services %}{% include "partials/card_service.html" %}{% empty %}<p class="text-muted">Services for this category are being written up. Call us to discuss your requirement.</p>{% endfor %}
       </div>
     </div>
   </section>
+
+
+
+
+
+
+
+
+
 
   {% if case_studies %}
     <section class="section section--tint" aria-labelledby="proof-heading">

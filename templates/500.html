@@ -21,3 +21,50 @@
   </main>
 </body>
 </html>
+
+
+
+
+
+
+<div class="container contact-grid">
+      <div class="stack stack--lg">
+        <div class="contact-lines">
+          <a class="contact-line contact-line--emergency" href="{{ site.emergency_tel_href }}" data-event="phone_click" data-event-label="contact_page">
+            <span class="contact-line__icon">{% icon "phone" %}</span>
+            <span><span class="contact-line__label">24/7 emergency line</span><span class="contact-line__value">{{ site.emergency_phone }}</span></span>
+          </a>
+          {% if site.primary_phone != site.emergency_phone %}
+            <a class="contact-line" href="{{ site.primary_tel_href }}" data-event="phone_click" data-event-label="contact_office">
+              <span class="contact-line__icon">{% icon "building" %}</span>
+              <span><span class="contact-line__label">Office &amp; contracts</span><span class="contact-line__value">{{ site.primary_phone }}</span></span>
+            </a>
+          {% endif %}
+          {% if site.whatsapp_href %}
+            <a class="contact-line" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-label="contact_page">
+              <span class="contact-line__icon">{% icon "whatsapp" %}</span>
+              <span><span class="contact-line__label">WhatsApp — send a photo of the fault</span><span class="contact-line__value contact-line__value--small">{{ site.whatsapp_number }}</span></span>
+            </a>
+          {% endif %}
+          <a class="contact-line" href="mailto:{{ site.email }}">
+            <span class="contact-line__icon">{% icon "mail" %}</span>
+            <span><span class="contact-line__label">Email</span><span class="contact-line__value contact-line__value--small">{{ site.email }}</span></span>
+          </a>
+          <div class="contact-line">
+            <span class="contact-line__icon">{% icon "map-pin" %}</span>
+            <address><span class="contact-line__label">Registered office</span>{% for line in site.full_address_lines %}{{ line }}{% if not forloop.last %}, {% endif %}{% endfor %}</address>
+          </div>
+        </div>
+        <div class="hours">{% icon "clock" %}{{ site.opening_hours_text }} · {{ site.response_time_claim }}</div>
+        {% include "partials/qr_card.html" %}
+        {% if site.google_maps_embed_url %}
+          <div class="map-embed"><iframe src="{{ site.google_maps_embed_url }}" title="Map showing {{ site.trading_name }} in {{ site.city }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        {% endif %}
+      </div>
+
+      <div>
+        <div class="panel" id="enquiry" data-form-region aria-live="polite">
+          {% include "leads/partials/contact_form.html" %}
+        </div>
+      </div>
+</div>

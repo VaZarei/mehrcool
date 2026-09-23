@@ -3,10 +3,22 @@
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
-        {% if site.logo_dark %}
-          <img src="{{ site.logo_dark.url }}" alt="{{ site.trading_name }}" width="200" height="48" loading="lazy">
-        {% elif site.logo_light %}
-          <img src="{{ site.logo_light.url }}" alt="{{ site.trading_name }}" width="200" height="48" loading="lazy">
+        {% if site.logo_light %}
+          <div class="site-header__brand">
+            <img 
+              src="{{ site.logo_light.url }}" 
+              alt="{{ site.trading_name }}" 
+              width="240" 
+              height="60" 
+              class="site-header__logo"
+              loading="eager"
+            > 
+            <span class="site-header__wordmark">
+              <span class="wordmark-prefix">Mehr</span><span class="wordmark-suffix">Cool</span>
+            </span>
+          </div>
+        {% else %}
+          <span class="wordmark-prefix">Mehr</span><span class="wordmark-suffix">Cool</span>
         {% endif %}
         <p>{{ site.footer_blurb }}</p>
         {% if trust_badges %}
@@ -30,7 +42,7 @@
       {% endfor %}
       {% endcache %}
 
-      <div>
+      {% comment %} <div>
         <h2 class="site-footer__heading">{{ site.footer_contact_heading }}</h2>
         <div class="site-footer__contact">
           <div class="site-footer__contact-item">
@@ -62,7 +74,7 @@
             {% if site.google_business_url %}<a href="{{ site.google_business_url }}" target="_blank" rel="noopener" aria-label="Google reviews">G</a>{% endif %}
           </div>
         {% endif %}
-      </div>
+      </div> {% endcomment %}
     </div>
 
     <div class="site-footer__bottom">

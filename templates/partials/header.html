@@ -17,7 +17,7 @@
           </span>
         </div>
       {% else %}
-        <span class="site-header__wordmark">Mehr<span>Cool</span></span>
+        <span class="wordmark-prefix">Mehr</span><span class="wordmark-suffix">Cool</span>
       {% endif %}
     </a>
 
@@ -27,6 +27,7 @@
         {% for item in header_nav %}
           <li class="nav__item">
             {% if item.resolved_url %}
+              
               <a class="nav__link {% active_class item.resolved_url %}" href="{{ item.resolved_url }}"{% if item.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}{% if item.child_items %} aria-haspopup="true"{% endif %}>
                 {% if item.icon %}{% icon item.icon css_class="nav__icon" size=18 %}{% endif %}
                 <span class="nav__text">
@@ -49,6 +50,7 @@
               <ul class="nav__dropdown">
                 {% for child in item.child_items %}
                   <li>
+                    
                     <a class="nav__dropdown-link" href="{{ child.resolved_url }}"{% if child.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>
                       {% if child.icon %}{% icon child.icon css_class="nav__icon" size=20 %}{% endif %}
                       <span class="nav__text">

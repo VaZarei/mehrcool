@@ -8,7 +8,7 @@ from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import ChoiceGroup, ContactEnquiry, EmergencyCallout, FormFieldChoice
+from .models import ChoiceGroup, ContactEnquiry, EmergencyCallout, FormFieldChoice, RequestEnquiry
 
 UK_PHONE_DIGITS = re.compile(r"\d")
 MIN_PHONE_DIGITS = 10
@@ -85,7 +85,7 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
             "email": "Email address",
             "enquiry_type": "What is this about?",
             "message": "Tell us about the site and equipment",
-            "consent": "I'm happy for Mehr Cool to contact me about this enquiry.",
+            "consent": "I'm happy for MehrCool to contact me about this enquiry.",
         }
         widgets = {
             "message": forms.Textarea(attrs={"rows": 5}),
@@ -110,13 +110,55 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
         return validate_phone(self.cleaned_data["phone"])
 
 
+class RequestEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
+    """Contact page form for contract buyers and general enquiries."""
+
+    class Meta:
+        model = RequestEnquiry
+        fields = ["name", "company", "phone", "email", "postcode", "enquiry_type", "message", "consent"]
+        labels = {
+            "name": "Your name",
+            "company": "Company or site (optional)",
+            "phone": "Phone number",
+            "email": "Email address",
+            "postcode": "The site post code",
+            "enquiry_type": "What is this about?",
+            "message": "Tell us about the site and equipment",
+            "consent": "I'm happy for MehrCool to contact me about this enquiry.",
+        }
+        widgets = {
+            "message": forms.Textarea(attrs={"rows": 5}),
+        }
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["name"].required = True
+        self.fields["email"].required = True
+        self.fields["consent"].required = True
+        self.fields["enquiry_type"].required = True
+        self.fields["enquiry_type"].queryset = self.choices_for(ChoiceGroup.ENQUIRY_TYPE)
+        self.fields["enquiry_type"].empty_label = "Choose one…"
+        self.fields["phone"].widget.attrs.update(
+            {"type": "tel", "autocomplete": "tel", "inputmode": "tel"}
+        )
+        self.fields["email"].widget.attrs.update({"autocomplete": "email"})
+        self.fields["postcode"].widget.attrs.update({"autocomplete": "post code"})
+        self.fields["name"].widget.attrs.update({"autocomplete": "name"})
+        self.fields["company"].widget.attrs.update({"autocomplete": "organization"})
+
+    def clean_phone(self) -> str:
+        """Validate the phone number."""
+        return validate_phone(self.cleaned_data["phone"])
+
+
 class EmergencyCalloutForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
     """One-field callback form: phone is the only required input."""
 
     class Meta:
         model = EmergencyCallout
-        fields = ["phone", "postcode", "issue", "details"]
+        fields = ["name","phone", "postcode", "issue", "details"]
         labels = {
+            "name": "Your name",
             "phone": "Your mobile number",
             "postcode": "Site postcode (optional)",
             "issue": "What has failed? (optional)",

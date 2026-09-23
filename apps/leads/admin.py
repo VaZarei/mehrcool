@@ -10,7 +10,7 @@ from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 
-from .models import ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote, LeadStatus
+from .models import ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote, LeadStatus, RequestEnquiry
 from .services import export_csv
 
 
@@ -141,6 +141,43 @@ class ContactEnquiryAdmin(LeadAdminBase):
     ]
     fieldsets = (
         ("Who", {"fields": ("name", "company", "phone", "email", "consent")}),
+        ("What", {"fields": ("enquiry_type", "message")}),
+        ("Pipeline", {"fields": ("status",)}),
+        (
+            "Where it came from",
+            {"classes": ("collapse",), "fields": ("source_url", "referrer", "user_agent")},
+        ),
+        (
+            "Timestamps",
+            {"classes": ("collapse",), "fields": ("created_at", "updated_at", "notified_at")},
+        ),
+    )
+
+
+
+@admin.register(RequestEnquiry)
+class RequestEnquiryAdmin(LeadAdminBase):
+    """Contact-page enquiries."""
+
+    list_display = ("created_at", "name", "company", "enquiry_type", "phone", "email", "postcode", "status")
+    list_editable = ("status",)
+    list_filter = ("status", "enquiry_type", "created_at")
+    search_fields = ("name", "company", "phone", "email", "message")
+    autocomplete_fields = ("enquiry_type",)
+    csv_fields = [
+        "created_at",
+        "name",
+        "company",
+        "phone",
+        "email",
+        "postcode",
+        "enquiry_type",
+        "message",
+        "status",
+        "source_url",
+    ]
+    fieldsets = (
+        ("Who", {"fields": ("name", "company", "phone", "email", "postcode", "consent")}),
         ("What", {"fields": ("enquiry_type", "message")}),
         ("Pipeline", {"fields": ("status",)}),
         (

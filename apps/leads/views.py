@@ -19,7 +19,7 @@ from apps.locations.models import ServiceArea
 from apps.pages.services import page_copy
 from apps.seo import schema
 
-from .forms import ContactEnquiryForm, EmergencyCalloutForm
+from .forms import ContactEnquiryForm, RequestEnquiryForm, EmergencyCalloutForm
 from .services import attach_request_metadata, notify_new_lead
 
 HX_REQUEST_HEADER = "HX-Request"
@@ -124,6 +124,41 @@ class ContactView(LeadFormView):
         )
         return context
 
+class RequestView(LeadFormView):
+    """``/Request/``: form, map, hours and direct lines (Path B)."""
+
+    template_name = "leads/request.html"
+    form_class = RequestEnquiryForm
+    email_template = "leads/email/request_enquiry.txt"
+    fragment_template = "leads/partials/request_form.html"
+    success_fragment_template = "leads/partials/request_success.html"
+    success_url_name = "leads:request_thanks"
+    event_name = "lead:request"
+    copy_slug = "request"
+    copy_default_title = "request form MehrCool"
+    copy_default_intro = (
+        "For a breakdown, call — we answer around the clock. For maintenance contracts, "
+        "installations and tenders, send the site details and an engineer will reply within "
+        "one working day."
+    )
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        """Add breadcrumbs, map and schema."""
+        context = super().get_context_data(**kwargs)
+        crumbs = [("Home", "/"), ("Contact", reverse("leads:contact"))]
+        copy = self.get_copy()
+        context.update(
+            {
+                "copy": copy,
+                "seo": copy.page,
+                "breadcrumbs": crumbs,
+                "schema_graph": [schema.breadcrumbs(crumbs)],
+                "audience": "Contract buyers (Path B); emergency callers routed to phone",
+                **trust_strip_context(),
+            }
+        )
+        return context
+
 
 class EmergencyView(LeadFormView):
     """``/emergency-callout/``: phone dominant, one-field callback (Path A)."""
@@ -175,6 +210,12 @@ class ThanksView(TemplateView):
 
 
 class ContactThanksView(ThanksView):
+    """Thank-you after a contact enquiry."""
+
+    heading = "Thanks — we've received your enquiry"
+    body = "An engineer will reply within one working day. If it's urgent, call us now."
+
+class RequestThanksView(ThanksView):
     """Thank-you after a contact enquiry."""
 
     heading = "Thanks — we've received your enquiry"

@@ -1,0 +1,5 @@
+<div class="notice" role="status">
+  <h2 class="notice__title" data-focus>{% icon "check" %}Thanks — we've received your enquiry</h2>
+  <p>An engineer will reply to <strong>{{ lead.email|default:lead.phone }}</strong> within one working day. If the situation changes and it becomes urgent, call {{ site.emergency_phone }} — {{ site.opening_hours_text|lower }}.</p>
+  <div class="cluster">{% call_button label=site.emergency_phone %}<a class="btn btn--outline" href="{% url 'services:index' %}">Browse services</a></div>
+</div>
