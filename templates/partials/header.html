@@ -3,7 +3,19 @@
   <div class="container site-header__inner">
     <a class="site-header__logo" href="/" aria-label="{{ site.trading_name }} — home">
       {% if site.logo_light %}
-        <img src="{{ site.logo_light.url }}" alt="{{ site.trading_name }}" width="240" height="60">
+        <div class="site-header__brand">
+          <img 
+            src="{{ site.logo_light.url }}" 
+            alt="{{ site.trading_name }}" 
+            width="240" 
+            height="60" 
+            class="site-header__logo"
+            loading="eager"
+          > 
+          <span class="site-header__wordmark">
+            <span class="wordmark-prefix">Mehr</span><span class="wordmark-suffix">Cool</span>
+          </span>
+        </div>
       {% else %}
         <span class="site-header__wordmark">Mehr<span>Cool</span></span>
       {% endif %}

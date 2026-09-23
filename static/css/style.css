@@ -795,7 +795,7 @@ table {
 }
 
 .site-header__logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.00);
 }
 
 .site-header__logo:active {
@@ -815,22 +815,104 @@ table {
   transition: height 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.site-header.is-condensed .site-header__logo img {
-  height: 2.125rem;
+/* .site-header.is-condensed .site-header__logo img {
+  height: 3.545rem;
   max-width: 8.5rem;
 }
 
 .site-header__wordmark {
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.015em;
   font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
   line-height: 1;
 }
 
 .site-header__wordmark span {
-  color: #2b3e8c;
+  color: #0844eb;
+} */
+/* --- Header Logo Responsiveness --- */
+/* --- Brand Container (Flexbox Alignment) --- */
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 1rem); /* Dynamic gap between logo image and text */
+  text-decoration: none;
+  max-width: 100%;
 }
+
+/* --- Responsive Logo Image --- */
+.site-header__logo {
+  /* Fluid sizing: shrinks on narrow screens while respecting maximum width */
+  width: clamp(140px, 20vw, 240px);
+  height: auto; /* Preserves aspect ratio */
+  object-fit: contain;
+  flex-shrink: 0; /* Prevents image from squishing */
+}
+
+/* --- Responsive Wordmark --- */
+.site-header__wordmark {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  /* Fluid typography: 1.125rem on small mobile screens scaling up to 1.5rem on desktop */
+  font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.5rem);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap; /* Keeps 'Mehr' and 'Cool' on one line */
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Removes blue tap box on iOS/Android */
+}
+
+/* --- Base Colors --- */
+.wordmark-prefix {
+  color: #fab700; /* Dark slate for "Mehr" */
+  transition: color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+}
+
+.wordmark-suffix {
+  color: #0844eb; /* Primary blue for "Cool" */
+  transition: color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+}
+
+/* --- Hover State (Desktop / Mouse Devices) --- */
+@media (hover: hover) and (pointer: fine) {
+  .site-header__brand:hover .wordmark-prefix,
+  .site-header__wordmark:hover .wordmark-prefix {
+    color: rgb(250, 162, 0);
+    text-shadow: 
+      0 0 10px rgb(243, 239, 7),
+      0 0 20px rgba(240, 217, 8, 0.877);
+  }
+
+  .site-header__brand:hover .wordmark-suffix,
+  .site-header__wordmark:hover .wordmark-suffix {
+    color: #0243cf;
+    text-shadow: 
+      0 0 12px rgba(8, 68, 235, 0.5),
+      0 0 24px rgba(2, 37, 131, 0.25);
+  }
+}
+
+/* --- Tap/Active State (Mobile / Touch Devices) --- */
+@media (hover: none) {
+  .site-header__brand:active .wordmark-prefix,
+  .site-header__wordmark:active .wordmark-prefix {
+    color: #000000;
+    text-shadow: 0 0 8px rgba(8, 68, 235, 0.3);
+  }
+
+  .site-header__brand:active .wordmark-suffix,
+  .site-header__wordmark:active .wordmark-suffix {
+    color: #2563eb;
+    text-shadow: 0 0 10px rgba(8, 68, 235, 0.5);
+  }
+}
+
+
+/* -------------- */
 
 .site-header__actions {
   display: flex;
@@ -906,7 +988,7 @@ table {
 }
 
 .menu-toggle__button:hover {
-  background: #eaf0fa;
+  background: #faeaea;
 }
 
 .menu-toggle__button:active {
