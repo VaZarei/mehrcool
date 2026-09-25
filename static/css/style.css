@@ -2309,7 +2309,53 @@ table {
   width: 40%;
   padding-right: 1rem;
 }
+/* ===========================================================================
+Category Container 
+=========================================================================== */
+.category-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: left;
+    background-color: #EAF0FA;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(3, 1, 95, 0.1);
+    min-height: 830px;
+  }
 
+  .category-headline {
+    color: #03015F; /* Deep Navy */
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  /* Default body text color */
+  .category-intro {
+    color: #515253;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* Base state for individual characters */
+  .animated-char {
+    display: inline-block;
+    color: #5cb12c; /* Default body color */
+    font-weight: 400;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+  }
+
+  /* Active animated state: Deep Navy Blue */
+  .animated-char.active {
+    color: #03015F; /* Target Deep Navy Blue */
+    font-weight: 700;
+  }
 /* ==========================================================================
    Stat row — big numbers with short labels.
    ========================================================================== */

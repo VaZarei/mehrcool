@@ -5,21 +5,61 @@
   <section class="section" aria-labelledby="services-heading">
     <div class="container contact-grid">
       <div class="stack stack--lg">
+
+        
         {% comment %} ---------------------- {% endcomment %}
-        <h1>{{category.display_headline}}<h1>
-        <div></div>
-        <div>
-          <h1 id="category-intro">{{category.intro}}</h1>
+        <div class="category-container">
+          <h2 class="category-headline">{{category.display_headline}}</h2>
+          <p class="category-intro" id="category-intro">{{category.intro}}</p>
         </div>
 
         <!-- Add this script right below it -->
         <script>
-          let introElement = document.getElementById("category-intro");
-          
-          // This takes the text inside the h4, finds every "|", and replaces it with an HTML line break
-          introElement.innerHTML = introElement.innerHTML.split("|").join("<br>");
+          document.addEventListener("DOMContentLoaded", function () {
+            let introElement = document.getElementById("category-intro");
+            
+            // 1. Split full text into lines by "|"
+            let rawLines = introElement.innerHTML.split("|");
+            
+            let processedLines = rawLines.map((line) => {
+              let trimmedLine = line.trim();
+              if (!trimmedLine) return "";
+
+              // Split into words
+              let words = trimmedLine.split(/\s+/);
+              
+              // Calculate target character count: 1st word + space + half of 2nd word
+              let word1Len = words[0] ? words[0].length : 0;
+              let word2HalfLen = words[1] ? Math.ceil(words[1].length / 2) : 0;
+              let targetLength = word1Len + (words[1] ? 1 : 0) + word2HalfLen;
+
+              let formattedLine = "";
+              
+              // Wrap characters up to targetLength in span elements
+              for (let i = 0; i < trimmedLine.length; i++) {
+                let char = trimmedLine[i];
+                if (i < targetLength) {
+                  formattedLine += `<span class="animated-char">${char === " " ? "&nbsp;" : char}</span>`;
+                } else {
+                  formattedLine += char;
+                }
+              }
+
+              return formattedLine;
+            });
+
+            // 2. Render back with line breaks
+            introElement.innerHTML = processedLines.join("<br><br>");
+
+            // 3. Trigger sequential character animation
+            let charsToAnimate = introElement.querySelectorAll(".animated-char");
+            charsToAnimate.forEach((charSpan, index) => {
+              setTimeout(() => {
+                charSpan.classList.add("active");
+              }, index * 40); // 40ms delay per character
+            });
+          });
         </script>
-        {% comment %} {{category.intro}} {% endcomment %}
 
 
     
