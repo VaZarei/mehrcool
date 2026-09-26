@@ -64,6 +64,7 @@ class ServiceCategory(PublishableModel, OrderableModel, SEOFieldsModel):
         "emergency page instead.",
         help_text="Internal note: who is this hub for?",
     )
+    gallery_content = models.CharField(max_length=500, blank=True)
 
     objects = ServiceCategoryQuerySet.as_manager()
 

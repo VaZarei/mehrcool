@@ -21,12 +21,15 @@
             
           </div>
         </div>
+
+        
         
 
         <!-- Add this script right below it -->
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             let introElement = document.getElementById("category-intro");
+            if (!introElement) return;
             
             // 1. Split full text into lines by "|"
             let rawLines = introElement.innerHTML.split("|");
@@ -35,13 +38,11 @@
               let trimmedLine = line.trim();
               if (!trimmedLine) return "";
 
-              // Split into words
-              let words = trimmedLine.split(/\s+/);
-              
-              // Calculate target character count: 1st word + space + half of 2nd word
-              let word1Len = words[0] ? words[0].length : 0;
-              let word2HalfLen = words[1] ? Math.ceil(words[1].length) : 0;
-              let targetLength = word1Len + (words[1] ? 1 : 0) + word2HalfLen;
+              // Find the index of the colon
+              let colonIndex = trimmedLine.indexOf(":");
+
+              // If a colon exists, include it (+1); otherwise, wrap nothing (0)
+              let targetLength = colonIndex !== -1 ? colonIndex + 1 : 0;
 
               let formattedLine = "";
               
@@ -70,14 +71,6 @@
             });
           });
         </script>
-
-
-    
-        
-
-        
-        
-        
         
       
         {% comment %} ---------------------- {% endcomment %}
@@ -105,12 +98,6 @@
 
 
 
-
-
-
-
-
-
   {% if case_studies %}
     <section class="section section--tint" aria-labelledby="proof-heading">
       <div class="container">
@@ -128,3 +115,7 @@
   {% include "partials/trust_strip.html" %}
   {% include "partials/cta_band.html" %}
 {% endblock %}
+
+
+
+

@@ -34,7 +34,7 @@ class ServiceCategoryAdmin(PublishableAdminMixin, ThumbnailMixin, admin.ModelAdm
     search_fields = ("name", "intro")
     prepopulated_fields = {"slug": ("name",)}
     fieldsets = (
-        (None, {"fields": ("name", "slug", "headline", "intro", "icon", "order", "audience")}),
+        (None, {"fields": ("name", "slug", "headline", "gallery_content", "intro", "icon", "order", "audience")}),
         ("Hero image", {"fields": ("hero_image", "image_preview", "hero_image_alt")}),
         PUBLISHING_FIELDSET,
         SEO_FIELDSET,

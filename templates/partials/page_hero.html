@@ -1,4 +1,4 @@
-<section class="page-hero {% if category.gallery_images.all %}page-hero--has-bg-gallery{% endif %} {{ modifier|default:'' }}">
+<section class="page-hero {% if category.gallery_images.all %}   page-hero--has-bg-gallery{% endif %} {{ modifier|default:'' }}">
   
   <!-- Background Image Gallery Loop -->
   {% if category.gallery_images.all %}
@@ -15,10 +15,11 @@
 
   <div class="container page-hero__inner">
     <div class="page-hero__content">
-      {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+      {% comment %} {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %} {% endcomment %}
       {% if eyebrow %}<span class="eyebrow eyebrow--on-dark">{{ eyebrow }}</span>{% endif %}
       <h1 class="page-hero__title">{{ title }}</h1>
-      {% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
+      {% if category.gallery_content %}<p class="page-hero__lead">{{ category.gallery_content }}</p>{% endif %}
+      
       {% if facts %}
         <div class="page-hero__facts">
           {% for fact in facts %}
@@ -26,15 +27,83 @@
           {% endfor %}
         </div>
       {% endif %}
+      
       {% if show_actions %}
         <div class="page-hero__actions">
           {% call_button label=site.hero_primary_cta_label %}
-          <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+          {% comment %} <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a> {% endcomment %}
         </div>
       {% endif %}
     </div>
   </div>
 </section>
+
+
+
+<!-- Effect for the Gallery Title -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.page-hero__title');
+    if (!title) return;
+
+    // Enhance depth on hover
+    title.addEventListener('mouseenter', () => {
+      title.classList.add('is-hovered');
+    });
+
+    // Track cursor movement across the title to dynamically shift shadow angle
+    title.addEventListener('mousemove', (e) => {
+      const rect = title.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Normalize coordinates (-1 to 1 range)
+      const shadowX = (x / (rect.width / 2)) * 6;
+      const shadowY = (y / (rect.height / 2)) * 6;
+
+      // Apply reactive dynamic shadow
+      title.style.textShadow = `
+        ${-shadowX}px ${-shadowY}px 6px rgba(0, 0, 0, 0.8),
+        0px 0px 18px rgba(124, 149, 230, 0.5)
+      `;
+    });
+
+    // Reset shadow position when cursor leaves
+    title.addEventListener('mouseleave', () => {
+      title.classList.remove('is-hovered');
+      title.style.textShadow = '';
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.page-hero__title');
+    if (!title) return;
+
+    // Split text content into individual spans per character
+    const text = title.textContent.trim();
+    title.innerHTML = text
+      .split('')
+      .map((char) => {
+        const displayChar = char === ' ' ? '&nbsp;' : char;
+        return `<span class="hero-char" style="display:inline-block; opacity:0; transform:translateY(12px); transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">${displayChar}</span>`;
+      })
+      .join('');
+
+    // Trigger staggered reveal sequence
+    const charSpans = title.querySelectorAll('.hero-char');
+    charSpans.forEach((span, index) => {
+      setTimeout(() => {
+        span.style.opacity = '1';
+        span.style.transform = 'translateY(0)';
+      }, index * 35); // 35ms stagger interval
+    });
+  });
+</script>
+
+
+<!-- Effect for the words befor this charachter':' -->
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

@@ -2336,13 +2336,15 @@ Category Container
 
   /* Default body text color */
   .category-intro {
-    color: #515253;
+    color: #535351;
     font-family: 'Segoe UI', Roboto, sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     margin: 0;
     max-width: 600px;
   }
+
+  
 
   /* Base state for individual characters */
   .animated-char {
@@ -2354,7 +2356,7 @@ Category Container
 
   /* Active animated state: Deep Navy Blue */
   .animated-char.active {
-    color: #5f2b01; /* Target Deep Navy Blue */
+    color: #d3860c; /* Target Deep Navy Blue */
     font-weight: 700;
   }
 
@@ -3362,6 +3364,33 @@ Category Container
   position: relative;
   z-index: 3;
   width: 100%;
+}
+
+.page-hero__title {
+  color: #f7b23d;
+  font-weight: 600;
+  
+  /* Black text outline/border */
+  -webkit-text-stroke: 1px #000000;
+  text-stroke: 1px #000000;
+  
+  /* Small, clean shadow + ambient dark glow for legibility */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.7),
+    0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+  /* Smooth transitions for interactive state changes */
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              text-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, text-shadow;
+}
+
+/* Subtle glowing accent added on hover / focus */
+.page-hero__title.is-hovered {
+  transform: translateY(-2px) scale(1.01);
+  text-shadow: 
+    3px 4px 8px rgba(0, 0, 0, 0.85),
+    0px 0px 18px rgba(35, 79, 223, 0.856);
 }
 
 /* Mobile-optimized content container alignment */
