@@ -3344,8 +3344,133 @@ Category Container
 /* ==========================================================================
    Inner page hero — navy band with breadcrumb, H1, lead and optional image.
    ========================================================================== */
-
+/* ----------Test ------------ */
+/* Hero Container */
 .page-hero {
+  position: relative;
+  overflow: hidden;
+  /* Dynamic viewport height on mobile to prevent address bar layout shifts */
+  min-height: clamp(480px, 75vh, 700px);
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  padding: 3rem 0;
+}
+
+/* Ensure content stays above images and overlay */
+.page-hero__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+/* Mobile-optimized content container alignment */
+.page-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .page-hero__content {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-hero__content {
+    max-width: 768px;
+  }
+}
+
+/* Actions Wrapper - Stacks cleanly on small mobile screens */
+.page-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .page-hero__actions {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+  
+  .page-hero__actions .btn {
+    width: auto;
+  }
+}
+
+.page-hero__actions .btn {
+  width: 100%; /* Full-width touch target on small mobile screens */
+  text-align: center;
+}
+
+/* Background Gallery Wrapper */
+.page-hero__bg-gallery {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Individual Slides with Hardware Acceleration */
+.page-hero__bg-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: opacity, transform;
+  /* Hardware-accelerated transition for smooth mobile animation */
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.page-hero__bg-slide.is-active {
+  opacity: 1;
+}
+
+.page-hero__bg-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Responsive Dark Overlay */
+.page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* Stronger gradient on mobile for enhanced text readability over small screens */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .page-hero__overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 60%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  }
+}
+
+/* Low Power Mode / Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .page-hero__bg-slide {
+    transition: opacity 0.3s ease;
+  }
+}
+/* ----------End Test ------------ */
+
+/* .page-hero {
   position: relative;
   overflow: hidden;
   background: #2b3e8c;
@@ -3368,9 +3493,9 @@ Category Container
   display: grid;
   gap: 2rem;
   align-items: center;
-}
+} */
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .page-hero--with-media .page-hero__inner {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     gap: 3rem;
@@ -3423,7 +3548,7 @@ Category Container
 }
 
 /* Light variant for content/legal pages */
-.page-hero--light {
+/* .page-hero--light {
   background: #f4f7fb;
   color: #111111;
 }
@@ -3438,7 +3563,7 @@ Category Container
 
 .page-hero--light .page-hero__lead {
   color: #58606f;
-}
+} */ */
 
 /* ==========================================================================
    Emergency page — stripped to the bone. Phone number dominant.

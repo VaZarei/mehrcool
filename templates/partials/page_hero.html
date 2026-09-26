@@ -1,11 +1,31 @@
-<section class="page-hero {% if hero_image %}page-hero--with-media{% endif %} {{ modifier|default:'' }}">
+<section class="page-hero {% if category.gallery_images.all %}page-hero--has-bg-gallery{% endif %} {{ modifier|default:'' }}">
+  
+  <!-- Background Image Gallery Loop -->
+  {% if category.gallery_images.all %}
+    <div class="page-hero__bg-gallery">
+      {% for img in category.gallery_images.all %}
+        <div class="page-hero__bg-slide {% if loop.first %}is-active{% endif %}">
+          <img src="{{ img.image.url }}" alt="{{ img.alt }}" loading="eager">
+        </div>
+      {% endfor %}
+      <!-- Dark overlay to ensure text contrast/readability -->
+      <div class="page-hero__overlay"></div>
+    </div>
+  {% endif %}
+
   <div class="container page-hero__inner">
     <div class="page-hero__content">
       {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
       {% if eyebrow %}<span class="eyebrow eyebrow--on-dark">{{ eyebrow }}</span>{% endif %}
       <h1 class="page-hero__title">{{ title }}</h1>
       {% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
-      {% if facts %}<div class="page-hero__facts">{% for fact in facts %}<span class="chip chip--on-dark chip--lg">{{ fact }}</span>{% endfor %}</div>{% endif %}
+      {% if facts %}
+        <div class="page-hero__facts">
+          {% for fact in facts %}
+            <span class="chip chip--on-dark chip--lg">{{ fact }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
       {% if show_actions %}
         <div class="page-hero__actions">
           {% call_button label=site.hero_primary_cta_label %}
@@ -13,10 +33,30 @@
         </div>
       {% endif %}
     </div>
-    {% if hero_image %}
-      <div class="page-hero__media">
-        {% picture hero_image alt=hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}
-      </div>
-    {% endif %}
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.page-hero__bg-slide');
+    
+    // Only run if there are 2 or more images
+    if (slides.length < 2) return;
+
+    let currentSlide = 0;
+    const slideInterval = 5000; // Time per slide in milliseconds (5s)
+
+    setInterval(() => {
+      // Remove active class from current slide
+      slides[currentSlide].classList.remove('is-active');
+      
+      // Calculate next slide index
+      currentSlide = (currentSlide + 1) % slides.length;
+      
+      // Add active class to next slide
+      slides[currentSlide].classList.add('is-active');
+    }, slideInterval);
+  });
+
+</script>
+
