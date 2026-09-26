@@ -101,7 +101,7 @@ class LeadBase(TimeStampedModel):
     user_agent = models.CharField(max_length=300, blank=True, editable=False)
     consent = models.BooleanField(
         default=False,
-        help_text="Visitor agreed to be contacted about their enquiry.",
+        
     )
     notified_at = models.DateTimeField(
         null=True, blank=True, editable=False, help_text="When the notification email was sent."
