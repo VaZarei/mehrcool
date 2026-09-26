@@ -46,7 +46,7 @@ class ServiceCategory(PublishableModel, OrderableModel, SEOFieldsModel):
         help_text="Optional larger heading on the hub page. Defaults to the name.",
     )
     intro = models.TextField(
-        max_length=600,
+        max_length=900,
         help_text="Two or three sentences at the top of the hub page.",
     )
     hero_image = models.ImageField(

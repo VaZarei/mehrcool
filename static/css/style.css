@@ -2318,11 +2318,12 @@ Category Container
     justify-content: center;
     align-items: left;
     text-align: left;
-    background-color: #EAF0FA;
+    background-color: #4889c509;
     padding: 3rem 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 25px -5px rgba(3, 1, 95, 0.1);
     min-height: 830px;
+
   }
 
   .category-headline {
@@ -2348,14 +2349,44 @@ Category Container
     display: inline-block;
     color: #5cb12c; /* Default body color */
     font-weight: 400;
-    transition: color 0.3s ease, font-weight 0.3s ease;
+    transition: color 10.3s ease, font-weight 0.3s ease;
   }
 
   /* Active animated state: Deep Navy Blue */
   .animated-char.active {
-    color: #03015F; /* Target Deep Navy Blue */
+    color: #5f2b01; /* Target Deep Navy Blue */
     font-weight: 700;
   }
+
+  /* image and text wraper */
+
+  /* Container wrapper setup */
+.category-hero__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;            /* Set desired height (or use aspect-ratio) */
+  overflow: hidden;
+  border-radius: 12px;       /* Optional: rounded corners */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Image Scaling */
+.category-hero__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* Covers container without distorting aspect ratio */
+  object-position: center;   /* Keeps focus in the middle */
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+/* Interactive Hover Effect (Zoom-in) */
+.category-hero__image-wrapper:hover img {
+  transform: scale(1.00);    /* Subtle cinematic zoom on hover */
+}
+
 /* ==========================================================================
    Stat row — big numbers with short labels.
    ========================================================================== */

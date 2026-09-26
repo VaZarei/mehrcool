@@ -8,10 +8,17 @@
 
         
         {% comment %} ---------------------- {% endcomment %}
+     
         <div class="category-container">
           <h2 class="category-headline">{{category.display_headline}}</h2>
           <p class="category-intro" id="category-intro">{{category.intro}}</p>
+          <div><br><br></div>
+          <div class="category-hero__image-wrapper">
+            <img src="{{ category.hero_image.url }}" alt="{{ category.hero_image_alt }}">
+            
+          </div>
         </div>
+        
 
         <!-- Add this script right below it -->
         <script>
@@ -30,7 +37,7 @@
               
               // Calculate target character count: 1st word + space + half of 2nd word
               let word1Len = words[0] ? words[0].length : 0;
-              let word2HalfLen = words[1] ? Math.ceil(words[1].length / 2) : 0;
+              let word2HalfLen = words[1] ? Math.ceil(words[1].length) : 0;
               let targetLength = word1Len + (words[1] ? 1 : 0) + word2HalfLen;
 
               let formattedLine = "";
