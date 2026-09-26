@@ -1,0 +1,22 @@
+<section class="page-hero {% if hero_image %}page-hero--with-media{% endif %} {{ modifier|default:'' }}">
+  <div class="container page-hero__inner">
+    <div class="page-hero__content">
+      {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+      {% if eyebrow %}<span class="eyebrow eyebrow--on-dark">{{ eyebrow }}</span>{% endif %}
+      <h1 class="page-hero__title">{{ title }}</h1>
+      {% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
+      {% if facts %}<div class="page-hero__facts">{% for fact in facts %}<span class="chip chip--on-dark chip--lg">{{ fact }}</span>{% endfor %}</div>{% endif %}
+      {% if show_actions %}
+        <div class="page-hero__actions">
+          {% call_button label=site.hero_primary_cta_label %}
+          <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
+        </div>
+      {% endif %}
+    </div>
+    {% if hero_image %}
+      <div class="page-hero__media">
+        {% picture hero_image alt=hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}
+      </div>
+    {% endif %}
+  </div>
+</section>

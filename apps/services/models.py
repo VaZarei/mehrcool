@@ -92,6 +92,34 @@ class ServiceCategory(PublishableModel, OrderableModel, SEOFieldsModel):
         return self.headline or self.name
 
 
+class ServiceCategoryImage(OrderableModel):
+    """Gallery images for a service category."""
+
+    category = models.ForeignKey(
+        ServiceCategory,
+        on_delete=models.CASCADE,
+        related_name="gallery_images",
+        help_text="The service category this image belongs to.",
+    )
+    image = models.ImageField(
+        upload_to="services/gallery/",
+        validators=[validate_image_upload_size],
+        help_text=RECOMMENDED_CARD_IMAGE_SIZE,
+    )
+    alt = models.CharField(
+        max_length=160,
+        blank=True,
+        help_text="Alt text for accessibility.",
+    )
+
+    class Meta(OrderableModel.Meta):
+        verbose_name = "Category gallery image"
+        verbose_name_plural = "Category gallery images"
+
+    def __str__(self) -> str:
+        return f"Image for {self.category.name}"
+
+
 class ServiceQuerySet(PublishedQuerySet):
     """Common prefetches for service pages and cards."""
 

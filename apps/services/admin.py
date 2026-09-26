@@ -12,7 +12,15 @@ from apps.core.admin.mixins import (
 )
 from apps.pages.admin import BlockInlineBase
 
-from .models import Service, ServiceBlock, ServiceCategory, ServiceFAQ, ServiceSpecification
+from .models import Service, ServiceBlock, ServiceCategory, ServiceCategoryImage, ServiceFAQ, ServiceSpecification
+
+
+class ServiceCategoryImageInline(admin.TabularInline):
+    """Gallery images for the service category."""
+
+    model = ServiceCategoryImage
+    extra = 1
+    fields = ("image", "alt", "order")
 
 
 @admin.register(ServiceCategory)
@@ -32,6 +40,7 @@ class ServiceCategoryAdmin(PublishableAdminMixin, ThumbnailMixin, admin.ModelAdm
         SEO_FIELDSET,
     )
     readonly_fields = ("image_preview", "created_at", "updated_at")
+    inlines = (ServiceCategoryImageInline,)
 
     @admin.display(description="Services")
     def service_count(self, obj: ServiceCategory) -> int:
