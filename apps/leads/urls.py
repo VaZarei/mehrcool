@@ -11,6 +11,7 @@ urlpatterns = [
     path("contact/thank-you/", views.ContactThanksView.as_view(), name="contact_thanks"),
     path("request/", views.RequestView.as_view(), name="request"),
     path("request/thank-you/", views.RequestThanksView.as_view(), name="request_thanks"),
+    path("repair/", views.RepairView.as_view(), name="repair"),
     path("emergency-callout/", views.EmergencyView.as_view(), name="emergency"),
     path(
         "emergency-callout/thank-you/",

@@ -27,50 +27,53 @@
 
         <!-- Add this script right below it -->
         <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            let introElement = document.getElementById("category-intro");
-            if (!introElement) return;
-            
-            // 1. Split full text into lines by "|"
-            let rawLines = introElement.innerHTML.split("|");
-            
-            let processedLines = rawLines.map((line) => {
-              let trimmedLine = line.trim();
-              if (!trimmedLine) return "";
+            document.addEventListener("DOMContentLoaded", function () {
+              let introElement = document.getElementById("category-intro");
+              if (!introElement) return;
 
-              // Find the index of the colon
-              let colonIndex = trimmedLine.indexOf(":");
+              // 1. Split full text into lines by "."
+              let rawLines = introElement.innerHTML.split(".");
 
-              // If a colon exists, include it (+1); otherwise, wrap nothing (0)
-              let targetLength = colonIndex !== -1 ? colonIndex + 1 : 0;
+              let processedLines = rawLines
+                .map((line) => line.trim())
+                .filter((trimmedLine) => trimmedLine.length > 0) // Remove empty items (e.g. trailing period)
+                .map((trimmedLine) => {
+                  // Append the period back to the end of the line
+                  let lineWithDot = trimmedLine + ".";
 
-              let formattedLine = "";
-              
-              // Wrap characters up to targetLength in span elements
-              for (let i = 0; i < trimmedLine.length; i++) {
-                let char = trimmedLine[i];
-                if (i < targetLength) {
-                  formattedLine += `<span class="animated-char">${char === " " ? "&nbsp;" : char}</span>`;
-                } else {
-                  formattedLine += char;
-                }
-              }
+                  // Find the index of the colon
+                  let colonIndex = lineWithDot.indexOf(":");
 
-              return formattedLine;
+                  // If a colon exists, include it (+1); otherwise, wrap nothing (0)
+                  let targetLength = colonIndex !== -1 ? colonIndex + 1 : 0;
+
+                  let formattedLine = "";
+
+                  // Wrap characters up to targetLength in span elements
+                  for (let i = 0; i < lineWithDot.length; i++) {
+                    let char = lineWithDot[i];
+                    if (i < targetLength) {
+                      formattedLine += `<span class="animated-char">${char === " " ? "&nbsp;" : char}</span>`;
+                    } else {
+                      formattedLine += char;
+                    }
+                  }
+
+                  return formattedLine;
+                });
+
+              // 2. Render back with line breaks
+              introElement.innerHTML = processedLines.join("<br><br>");
+
+              // 3. Trigger sequential character animation
+              let charsToAnimate = introElement.querySelectorAll(".animated-char");
+              charsToAnimate.forEach((charSpan, index) => {
+                setTimeout(() => {
+                  charSpan.classList.add("active");
+                }, index * 40); // 40ms delay per character
+              });
             });
-
-            // 2. Render back with line breaks
-            introElement.innerHTML = processedLines.join("<br><br>");
-
-            // 3. Trigger sequential character animation
-            let charsToAnimate = introElement.querySelectorAll(".animated-char");
-            charsToAnimate.forEach((charSpan, index) => {
-              setTimeout(() => {
-                charSpan.classList.add("active");
-              }, index * 40); // 40ms delay per character
-            });
-          });
-        </script>
+          </script>
         
       
         {% comment %} ---------------------- {% endcomment %}

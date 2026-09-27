@@ -195,6 +195,41 @@ class EmergencyView(LeadFormView):
         return context
 
 
+class RepairView(TemplateView):
+    """``/repair/``: emergency callback and scheduled-repair forms side by side.
+
+    Each form posts to its own existing endpoint (``leads:emergency`` /
+    ``leads:request``); this view only renders the two unbound forms together.
+    """
+
+    template_name = "leads/repair.html"
+    copy_slug = "repair"
+    copy_default_title = "Refrigeration & air conditioning repair"
+    copy_default_intro = (
+        "Equipment down right now? Call the duty engineer. Planning a repair or site "
+        "visit? Send the details below."
+    )
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        """Add both unbound forms, breadcrumbs and schema."""
+        context = super().get_context_data(**kwargs)
+        copy = page_copy(self.copy_slug, self.copy_default_title, self.copy_default_intro)
+        crumbs = [("Home", "/"), ("Repair", reverse("leads:repair"))]
+        context.update(
+            {
+                "copy": copy,
+                "seo": copy.page,
+                "form": EmergencyCalloutForm(),
+                "request_form": RequestEnquiryForm(),
+                "breadcrumbs": crumbs,
+                "schema_graph": [schema.breadcrumbs(crumbs)],
+                "audience": "Emergency callers (Path A) and scheduled-repair enquirers (Path B)",
+                **trust_strip_context(),
+            }
+        )
+        return context
+
+
 class ThanksView(TemplateView):
     """Generic thank-you page (noindex) shown after a non-JS submission."""
 

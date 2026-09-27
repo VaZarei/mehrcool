@@ -21,6 +21,7 @@ RESERVED_PAGE_SLUGS = {
     "areas": "Areas we cover index",
     "contact": "Contact page",
     "emergency-callout": "Emergency callout page",
+    "repair": "Repair page",
 }
 
 

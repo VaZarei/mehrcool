@@ -610,7 +610,7 @@ table {
 
 /* Accent — ice blue, used for WhatsApp and lighter actions. */
 .btn--accent {
-  background: #4a72c0;
+  background: #1f8a5b;
   color: #ffffff;
 }
 
@@ -634,17 +634,17 @@ table {
 
 /* Outline on dark surfaces / over video. */
 .btn--outline-light {
-  background: rgb(255 255 255 / 0.08);
+  background: #1f8a5c0c;
   color: #ffffff;
-  border-color: rgb(255 255 255 / 0.6);
+  border-color: rgba(255, 255, 255, 0.418);
   box-shadow: none;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .btn--outline-light:hover {
-  background: rgb(255 255 255 / 0.18);
-  color: #ffffff;
+  background: #2b3e8c80;
+  color: #ffffffce;
 }
 
 /* Ghost — text-like, for tertiary actions. */
@@ -1777,8 +1777,8 @@ table {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   
   /* Hover gradient */
-  background: linear-gradient(135deg, #f0f0f1 30%, #e6ae17 70%);
-  border-color: #a855f7;
+  background: linear-gradient(135deg, #f0f0f1 30%, #d3860c 70%);
+  border-color: #d3860c;
 }
 
 .intent-card:active {
@@ -1838,12 +1838,12 @@ table {
 /* Emergency tile: the icon well takes the action colour; the tile itself does
    not become an orange block so orange stays tied to the act of calling. */
 .intent-card--emergency .intent-card__icon {
-  background: #f29d12;
+  background: #d3860c;
   color: #111111;
 }
 
 .intent-card--emergency:hover {
-  border-color: #f29d12;
+  border-color: #d3860c;
 }
 
 /* ==========================================================================
@@ -2350,7 +2350,7 @@ Category Container
   .animated-char {
     display: inline-block;
     color: #5cb12c; /* Default body color */
-    font-weight: 400;
+    font-weight: 600;
     transition: color 10.3s ease, font-weight 0.3s ease;
   }
 
@@ -3144,9 +3144,9 @@ Category Container
 }
 
 .site-footer__heading {
-  color: #ffffff;
-  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
-  font-weight: 600;
+  color: #d3860c;
+  font-size: clamp(0.89rem, 0.72rem + 0.15vw, 0.8125rem);
+  font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -3641,7 +3641,7 @@ Category Container
 }
 
 .emergency__phone:hover {
-  background: #ffc82b;
+  background: #92ff2b;
   color: #111111;
 }
 

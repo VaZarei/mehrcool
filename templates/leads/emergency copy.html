@@ -1,15 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block head_extra %}
-  {% if site.hero_poster %}<link rel="preload" as="image" href="{{ site.hero_poster.url }}" fetchpriority="high">{% endif %}
-{% endblock %}
-
-
-
 {% block body_class %}is-emergency{% endblock %}
 {% block content %}
-<div class="emergency" style="background-color: #000080 !important;">
+<div class="emergency">
   <section class="container emergency__hero" aria-labelledby="emergency-title">
     <span class="eyebrow">24/7 emergency callout</span>
     <h1 class="emergency__title" id="emergency-title">{{ copy.title }}</h1>
