@@ -634,16 +634,16 @@ table {
 
 /* Outline on dark surfaces / over video. */
 .btn--outline-light {
-  background: #1f8a5c0c;
+  background: #1f8a5c50;
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.418);
+  border-color: #1f8a5b;
   box-shadow: none;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .btn--outline-light:hover {
-  background: #2b3e8c80;
+  background: #1f8a5b;
   color: #ffffffce;
 }
 
@@ -1821,7 +1821,7 @@ table {
 }
 
 .intent-card__arrow {
-  color: #4a72c0;
+  color: #1e2c66;
   transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -3357,6 +3357,7 @@ Category Container
   align-items: center;
   color: #ffffff;
   padding: 3rem 0;
+  background: #2b3e8c;
 }
 
 /* Ensure content stays above images and overlay */
@@ -3700,24 +3701,34 @@ Category Container
 }
 
 .emergency__card {
-  max-width: 34rem;
+  max-width: 100rem;
   margin-inline: auto;
   padding: 1.5rem;
-  border-radius: 1.75rem;
-  background: rgb(255 255 255 / 0.06);
-  border: 1px solid rgb(255 255 255 / 0.14);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  border-radius: 1.10rem;
+  background: #151f47;
+  border: 2px solid #d3860c;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .emergency__card h2 {
-  color: #ffffff;
+  color: #3dc507;
   font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+  margin-top: 1.5rem;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  min-height: 3.0rem;
+
+  /* Fading underline */
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #30c22b 0%, rgba(194, 103, 43, 0.959) 80%, transparent 100%) 1;
 }
 
 .emergency__card p {
   color: rgb(255 255 255 / 0.72);
-  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  font-size: clamp(1.0rem, 1.0rem + 0.15vw, 1.10rem);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 .emergency__card .field__label {
@@ -3735,7 +3746,7 @@ Category Container
 }
 
 .emergency__card details summary {
-  color: #a7bfe8;
+  color: #0151db;
   font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
   font-weight: 500;
   min-height: 2.75rem;

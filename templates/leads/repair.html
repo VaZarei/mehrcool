@@ -6,23 +6,29 @@
 {% endblock %}
 
 {% block content %}
-  <section class="container emergency__hero" aria-labelledby="repair-title">
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro %}
+  {% comment %} <section class="container emergency__hero" aria-labelledby="repair-title" style="background-color: #1e3debd7 !important;">
     <span class="eyebrow">Refrigeration &amp; air conditioning repair</span>
     <h1 class="emergency__title" id="repair-title">{{ copy.title }}</h1>
     <p class="emergency__promise">{% icon "clock" %}{{ site.response_time_claim }} across London</p>
     <p class="hero__lead">{{ copy.intro }}</p>
-  </section>
+  </section> {% endcomment %}
 
   <section class="section" aria-label="Get help now or book a repair visit">
     <div class="container contact-grid">
       <div>
-        <div class="emergency__card" data-form-region aria-live="polite">
+        <div class="emergency__card" data-form-region aria-live="polite" >
           <span class="eyebrow">24/7 emergency callout</span>
           <p class="mt-4">Food spoiling? Server room heating up? Don't wait for a form to be read — call the duty engineer now and we dispatch immediately. If you'd rather we call you, leave your number below.</p>
           <div class="cluster mt-4">
             {% call_button label="Call Emergency Hotline" size="lg" event="phone_click" %}
           </div>
           {% include "leads/partials/emergency_form.html" with form=form %}
+          {% if site.whatsapp_href %}
+            <div class="emergency__alt">
+              <a class="btn btn--outline-light" href="{{ site.whatsapp_href }}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-label="emergency_page">{% icon "whatsapp" %}Send a photo of the fault on WhatsApp</a>
+            </div>
+          {% endif %}
         </div>
       </div>
 
