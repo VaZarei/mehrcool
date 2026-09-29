@@ -3360,6 +3360,14 @@ Category Container
   background: #2b3e8c;
 }
 
+/* Remove blue background when using gallery or background image */
+.page-hero--has-bg-gallery,
+.page-hero--has-bg-image {
+  background: transparent;
+  background-size: cover;
+  background-position: center;
+}
+
 /* Ensure content stays above images and overlay */
 .page-hero__inner {
   position: relative;

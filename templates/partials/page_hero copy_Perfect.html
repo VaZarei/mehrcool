@@ -1,5 +1,5 @@
-<section class="page-hero {% if category.gallery_images.all %}   page-hero--has-bg-gallery{% endif %} {% if hero_image and not category.gallery_images.all %}page-hero--has-bg-image{% endif %} {{ modifier|default:'' }}" {% if hero_image and not category.gallery_images.all %}style="background-image: url('{{ hero_image.url }}'); background-size: cover; background-position: center;"{% endif %}>
-
+<section class="page-hero {% if category.gallery_images.all %}   page-hero--has-bg-gallery{% endif %} {{ modifier|default:'' }}">
+  
   <!-- Background Image Gallery Loop -->
   {% if category.gallery_images.all %}
     <div class="page-hero__bg-gallery">
@@ -11,11 +11,6 @@
       <!-- Dark overlay to ensure text contrast/readability -->
       <div class="page-hero__overlay"></div>
     </div>
-  {% endif %}
-
-  <!-- Dark overlay for hero_image background (text readability) -->
-  {% if hero_image and not category.gallery_images.all %}
-    <div class="page-hero__overlay"></div>
   {% endif %}
 
   <div class="container page-hero__inner">
@@ -30,7 +25,11 @@
       {% else %}
         {% if lead %}
           <p class="page-hero__lead">{{ lead }}</p>
-          
+          {% if hero_image %}
+            <div class="page-hero__media">
+              {% picture hero_image alt=hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
             
