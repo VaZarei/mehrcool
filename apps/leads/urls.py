@@ -18,4 +18,6 @@ urlpatterns = [
         views.EmergencyThanksView.as_view(),
         name="emergency_thanks",
     ),
+    path('request-repair/', views.repair_request_view, name='request_repair'),
+    path('repair-confirmation/<str:ticket_number>/', views.repair_confirmation_view, name='repair_confirmation'),
 ]

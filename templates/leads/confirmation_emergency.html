@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/repair_wizard.css' %}">
+
+<div class="confirmation-container emergency">
+  <!-- High Priority Alert Header -->
+  <div class="emergency-status-card">
+    <div class="status-badge priority">
+      <span class="pulse-dot"></span> PRIORITY DISPATCH ACTIVE
+    </div>
+    
+    <h1>Priority Technician Alerted</h1>
+    <p class="subtitle">Our 24/7 on-call dispatcher is reviewing your request now.</p>
+    
+    <div class="ticket-box">
+      <span class="ticket-label">Emergency Ticket Number:</span>
+      <strong id="ticketNumber" class="ticket-code">{{ request_data.ticket_number }}</strong>
+      <button type="button" class="btn-copy" onclick="copyTicketNumber()">Copy</button>
+    </div>
+  </div>
+
+  <!-- Real-Time Progress Stepper -->
+  <div class="dispatch-stepper">
+    <div class="step-item completed">
+      <div class="step-icon">✓</div>
+      <div class="step-text">Ticket Submitted</div>
+    </div>
+    <div class="step-divider active"></div>
+    <div class="step-item active">
+      <div class="step-icon">⏳</div>
+      <div class="step-text">Assigning Tech (Est. 5-15m)</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step-item">
+      <div class="step-icon">📱</div>
+      <div class="step-text">SMS Arrival Update</div>
+    </div>
+  </div>
+
+  <!-- Direct Phone Call CTA -->
+  <div class="emergency-call-box">
+    <div class="call-content">
+      <h3>Need an immediate ETA or have an active spill/hazard?</h3>
+      <p>Call our dispatch team directly. Quote ticket <strong>#{{ request_data.ticket_number }}</strong> for instant routing.</p>
+    </div>
+    <a href="tel:18005550199" class="btn-call-dispatch">
+      📞 Call Dispatch: (800) 555-0199
+    </a>
+  </div>
+
+  <!-- Immediate Safety & Hazard Instructions -->
+  <div class="safety-instructions">
+    <h2>⚡ Important Safety Measures While You Wait</h2>
+    <div class="safety-accordion">
+      <details open class="safety-item">
+        <summary><strong>🗲 Water Pooling Near Electrical Equipment?</strong></summary>
+        <p>Do not step in standing water near the HVAC or refrigeration unit. Shut off the main circuit breaker controlling the unit immediately.</p>
+      </details>
+      <details open class="safety-item">
+        <summary><strong>🧊 Commercial Refrigeration / Walk-in Failure?</strong></summary>
+        <p>Keep all doors sealed shut. A fully loaded walk-in cooler or freezer can maintain safe holding temperatures for 4 to 6 hours if unopened.</p>
+      </details>
+      <details class="safety-item">
+        <summary><strong>💨 Unusual Smells or Burning Odors?</strong></summary>
+        <p>If you detect an electrical burning smell, switch the thermostat/controller to the "OFF" position right away to prevent further motor damage.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- Summary Card of Submitted Data -->
+  <div class="request-summary-card">
+    <h3>Submitted Request Details</h3>
+    <dl class="summary-grid">
+      <div>
+        <dt>Service Address:</dt>
+        <dd>{{ request_data.service_address }}</dd>
+      </div>
+      <div>
+        <dt>Primary Contact:</dt>
+        <dd>{{ request_data.full_name }} ({{ request_data.phone_number }})</dd>
+      </div>
+      <div>
+        <dt>Property Type:</dt>
+        <dd>{{ request_data.get_property_type_display }}</dd>
+      </div>
+      <div>
+        <dt>Submitted At:</dt>
+        <dd>{{ request_data.created_at|date:"N j, Y @ g:i A" }}</dd>
+      </div>
+      {% if request_data.access_notes %}
+      <div class="full-width">
+        <dt>Access Notes:</dt>
+        <dd>{{ request_data.access_notes }}</dd>
+      </div>
+      {% endif %}
+    </dl>
+  </div>
+
+  <div class="confirmation-actions">
+    <a href="/" class="btn-home">Return to Homepage</a>
+  </div>
+</div>
+<!-- Copy Ticket JS Script -->
+<script>
+    function copyTicketNumber() {
+    const ticketText = document.getElementById('ticketNumber').innerText;
+    navigator.clipboard.writeText(ticketText).then(() => {
+        alert('Ticket number copied to clipboard!');
+    });
+    }
+</script>
+{% endblock %}

@@ -269,3 +269,36 @@ class EmergencyThanksView(ThanksView):
         context["minimal_chrome"] = True
         context["site"] = SiteSettings.load()
         return context
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from .forms import RepairRequestForm
+from .models import RepairRequest
+
+def repair_request_view(request):
+    if request.method == 'POST':
+        form = RepairRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            repair_obj = form.save(commit=False)
+            symptoms = request.POST.getlist('symptoms')
+            repair_obj.symptoms = symptoms
+            repair_obj.save()
+
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': True,
+                    'redirect_url': f'/repair-confirmation/{repair_obj.ticket_number}/'
+                })
+            return redirect('repair_confirmation', ticket_number=repair_obj.ticket_number)
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'errors': form.errors.as_json()}, status=400)
+
+    form = RepairRequestForm()
+    return render(request, 'leads/repair_request_wizard.html', {'form': form})
+
+def repair_confirmation_view(request, ticket_number):
+    repair_request = get_object_or_404(RepairRequest, ticket_number=ticket_number)
+    template = 'leads/confirmation_emergency.html' if repair_request.urgency == 'EMERGENCY' else 'leads/confirmation_standard.html'
+    return render(request, template, {'request_data': repair_request})

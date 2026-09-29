@@ -185,3 +185,25 @@ class EmergencyCalloutForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
     def clean_phone(self) -> str:
         """Validate the phone number."""
         return validate_phone(self.cleaned_data["phone"])
+
+from .models import RepairRequest
+
+class RepairRequestForm(forms.ModelForm):
+    class Meta:
+        model = RepairRequest
+        fields = [
+            'urgency', 'property_type', 'full_name', 'phone_number',
+            'email', 'service_address', 'equipment_type', 'preferred_date', 'preferred_time_slot'
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        urgency = cleaned_data.get('urgency')
+
+        if urgency == 'NON_EMERGENCY':
+            if not cleaned_data.get('email'):
+                self.add_error('email', 'Email is required for non-emergency appointments.')
+            if not cleaned_data.get('preferred_date'):
+                self.add_error('preferred_date', 'Service date is required.')
+
+        return cleaned_data

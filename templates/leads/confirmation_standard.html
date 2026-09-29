@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/repair_wizard.css' %}">
+
+<div class="confirmation-container standard">
+  <!-- Success Status Header -->
+  <div class="standard-status-card">
+    <div class="status-badge success">
+      <span class="check-icon">✓</span> REQUEST RECEIVED
+    </div>
+    
+    <h1>Your Service Request is Booked</h1>
+    <p class="subtitle">We have received your details and scheduled your service window.</p>
+    
+    <div class="ticket-box">
+      <span class="ticket-label">Booking Reference ID:</span>
+      <strong id="ticketNumber" class="ticket-code">{{ request_data.ticket_number }}</strong>
+      <button type="button" class="btn-copy" onclick="copyTicketNumber()">Copy</button>
+    </div>
+  </div>
+
+  <!-- Appointment Highlight Box -->
+  <div class="appointment-highlight-card">
+    <div class="highlight-item">
+      <span class="icon">📅</span>
+      <div>
+        <label>Scheduled Service Date</label>
+        <strong>{{ request_data.preferred_date|date:"F j, Y" }}</strong>
+      </div>
+    </div>
+    <div class="highlight-divider"></div>
+    <div class="highlight-item">
+      <span class="icon">⏰</span>
+      <div>
+        <label>Arrival Time Window</label>
+        <strong>
+          {% if request_data.preferred_time_slot == 'MORNING' %}
+            Morning (8:00 AM – 12:00 PM)
+          {% elif request_data.preferred_time_slot == 'AFTERNOON' %}
+            Afternoon (12:00 PM – 4:00 PM)
+          {% else %}
+            {{ request_data.preferred_time_slot }}
+          {% endif %}
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar & Action Buttons -->
+  <div class="calendar-actions">
+    <button type="button" class="btn-calendar" onclick="downloadIcsFile()">
+      📅 Add to Calendar (.ics)
+    </button>
+    <a href="https://calendar.google.com/" target="_blank" class="btn-calendar-outline">
+      Google Calendar
+    </a>
+  </div>
+
+  <!-- Post-Submission Process Stepper -->
+  <div class="process-section">
+    <h2>What Happens Next?</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-info">
+          <h3>Confirmation SMS & Email</h3>
+          <p>We’ve sent a confirmation receipt to <strong>{{ request_data.email }}</strong> with your ticket details.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-info">
+          <h3>Technician Assignment</h3>
+          <p>Our dispatch team will assign a certified technician 24 hours prior to your arrival window.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-info">
+          <h3>Live GPS & Arrival Alert</h3>
+          <p>On the morning of service, you’ll receive an SMS with technician details and live tracking when they are en route.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Request Breakdown Card -->
+  <div class="request-summary-card">
+    <h3>Service Summary</h3>
+    <dl class="summary-grid">
+      <div>
+        <dt>Property Type:</dt>
+        <dd>{{ request_data.get_property_type_display }}</dd>
+      </div>
+      <div>
+        <dt>Service Address:</dt>
+        <dd>{{ request_data.service_address }}</dd>
+      </div>
+      <div>
+        <dt>Primary Contact:</dt>
+        <dd>{{ request_data.full_name }} ({{ request_data.phone_number }})</dd>
+      </div>
+      <div>
+        <dt>Equipment Category:</dt>
+        <dd>{{ request_data.get_equipment_type_display|default:"General Equipment" }}</dd>
+      </div>
+
+      {% if request_data.symptoms %}
+      <div class="full-width">
+        <dt>Reported Symptoms:</dt>
+        <dd>
+          <ul class="symptoms-badges">
+            {% for symptom in request_data.symptoms %}
+              <li>{{ symptom }}</li>
+            {% endfor %}
+          </ul>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if request_data.access_notes %}
+      <div class="full-width">
+        <dt>Access Notes:</dt>
+        <dd>{{ request_data.access_notes }}</dd>
+      </div>
+      {% endif %}
+    </dl>
+  </div>
+
+  <!-- Modification & Support Card -->
+  <div class="support-notice-card">
+    <p>Need to reschedule or add details to your ticket? Contact customer support at <a href="tel:18005550199">(800) 555-0199</a> or reply directly to your email confirmation.</p>
+  </div>
+
+  <div class="confirmation-actions">
+    <a href="/" class="btn-home">Return to Homepage</a>
+  </div>
+</div>
+<!-- Supporting JS -->
+<script>
+function copyTicketNumber() {
+  const ticketText = document.getElementById('ticketNumber').innerText;
+  navigator.clipboard.writeText(ticketText).then(() => {
+    alert('Booking Reference ID copied to clipboard!');
+  });
+}
+
+// Generate simple .ics calendar file download on click
+function downloadIcsFile() {
+  const title = "HVAC / Refrigeration Service Appointment";
+  const desc = "Service call booking ID: {{ request_data.ticket_number }}";
+  const location = "{{ request_data.service_address }}";
+  
+  const icsData = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//HVAC Service Company//NONSGML v1.0//EN",
+    "BEGIN:VEVENT",
+    `SUMMARY:${title}`,
+    `DESCRIPTION:${desc}`,
+    `LOCATION:${location}`,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\n");
+
+  const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.setAttribute('download', 'hvac-repair-appointment.ics');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+{% endblock %}

@@ -224,3 +224,63 @@ class EmergencyCallout(LeadBase):
         """
         where = f" ({self.postcode})" if self.postcode else ""
         return f"🚨 EMERGENCY callback: {self.phone}{where}"
+
+
+
+
+class RepairRequest(models.Model):
+    URGENCY_CHOICES = [
+        ('EMERGENCY', '⚡ Emergency Repair'),
+        ('NON_EMERGENCY', '📅 Scheduled Repair'),
+    ]
+    PROPERTY_CHOICES = [
+        ('RESIDENTIAL', 'Residential'),
+        ('COMMERCIAL', 'Commercial'),
+    ]
+    EQUIPMENT_CHOICES = [
+        ('WALK_IN', 'Walk-In Freezer/Cooler'),
+        ('ROOFTOP', 'Rooftop Package Unit'),
+        ('ICE_MACHINE', 'Commercial Ice Machine'),
+        ('REACH_IN', 'Reach-In Refrigerator'),
+        ('CENTRAL_AC', 'Central AC / Heat Pump'),
+        ('MINI_SPLIT', 'Ductless Mini-Split'),
+        ('OTHER', 'Other Equipment'),
+    ]
+
+    # Step 1: Urgency & Property
+    urgency = models.CharField(max_length=20, choices=URGENCY_CHOICES, default='NON_EMERGENCY')
+    property_type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, default='RESIDENTIAL')
+
+    # Step 2: Contact Info & Address
+    full_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+    service_address = models.CharField(max_length=255)
+    access_notes = models.TextField(blank=True, null=True)
+
+    # Step 3: Equipment & Diagnostic
+    equipment_type = models.CharField(max_length=30, choices=EQUIPMENT_CHOICES, blank=True, null=True)
+    symptoms = models.JSONField(default=list, blank=True)  # Stores array of checked symptoms
+    brand_model = models.CharField(max_length=100, blank=True, null=True)
+    equipment_photo = models.ImageField(upload_to='repair_photos/', blank=True, null=True)
+
+    # Step 4: Scheduling (Non-Emergency only)
+    preferred_date = models.DateField(blank=True, null=True)
+    preferred_time_slot = models.CharField(max_length=50, blank=True, null=True)
+
+    # Metadata
+    ticket_number = models.CharField(max_length=20, unique=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default='PENDING')
+
+    def save(self, *args, **kwargs):
+        if not self.ticket_number:
+            import uuid
+            prefix = 'EMP-' if self.urgency == 'EMERGENCY' else 'SR-'
+            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:6].upper()}"
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.ticket_number} - {self.get_urgency_display()} ({self.full_name})"
+
+    
