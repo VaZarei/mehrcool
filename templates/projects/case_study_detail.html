@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="page-hero {% if case_study.hero_image %}page-hero--with-media{% endif %}">
+  <section class="page-hero {% if case_study.hero_image %}page-hero--has-bg-image{% endif %}" {% if case_study.hero_image %}style="background-image: url('{{ case_study.hero_image.url }}'); background-size: cover; background-position: center;"{% endif %}>
+    {% if case_study.hero_image %}<div class="page-hero__overlay"></div>{% endif %}
     <div class="container page-hero__inner">
       <div class="page-hero__content">
         {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
@@ -13,7 +14,6 @@
           {% if case_study.completed_on %}<span class="chip chip--on-dark chip--lg">{{ case_study.completed_on|date:"F Y" }}</span>{% endif %}
         </div>
       </div>
-      {% if case_study.hero_image %}<div class="page-hero__media">{% picture case_study.hero_image alt=case_study.hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}</div>{% endif %}
     </div>
   </section>
 
