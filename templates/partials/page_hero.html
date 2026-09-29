@@ -15,10 +15,19 @@
 
   <div class="container page-hero__inner">
     <div class="page-hero__content">
-      {% comment %} {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %} {% endcomment %}
+      {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
       {% if eyebrow %}<span class="eyebrow eyebrow--on-dark">{{ eyebrow }}</span>{% endif %}
       <h1 class="page-hero__title">{{ title }}</h1>
       {% if category.gallery_content %}<p class="page-hero__lead">{{ category.gallery_content }}</p>{% endif %}
+      
+      {% if category.gallery_images.all %}
+        {# Content when gallery images exist #}
+      {% else %}
+        {% if lead %}
+          <p class="page-hero__lead">{{ lead }}</p>
+        {% endif %}
+      {% endif %}
+            
       
       {% if facts %}
         <div class="page-hero__facts">
@@ -27,11 +36,16 @@
           {% endfor %}
         </div>
       {% endif %}
+      {% comment %} {% if hero_image %}
+        <div class="page-hero__media">
+          {% picture hero_image alt=hero_image_alt sizes="(min-width: 1024px) 40vw, 92vw" widths="480,768,1080,1440" loading="eager" fetchpriority="high" %}
+        </div>
+      {% endif %} {% endcomment %}
       
       {% if show_actions %}
         <div class="page-hero__actions">
           {% call_button label=site.hero_primary_cta_label %}
-          {% comment %} <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a> {% endcomment %}
+          <a class="btn btn--outline-light" href="{{ site.hero_secondary_cta_url }}">{{ site.hero_secondary_cta_label }}</a>
         </div>
       {% endif %}
     </div>
