@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro hero_image=copy.page.hero_image hero_image_alt=copy.page.hero_image_alt %}
   <section class="section">
     <div class="container grid-auto">
       {% for sector in sectors %}

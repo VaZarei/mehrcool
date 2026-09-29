@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro %}
+  {% include "partials/page_hero.html" with title=copy.title lead=copy.intro hero_image=copy.page.hero_image hero_image_alt=copy.page.hero_image_alt %}
   {% comment %} <section class="container emergency__hero" aria-labelledby="repair-title" style="background-color: #1e3debd7 !important;">
     <span class="eyebrow">Refrigeration &amp; air conditioning repair</span>
     <h1 class="emergency__title" id="repair-title">{{ copy.title }}</h1>
