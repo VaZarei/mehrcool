@@ -300,5 +300,5 @@ def repair_request_view(request):
 
 def repair_confirmation_view(request, ticket_number):
     repair_request = get_object_or_404(RepairRequest, ticket_number=ticket_number)
-    template = 'leads/confirmation_emergency.html' if repair_request.urgency == 'EMERGENCY' else 'leads/confirmation_standard.html'
+    template = 'leads/repair_confirmation_emergency.html' if repair_request.urgency == 'EMERGENCY' else 'leads/repair_confirmation_standard.html'
     return render(request, template, {'request_data': repair_request})

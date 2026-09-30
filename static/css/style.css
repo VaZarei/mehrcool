@@ -6000,8 +6000,8 @@ a.contact-line:active {
 
 .request-summary-card h3 {
   margin: 0 0 1rem 0;
-  font-size: 1rem;
-  color: #334155;
+  font-size: 1.3rem;
+  color: #d3860c;
 }
 
 .summary-grid {
@@ -6013,8 +6013,8 @@ a.contact-line:active {
 
 .summary-grid dt {
   font-size: 0.8rem;
-  color: #64748b;
-  font-weight: 600;
+  color: #58606f;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
@@ -6169,7 +6169,7 @@ a.contact-line:active {
 }
 
 .highlight-item strong {
-  font-size: 1.1rem;
+  font-size: 2.1rem;
   color: #1e3a8a;
 }
 
@@ -6177,7 +6177,7 @@ a.contact-line:active {
   width: 1px;
   height: 40px;
   background: #bfdbfe;
-  margin: 0 1.5rem;
+  margin: 0 0rem;
 }
 
 /* Calendar Buttons */

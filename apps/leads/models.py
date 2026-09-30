@@ -239,6 +239,7 @@ class RepairRequest(models.Model):
     ]
     EQUIPMENT_CHOICES = [
         ('WALK_IN', 'Walk-In Freezer/Cooler'),
+        ('FREESTANDING', 'Freestanding Refrigerator'),
         ('ROOFTOP', 'Rooftop Package Unit'),
         ('ICE_MACHINE', 'Commercial Ice Machine'),
         ('REACH_IN', 'Reach-In Refrigerator'),
@@ -277,7 +278,7 @@ class RepairRequest(models.Model):
         if not self.ticket_number:
             import uuid
             prefix = 'EMP-' if self.urgency == 'EMERGENCY' else 'SR-'
-            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:6].upper()}"
+            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:3].upper()}"
         super().save(*args, **kwargs)
 
     def __str__(self):
