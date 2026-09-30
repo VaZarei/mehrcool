@@ -5437,7 +5437,7 @@ a.contact-line:active {
 
 /* Base Wizard Container */
 .repair-wizard-container {
-  max-width: 680px;
+  max-width: 790px;
   margin: 2rem auto;
   padding: 2.5rem;
   background: #ffffff;
@@ -5575,7 +5575,7 @@ a.contact-line:active {
 
 .property-toggle label {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   color: #475569;
 }
 
@@ -5587,7 +5587,7 @@ a.contact-line:active {
   font-weight: 600;
   cursor: pointer;
   color: var(--text-muted);
-  transition: all 0.2s ease;
+  transition: all 0.00s ease;
 }
 
 .btn-toggle.active {
@@ -6150,7 +6150,7 @@ a.contact-line:active {
 
 .highlight-item {
   display: flex;
-  align-items: center;
+  align-items: top;
   gap: 1rem;
   flex: 1;
 }

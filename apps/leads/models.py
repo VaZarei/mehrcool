@@ -249,7 +249,7 @@ class RepairRequest(models.Model):
 
     # Step 1: Urgency & Property
     urgency = models.CharField(max_length=20, choices=URGENCY_CHOICES, default='NON_EMERGENCY')
-    property_type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, default='RESIDENTIAL')
+    property_type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, default='COMMERCIAL')
 
     # Step 2: Contact Info & Address
     full_name = models.CharField(max_length=100)

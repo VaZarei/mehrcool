@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/repair_wizard.css' %}">
+
 
 <div class="repair-wizard-container">
+  <div><strong>Refrigeration or Air conditioning down? Let us know.<br><br></strong></div>
   <!-- Dynamic Emergency Alert Banner -->
   <div id="emergency-banner" class="emergency-banner" style="display:none;">
     ⚡ <strong>Active Breakdown?</strong> Call 24/7 Dispatch now: <a href="tel:18005550199">(800) 555-0199</a>
@@ -17,27 +18,41 @@
     <div class="wizard-step active" data-step="1">
       <h2>Select Urgency Level</h2>
       <div class="card-selector">
-        <label class="card-option">
-          <input type="radio" name="urgency" value="EMERGENCY" required>
-          <div class="card-content">
-            <h3>⚡ Emergency Repair</h3>
-            <p>Immediate dispatch for stock loss, zero cooling, or water leaks.</p>
-          </div>
-        </label>
+        
         <label class="card-option">
           <input type="radio" name="urgency" value="NON_EMERGENCY" checked required>
           <div class="card-content">
             <h3>📅 Scheduled Service</h3>
-            <p>Standard maintenance, minor performance issues, routine checks.</p>
+            <p>
+                <ul>
+                <li>Standard maintenance</li>
+                <li>Minor performance issues</li>
+                <li>Routine checks</li>
+               </ul>
+            </p>
           </div>
         </label>
+        <label class="card-option">
+          <input type="radio" name="urgency" value="EMERGENCY" required>
+          <div class="card-content">
+            <h3>⚡ Emergency Repair</h3>
+            <p>
+                <ul>
+                <li>Immediate dispatch for stock loss</li>
+                <li>Zero cooling</li>
+                <li>Water leaks</li>
+                </ul>
+            </p>
+          </div>
+        </label>
+
       </div>
 
       <div class="property-toggle">
         <label>Property Type:</label>
-        <button type="button" class="btn-toggle active" data-value="RESIDENTIAL">Residential</button>
         <button type="button" class="btn-toggle" data-value="COMMERCIAL">Commercial</button>
-        <input type="hidden" name="property_type" id="property_type_input" value="RESIDENTIAL">
+        <button type="button" class="btn-toggle active" data-value="RESIDENTIAL">Residential</button>
+        <input type="hidden" name="property_type" id="property_type_input" value="COMMERCIAL">
       </div>
 
       <button type="button" class="btn-next">Next Step →</button>
@@ -75,8 +90,8 @@
       
       <div id="commercial-equipment" class="equipment-grid" style="display:none;">
         <label><input type="radio" name="equipment_type" value="WALK_IN"> Walk-In Freezer/Cooler</label>
-        <label><input type="radio" name="equipment_type" value="ROOFTOP"> Rooftop Package Unit</label>
-        <label><input type="radio" name="equipment_type" value="ICE_MACHINE"> Commercial Ice Machine</label>
+        <label><input type="radio" name="equipment_type" value="CENTRAL_AC"> Central AC / Heat Pump </label>
+        <label><input type="radio" name="equipment_type" value="OTHER"> Other Equipment </label>
       </div>
 
       <div id="residential-equipment" class="equipment-grid">

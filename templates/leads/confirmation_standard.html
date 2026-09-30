@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/repair_wizard.css' %}">
 
 <div class="confirmation-container standard">
   <!-- Success Status Header -->
@@ -12,7 +11,7 @@
     </div>
     
     <h1>Your Service Request is Booked</h1>
-    <p class="subtitle">We have received your details and scheduled your service window.</p>
+    <p class="subtitle">Thank you for sending your details.<br>We will check availability for your preferred appointment window and get back to you shortly.</p>
     
     <div class="ticket-box">
       <span class="ticket-label">Booking Reference ID:</span>
@@ -26,16 +25,16 @@
     <div class="highlight-item">
       <span class="icon">📅</span>
       <div>
-        <label>Scheduled Service Date</label>
-        <strong>{{ request_data.preferred_date|date:"F j, Y" }}</strong>
+        <label>preferred scheduled Service Date</label>
+        {{ request_data.preferred_date|date:"F j, Y" }}
       </div>
     </div>
     <div class="highlight-divider"></div>
     <div class="highlight-item">
       <span class="icon">⏰</span>
       <div>
-        <label>Arrival Time Window</label>
-        <strong>
+        <label>preferred arrival Time Window</label>
+        
           {% if request_data.preferred_time_slot == 'MORNING' %}
             Morning (8:00 AM – 12:00 PM)
           {% elif request_data.preferred_time_slot == 'AFTERNOON' %}
@@ -43,20 +42,20 @@
           {% else %}
             {{ request_data.preferred_time_slot }}
           {% endif %}
-        </strong>
+        
       </div>
     </div>
   </div>
 
   <!-- Calendar & Action Buttons -->
-  <div class="calendar-actions">
+  {% comment %} <div class="calendar-actions">
     <button type="button" class="btn-calendar" onclick="downloadIcsFile()">
       📅 Add to Calendar (.ics)
     </button>
     <a href="https://calendar.google.com/" target="_blank" class="btn-calendar-outline">
       Google Calendar
     </a>
-  </div>
+  </div> {% endcomment %}
 
   <!-- Post-Submission Process Stepper -->
   <div class="process-section">
