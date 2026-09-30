@@ -240,6 +240,7 @@ class RepairRequest(models.Model):
     EQUIPMENT_CHOICES = [
         ('WALK_IN', 'Walk-In Freezer/Cooler'),
         ('FREESTANDING', 'Freestanding Refrigerator'),
+        ('SPLIT_SYSTEM', 'Central Split System (A/C & Furnace)'),
         ('ROOFTOP', 'Rooftop Package Unit'),
         ('ICE_MACHINE', 'Commercial Ice Machine'),
         ('REACH_IN', 'Reach-In Refrigerator'),

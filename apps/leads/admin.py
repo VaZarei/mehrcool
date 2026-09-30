@@ -201,3 +201,153 @@ class FormFieldChoiceAdmin(admin.ModelAdmin):
     search_fields = ("label", "value")
     prepopulated_fields = {"value": ("label",)}
     ordering = ("group", "order")
+
+
+from django.contrib import admin
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+from .models import RepairRequest
+
+
+@admin.register(RepairRequest)
+class RepairRequestAdmin(admin.ModelAdmin):
+    # ------------------------------------------------------------------
+    # 1. LIST VIEW CONFIGURATION
+    # ------------------------------------------------------------------
+    list_display = (
+        'ticket_number_badge',
+        'full_name',
+        'urgency_badge',
+        'property_type',
+        'equipment_type',
+        'status_badge',
+        'preferred_schedule',
+        'created_at',
+    )
+    
+    list_display_links = ('ticket_number_badge', 'full_name')
+    
+    list_filter = (
+        'status',
+        'urgency',
+        'property_type',
+        'equipment_type',
+        'created_at',
+    )
+    
+    search_fields = (
+        'ticket_number',
+        'full_name',
+        'phone_number',
+        'email',
+        'service_address',
+    )
+    
+    ordering = ('-created_at',)
+    
+    readonly_fields = ('ticket_number', 'created_at', 'photo_preview', 'formatted_symptoms')
+
+    # ------------------------------------------------------------------
+    # 2. DETAIL FORM LAYOUT
+    # ------------------------------------------------------------------
+    fieldsets = (
+        ('Ticket Overview', {
+            'fields': (
+                ('ticket_number', 'status'),
+                ('urgency', 'property_type'),
+                'created_at',
+            ),
+            'classes': ('wide',),
+        }),
+        ('Customer & Contact Details', {
+            'fields': (
+                ('full_name', 'phone_number'),
+                'email',
+                'service_address',
+                'access_notes',
+            ),
+        }),
+        ('Equipment & Diagnostics', {
+            'fields': (
+                ('equipment_type', 'brand_model'),
+                'formatted_symptoms',
+                'equipment_photo',
+                'photo_preview',
+            ),
+        }),
+        ('Scheduling Details', {
+            'description': 'Applicable primarily for non-emergency requests.',
+            'fields': (
+                ('preferred_date', 'preferred_time_slot'),
+            ),
+        }),
+    )
+
+    # ------------------------------------------------------------------
+    # 3. CUSTOM DISPLAY METHODS
+    # ------------------------------------------------------------------
+    @admin.display(description='Ticket #', ordering='ticket_number')
+    def ticket_number_badge(self, obj):
+        return format_html(
+            '<strong style="font-family: monospace; font-size: 1.1em;">{}</strong>',
+            obj.ticket_number
+        )
+
+    @admin.display(description='Urgency', ordering='urgency')
+    def urgency_badge(self, obj):
+        if obj.urgency == 'EMERGENCY':
+            return mark_safe(
+                '<span style="background-color: #ff4d4f; color: white; padding: 3px 8px; '
+                'border-radius: 4px; font-weight: bold;">⚡ Emergency</span>'
+            )
+        return mark_safe(
+            '<span style="background-color: #52c41a; color: white; padding: 3px 8px; '
+            'border-radius: 4px;">📅 Scheduled</span>'
+        )
+
+    @admin.display(description='Status', ordering='status')
+    def status_badge(self, obj):
+        colors = {
+            'PENDING': '#faad14',      # Orange
+            'IN_PROGRESS': '#1890ff',  # Blue
+            'COMPLETED': '#52c41a',    # Green
+            'CANCELLED': '#bfbfbf',    # Grey
+        }
+        bg_color = colors.get(obj.status, '#d9d9d9')
+        status_text = getattr(obj, 'get_status_display', lambda: obj.status)()
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 3px 8px; '
+            'border-radius: 4px; font-weight: 500;">{}</span>',
+            bg_color,
+            status_text
+        )
+
+    @admin.display(description='Preferred Schedule')
+    def preferred_schedule(self, obj):
+        if obj.preferred_date:
+            time_slot = f" ({obj.preferred_time_slot})" if obj.preferred_time_slot else ""
+            return f"{obj.preferred_date}{time_slot}"
+        return "-"
+
+    @admin.display(description='Symptoms Overview')
+    def formatted_symptoms(self, obj):
+        if not obj.symptoms:
+            return "No symptoms recorded."
+        
+        if isinstance(obj.symptoms, list):
+            escaped_items = "".join([f"<li>{format_html('{}', item)}</li>" for item in obj.symptoms])
+            return mark_safe(f'<ul style="margin: 0; padding-left: 20px;">{escaped_items}</ul>')
+        
+        return str(obj.symptoms)
+
+    @admin.display(description='Photo Preview')
+    def photo_preview(self, obj):
+        if obj.equipment_photo:
+            return format_html(
+                '<a href="{}" target="_blank">'
+                '<img src="{}" style="max-height: 150px; max-width: 250px; border-radius: 6px; border: 1px solid #ccc;" />'
+                '</a>',
+                obj.equipment_photo.url,
+                obj.equipment_photo.url
+            )
+        return "No photo uploaded."
