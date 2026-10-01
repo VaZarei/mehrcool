@@ -3,9 +3,20 @@
 
 {% block content %}
 
-
+<section class="repair_request_form" aria-labelledby="repair-heading">
+  <div class="container">
+    <div class="section__header reveal">
+      {% include "partials/breadcrumb.html" with modifier="breadcrumb--on-dark" %}
+        <br>
+      <span class="eyebrow">Service & Diagnostics</span>
+      <h3 id="repair-heading">Request an Emergency Repair or Scheduled Service</h3>
+      <div><br></div>
+      <p class="feature__text">
+        Submit your details below to dispatch an F-Gas certified engineer for refrigeration or air conditioning repairs.
+      </p>
+</section>
 <div class="repair-wizard-container">
-  <div><strong>Refrigeration or Air conditioning down? Let us know.<br><br></strong></div>
+  
   <!-- Dynamic Emergency Alert Banner -->
   <div id="emergency-banner" class="emergency-banner" style="display:none;">
     ⚡ <strong>Active Breakdown?</strong> Call 24/7 Dispatch now: <a href="tel:18005550199">{{ site.emergency_phone }}</a><br>or complete the form below for an immediate callback.
