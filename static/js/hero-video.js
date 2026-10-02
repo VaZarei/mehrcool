@@ -42,8 +42,12 @@ export function initHeroVideo() {
     if (label) label.textContent = paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause;
   };
   toggle.addEventListener("click", () => {
-    const result = video.paused ? video.play() : video.pause();
-    if (result?.catch) result.catch(() => {});
+    try {
+      const result = video.paused ? video.play() : video.pause();
+      if (result?.catch) result.catch(() => {});
+    } catch (error) {
+      console.error("Video control error:", error);
+    }
     sync();
   });
   video.addEventListener("play", sync);
