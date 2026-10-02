@@ -1662,12 +1662,17 @@ table {
   }
 }
 
+/* Ensure hero is the positioning context for absolute children */
+.hero {
+  position: relative;
+}
+
 /* Video control for users who want it stopped (accessibility). */
 .hero__toggle {
   position: absolute;
   right: clamp(1rem, 4vw, 2rem);
   bottom: 1rem;
-  z-index: 2;
+  z-index: 10; /* Raised z-index to stay above background elements */
   display: none;
   align-items: center;
   gap: 0.5rem;
@@ -1676,6 +1681,7 @@ table {
   background: rgb(21 31 71 / 0.5);
   color: rgb(255 255 255 / 0.72);
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  cursor: pointer;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
@@ -1692,6 +1698,11 @@ table {
 @media (min-width: 1024px) {
   .hero--with-strip {
     padding-bottom: 3rem;
+  }
+
+  /* Lift button above the upward-overlapping strip height */
+  .hero--with-strip .hero__toggle {
+    bottom: calc(1rem + 3rem); 
   }
 }
 
