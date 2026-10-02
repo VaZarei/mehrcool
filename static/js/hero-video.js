@@ -34,7 +34,11 @@ export function initHeroVideo() {
   if (attempt?.catch) attempt.catch(() => {});
 
   const toggle = hero.querySelector("[data-hero-toggle]");
-  if (!toggle) return;
+  if (!toggle) {
+    console.warn("Hero toggle button not found");
+    return;
+  }
+  console.log("Hero toggle button found:", toggle);
   const label = toggle.querySelector("[data-hero-toggle-label]");
   const sync = () => {
     const paused = video.paused;
@@ -42,6 +46,7 @@ export function initHeroVideo() {
     if (label) label.textContent = paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause;
   };
   toggle.addEventListener("click", () => {
+    console.log("Toggle button clicked, video paused:", video.paused);
     try {
       const result = video.paused ? video.play() : video.pause();
       if (result?.catch) result.catch(() => {});
