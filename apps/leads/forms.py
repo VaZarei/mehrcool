@@ -10,6 +10,13 @@ from django.core.exceptions import ValidationError
 
 from .models import ChoiceGroup, ContactEnquiry, EmergencyCallout, FormFieldChoice, RequestEnquiry
 
+
+class FormFieldChoiceField(forms.ModelChoiceField):
+    """ModelChoiceField that displays only the label, not the full __str__ representation."""
+
+    def label_from_instance(self, obj):
+        return obj.label
+
 UK_PHONE_DIGITS = re.compile(r"\d")
 MIN_PHONE_DIGITS = 10
 HONEYPOT_FIELD = "website_url"
@@ -75,15 +82,22 @@ class ChoiceQuerysetMixin:
 class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
     """Contact page form for contract buyers and general enquiries."""
 
+    equipment_type = FormFieldChoiceField(
+        queryset=FormFieldChoice.objects.none(),
+        required=False,
+        empty_label="Choose one…",
+    )
+
     class Meta:
         model = ContactEnquiry
-        fields = ["name", "company", "phone", "email", "enquiry_type", "message", "consent"]
+        fields = ["name", "company", "phone", "email", "enquiry_type", "equipment_type", "message", "consent"]
         labels = {
             "name": "Your name",
             "company": "Company or site (optional)",
             "phone": "Phone number",
             "email": "Email address",
             "enquiry_type": "What is this about?",
+            "equipment_type": "Equipment Type",
             "message": "Tell us about the site and equipment",
             "consent": "I'm happy for MehrCool to contact me about this enquiry.",
         }
@@ -98,6 +112,7 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
         self.fields["consent"].required = True
         self.fields["enquiry_type"].queryset = self.choices_for(ChoiceGroup.ENQUIRY_TYPE)
         self.fields["enquiry_type"].empty_label = "Choose one…"
+        self.fields["equipment_type"].queryset = self.choices_for(ChoiceGroup.EQUIPMENT_TYPE)
         self.fields["phone"].widget.attrs.update(
             {"type": "tel", "autocomplete": "tel", "inputmode": "tel"}
         )

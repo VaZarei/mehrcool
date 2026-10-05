@@ -25,6 +25,7 @@ class ChoiceGroup(models.TextChoices):
 
     ENQUIRY_TYPE = "enquiry_type", ""
     EMERGENCY_ISSUE = "emergency_issue", "Emergency"
+    EQUIPMENT_TYPE = "equipment_type", "Equipment Type"
     BUILDING_TYPE = "building_type", "Quote wizard: building type"
     FLOOR_AREA = "floor_area", "Quote wizard: floor area band"
     SYSTEM_TYPE = "system_type", "Quote wizard: system type"
@@ -140,6 +141,14 @@ class ContactEnquiry(LeadBase):
         blank=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"group": ChoiceGroup.ENQUIRY_TYPE},
+        related_name="+",
+    )
+    equipment_type = models.ForeignKey(
+        FormFieldChoice,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        limit_choices_to={"group": ChoiceGroup.EQUIPMENT_TYPE},
         related_name="+",
     )
     message = models.TextField()

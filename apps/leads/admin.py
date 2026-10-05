@@ -123,11 +123,11 @@ class EmergencyCalloutAdmin(LeadAdminBase):
 class ContactEnquiryAdmin(LeadAdminBase):
     """Contact-page enquiries."""
 
-    list_display = ("created_at", "name", "company", "enquiry_type", "phone", "email", "status")
+    list_display = ("created_at", "name", "company", "enquiry_type", "equipment_type", "phone", "email", "status")
     list_editable = ("status",)
-    list_filter = ("status", "enquiry_type", "created_at")
+    list_filter = ("status", "enquiry_type", "equipment_type", "created_at")
     search_fields = ("name", "company", "phone", "email", "message")
-    autocomplete_fields = ("enquiry_type",)
+    autocomplete_fields = ("enquiry_type", "equipment_type")
     csv_fields = [
         "created_at",
         "name",
@@ -135,13 +135,14 @@ class ContactEnquiryAdmin(LeadAdminBase):
         "phone",
         "email",
         "enquiry_type",
+        "equipment_type",
         "message",
         "status",
         "source_url",
     ]
     fieldsets = (
         ("Who", {"fields": ("name", "company", "phone", "email", "consent")}),
-        ("What", {"fields": ("enquiry_type", "message")}),
+        ("What", {"fields": ("enquiry_type", "equipment_type", "message")}),
         ("Pipeline", {"fields": ("status",)}),
         (
             "Where it came from",
