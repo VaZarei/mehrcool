@@ -82,6 +82,11 @@ class ChoiceQuerysetMixin:
 class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
     """Contact page form for contract buyers and general enquiries."""
 
+    enquiry_type = FormFieldChoiceField(
+        queryset=FormFieldChoice.objects.none(),
+        required=False,
+        empty_label="Choose one…",
+    )
     equipment_type = FormFieldChoiceField(
         queryset=FormFieldChoice.objects.none(),
         required=False,
