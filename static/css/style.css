@@ -2072,7 +2072,7 @@ table {
 }
 
 .card__media {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 7.22;
   background: #eaf0fa;
   overflow: hidden;
 }

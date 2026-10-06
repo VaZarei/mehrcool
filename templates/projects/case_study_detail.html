@@ -32,6 +32,8 @@
         <div class="gallery">{% for image in case_study.images.all %}<figure class="gallery__item reveal">{% picture image.image alt=image.alt_text sizes="(min-width: 768px) 30vw, 45vw" widths="480,768" %}{% if image.caption %}<figcaption>{{ image.caption }}</figcaption>{% endif %}</figure>{% endfor %}</div>
       {% endif %}
       {% if case_study.testimonial %}
+        <hr>
+        <p>Customer reviews: </p>
         <div class="review-grid">{% include "partials/review.html" with review=case_study.testimonial %}</div>
       {% endif %}
     </div>
