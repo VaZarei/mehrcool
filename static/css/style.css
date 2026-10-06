@@ -634,16 +634,16 @@ table {
 
 /* Outline on dark surfaces / over video. */
 .btn--outline-light {
-  background: #1f8a5c50;
+  background: #d2e2db0e;
   color: #ffffff;
-  border-color: #1f8a5b;
+  border-color: #0b28aa8c;
   box-shadow: none;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .btn--outline-light:hover {
-  background: #1f8a5b;
+  background: #194ae960;
   color: #ffffffce;
 }
 
@@ -4230,8 +4230,8 @@ a.contact-line:active {
 }
 
 .qr-card__image {
-  width: 7rem;
-  height: 7rem;
+  width: 12rem;
+  height: 12rem;
   padding: 0.5rem;
   background: #ffffff;
   border-radius: 0.75rem;
