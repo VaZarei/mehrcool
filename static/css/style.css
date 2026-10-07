@@ -2283,10 +2283,12 @@ table {
 
 /* Aside panel */
 .panel {
-  padding: 1.5rem;
+  padding: clamp(1rem, 4vw, 1.5rem);
   border-radius: 1.125rem;
   background: #f4f7fb;
   border: 1px solid #e1e4ea;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .panel--dark {
@@ -2879,11 +2881,13 @@ Category Container
 .form {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .form-grid {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 @media (min-width: 640px) {
@@ -2898,6 +2902,7 @@ Category Container
 .field {
   display: grid;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .field__label {
@@ -2931,6 +2936,8 @@ Category Container
   transition: border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
     background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   appearance: none;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .field textarea {
@@ -4139,7 +4146,14 @@ a.chip--on-dark:hover {
 
 .contact-grid {
   display: grid;
-  gap: 2.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    gap: clamp(2rem, 3vw, 3rem);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -4153,13 +4167,14 @@ a.chip--on-dark:hover {
 .contact-lines {
   display: grid;
   gap: 0.75rem;
+  min-width: 0;
 }
 
 .contact-line {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.25rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.25rem);
   border-radius: 1.125rem;
   background: #ffffff;
   border: 1px solid #e1e4ea;
@@ -4167,6 +4182,8 @@ a.chip--on-dark:hover {
   color: #111111;
   transition: border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 100ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 a.contact-line:hover {
@@ -4223,19 +4240,28 @@ a.contact-line:active {
   grid-template-columns: auto 1fr;
   gap: 1.25rem;
   align-items: center;
-  padding: 1.25rem;
+  padding: clamp(1rem, 4vw, 1.25rem);
   border-radius: 1.125rem;
   background: #ffffff;
   border: 1px solid #e1e4ea;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .qr-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .qr-card__image {
-  width: 12rem;
-  height: 12rem;
+  width: clamp(8rem, 30vw, 12rem);
+  height: clamp(8rem, 30vw, 12rem);
   padding: 0.5rem;
   background: #ffffff;
   border-radius: 0.75rem;
   border: 1px solid #e1e4ea;
+  margin: 0 auto;
 }
 
 .qr-card__image img,
@@ -4292,7 +4318,7 @@ a.contact-line:active {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 3vw, 1.25rem);
   border-radius: 1.125rem;
   background: #e6f5ee;
   color: #1f8a5b;
