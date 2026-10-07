@@ -8,4 +8,4 @@ class SeoConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.seo"
-    verbose_name = "Search engine settings"
+    verbose_name = "8.Search engine settings"

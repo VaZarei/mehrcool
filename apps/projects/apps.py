@@ -8,4 +8,4 @@ class ProjectsConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.projects"
-    verbose_name = "Case studies & sectors"
+    verbose_name = "5.Case studies & sectors"

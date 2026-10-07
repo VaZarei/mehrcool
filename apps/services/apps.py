@@ -8,4 +8,4 @@ class ServicesConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.services"
-    verbose_name = "Services"
+    verbose_name = "4.Services"

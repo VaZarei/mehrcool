@@ -8,4 +8,4 @@ class LeadsConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.leads"
-    verbose_name = "Enquiries & leads"
+    verbose_name = "1.Enquiries & leads"

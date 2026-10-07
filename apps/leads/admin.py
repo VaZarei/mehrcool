@@ -20,22 +20,24 @@ def get_app_list(self, request, app_label=None):
     app_list = self._get_app_list(request, app_label)
     
     for app in app_list:
-        # Sort models based on the 'order' attribute set on ModelAdmin classes
         def get_model_order(model_dict):
+            # Get the actual model class from Django's admin registry
             model_cls = model_dict.get('model')
-            if model_cls and model_cls in self._registry:
+            if model_cls in self._registry:
                 model_admin = self._registry[model_cls]
                 return getattr(model_admin, 'order', 999)
             return 999
 
+        # Sort the models list safely
         app['models'].sort(key=get_model_order)
         
     return app_list
 
-# Apply the override to the default admin site
-if not hasattr(admin.site, '_get_app_list'):
+# Apply monkey patch safely
+if not getattr(admin.site, '_is_patched', False):
     admin.site._get_app_list = admin.site.get_app_list
     admin.site.get_app_list = get_app_list.__get__(admin.site, admin.AdminSite)
+    admin.site._is_patched = True
 
 
 
@@ -156,7 +158,7 @@ class ContactEnquiryAdmin(LeadAdminBase):
 @admin.register(FormFieldChoice)
 class FormFieldChoiceAdmin(admin.ModelAdmin):
     """Dropdown options for every form, grouped by field."""
-    order = 4
+    order = 3
 
     list_display = ("label", "group", "value", "order", "is_active")
     list_editable = ("order", "is_active")

@@ -8,4 +8,4 @@ class LocationsConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.locations"
-    verbose_name = "Areas we cover"
+    verbose_name = "7.Areas we cover"

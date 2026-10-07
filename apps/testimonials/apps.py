@@ -8,4 +8,4 @@ class TestimonialsConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.testimonials"
-    verbose_name = "Reviews & testimonials"
+    verbose_name = "6.Reviews & testimonials"

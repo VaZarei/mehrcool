@@ -8,7 +8,7 @@ class CoreConfig(AppConfig):
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.core"
-    verbose_name = "Site settings & navigation"
+    verbose_name = "2.Site settings & navigation"
 
     def ready(self) -> None:
         """Import signal handlers so cache invalidation is connected."""
