@@ -19,7 +19,7 @@ from apps.locations.models import ServiceArea
 from apps.pages.services import page_copy
 from apps.seo import schema
 
-from .forms import ContactEnquiryForm, EmergencyCalloutForm
+from .forms import ContactEnquiryForm
 from .services import attach_request_metadata, notify_new_lead
 
 HX_REQUEST_HEADER = "HX-Request"
@@ -127,39 +127,6 @@ class ContactView(LeadFormView):
 
 
 
-class EmergencyView(LeadFormView):
-    """``/emergency-callout/``: phone dominant, one-field callback (Path A)."""
-
-    template_name = "leads/emergency.html"
-    form_class = EmergencyCalloutForm
-    email_template = "leads/email/emergency_callout.txt"
-    fragment_template = "leads/partials/emergency_form.html"
-    success_fragment_template = "leads/partials/emergency_success.html"
-    success_url_name = "leads:emergency_thanks"
-    event_name = "lead:emergency"
-    copy_slug = "emergency-callout"
-    copy_default_title = "Refrigeration or air conditioning down? Call now."
-    copy_default_intro = (
-        "Leave your mobile number and the duty engineer rings you back within minutes."
-    )
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        """Add coverage areas and schema; deliberately no trust strip or heavy media."""
-        context = super().get_context_data(**kwargs)
-        crumbs = [("Home", "/"), ("Emergency callout", reverse("leads:emergency"))]
-        copy = self.get_copy()
-        context.update(
-            {
-                "copy": copy,
-                "seo": copy.page,
-                "areas": ServiceArea.objects.published().only("name", "slug", "region")[:24],
-                "breadcrumbs": crumbs,
-                "schema_graph": [schema.breadcrumbs(crumbs)],
-                "audience": "Emergency callers (Path A)",
-                "minimal_chrome": True,
-            }
-        )
-        return context
 
 
 class RepairView(TemplateView):

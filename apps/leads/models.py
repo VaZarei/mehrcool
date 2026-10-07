@@ -172,38 +172,6 @@ class ContactEnquiry(LeadBase):
 
 
 
-class EmergencyCallout(LeadBase):
-    """A one-field callback request from the emergency page (Path A)."""
-    name = models.CharField(max_length=50, blank=False)
-    postcode = models.CharField(max_length=12, blank=True)
-    issue = models.ForeignKey(
-        FormFieldChoice,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        limit_choices_to={"group": ChoiceGroup.EMERGENCY_ISSUE},
-        related_name="+",
-    )
-    details = models.CharField(max_length=300, blank=True)
-    called_back_at = models.DateTimeField(
-        null=True, blank=True, help_text="Record when an engineer rang the customer back."
-    )
-
-    class Meta(LeadBase.Meta):
-        verbose_name = _("Emergency callback")
-        verbose_name_plural = _("Emergency callbacks")
-
-    def __str__(self) -> str:
-        return f"EMERGENCY {self.phone}"
-
-    def notification_subject(self) -> str:
-        """Urgent subject line.
-
-        Returns:
-            Subject string prefixed for filtering.
-        """
-        where = f" ({self.postcode})" if self.postcode else ""
-        return f"🚨 EMERGENCY callback: {self.phone}{where}"
 
 
 

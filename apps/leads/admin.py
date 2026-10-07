@@ -10,8 +10,34 @@ from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 
-from .models import ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote, LeadStatus
+from .models import ContactEnquiry, FormFieldChoice, LeadNote, LeadStatus
 from .services import export_csv
+
+
+
+# --- Custom App/Model Ordering Logic ---
+def get_app_list(self, request, app_label=None):
+    app_list = self._get_app_list(request, app_label)
+    
+    for app in app_list:
+        # Sort models based on the 'order' attribute set on ModelAdmin classes
+        def get_model_order(model_dict):
+            model_cls = model_dict.get('model')
+            if model_cls and model_cls in self._registry:
+                model_admin = self._registry[model_cls]
+                return getattr(model_admin, 'order', 999)
+            return 999
+
+        app['models'].sort(key=get_model_order)
+        
+    return app_list
+
+# Apply the override to the default admin site
+if not hasattr(admin.site, '_get_app_list'):
+    admin.site._get_app_list = admin.site.get_app_list
+    admin.site.get_app_list = get_app_list.__get__(admin.site, admin.AdminSite)
+
+
 
 
 class LeadNoteInline(GenericTabularInline):
@@ -86,42 +112,12 @@ class LeadAdminBase(admin.ModelAdmin):
         self._set_status(queryset, LeadStatus.LOST)
 
 
-@admin.register(EmergencyCallout)
-class EmergencyCalloutAdmin(LeadAdminBase):
-    """Emergency callbacks — newest first, phone number front and centre."""
-
-    list_display = ("created_at", "phone", "postcode", "issue", "status", "called_back_at")
-    list_editable = ("status",)
-    search_fields = ("phone", "postcode", "details", "name")
-    autocomplete_fields = ("issue",)
-    csv_fields = [
-        "created_at",
-        "phone",
-        "name",
-        "postcode",
-        "issue",
-        "details",
-        "status",
-        "called_back_at",
-        "source_url",
-    ]
-    fieldsets = (
-        ("The call", {"fields": ("phone", "name", "postcode", "issue", "details")}),
-        ("Pipeline", {"fields": ("status", "called_back_at")}),
-        (
-            "Where it came from",
-            {"classes": ("collapse",), "fields": ("source_url", "referrer", "user_agent")},
-        ),
-        (
-            "Timestamps",
-            {"classes": ("collapse",), "fields": ("created_at", "updated_at", "notified_at")},
-        ),
-    )
 
 
 @admin.register(ContactEnquiry)
 class ContactEnquiryAdmin(LeadAdminBase):
     """Contact-page enquiries."""
+    order = 2
 
     list_display = ("created_at", "name", "company", "enquiry_type", "equipment_type", "phone", "email", "status")
     list_editable = ("status",)
@@ -160,6 +156,7 @@ class ContactEnquiryAdmin(LeadAdminBase):
 @admin.register(FormFieldChoice)
 class FormFieldChoiceAdmin(admin.ModelAdmin):
     """Dropdown options for every form, grouped by field."""
+    order = 4
 
     list_display = ("label", "group", "value", "order", "is_active")
     list_editable = ("order", "is_active")
@@ -177,6 +174,7 @@ from .models import RepairRequest
 
 @admin.register(RepairRequest)
 class RepairRequestAdmin(admin.ModelAdmin):
+    order = 1
     # ------------------------------------------------------------------
     # 1. LIST VIEW CONFIGURATION
     # ------------------------------------------------------------------

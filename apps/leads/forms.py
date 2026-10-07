@@ -8,7 +8,7 @@ from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import ChoiceGroup, ContactEnquiry, EmergencyCallout, FormFieldChoice
+from .models import ChoiceGroup, ContactEnquiry, FormFieldChoice
 
 
 class FormFieldChoiceField(forms.ModelChoiceField):
@@ -129,43 +129,6 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
         """Validate the phone number."""
         return validate_phone(self.cleaned_data["phone"])
 
-
-
-
-class EmergencyCalloutForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
-    """One-field callback form: phone is the only required input."""
-
-    class Meta:
-        model = EmergencyCallout
-        fields = ["name","phone", "postcode", "issue", "details"]
-        labels = {
-            "name": "Your name",
-            "phone": "Your mobile number",
-            "postcode": "Site postcode (optional)",
-            "issue": "What has failed? (optional)",
-            "details": "Anything else (optional)",
-        }
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.fields["issue"].queryset = self.choices_for(ChoiceGroup.EMERGENCY_ISSUE)
-        self.fields["issue"].empty_label = "Choose if you know…"
-        self.fields["phone"].widget.attrs.update(
-            {
-                "type": "tel",
-                "autocomplete": "tel",
-                "inputmode": "tel",
-                "placeholder": "07… or +44…",
-                "autofocus": "autofocus",
-            }
-        )
-        self.fields["postcode"].widget.attrs.update(
-            {"autocomplete": "postal-code", "placeholder": "e.g. E14 9FP"}
-        )
-
-    def clean_phone(self) -> str:
-        """Validate the phone number."""
-        return validate_phone(self.cleaned_data["phone"])
 
 from .models import RepairRequest
 
