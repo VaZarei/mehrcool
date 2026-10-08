@@ -11,15 +11,15 @@
         .logo { margin-bottom: 20px; }
         .logo img { max-width: 150px; height: auto; }
         .content { margin: 20px 0; }
-        .enquiry-details { background: #f5f5f5; padding: 20px; border-left: 4px solid #007bff; margin: 20px 0; }
+        .enquiry-details { background: #f5f5f5; padding: 20px; border-left: 4px solid #d3860c; margin: 20px 0; }
         .detail-row { margin-bottom: 12px; display: flex; }
         .detail-label { font-weight: bold; width: 120px; min-width: 120px; }
         .detail-value { word-break: break-word; }
-        .message-box { background: #fff8e6; padding: 15px; border: 1px solid #ffd700; border-radius: 4px; margin: 20px 0; }
+        .message-box { background: #fef5e7; padding: 15px; border: 1px solid #d3860c; border-radius: 4px; margin: 20px 0; }
         .message-box p { margin: 0; white-space: pre-wrap; word-wrap: break-word; }
         .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
-        .admin-link { display: inline-block; margin-top: 15px; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
-        .admin-link:hover { background: #0056b3; }
+        .admin-link { display: inline-block; margin-top: 15px; padding: 10px 15px; background: #1e2c66; color: white; text-decoration: none; border-radius: 4px; }
+        .admin-link:hover { background: #16204a; }
         .metadata { font-size: 11px; color: #999; margin-top: 15px; }
     </style>
 </head>
@@ -29,7 +29,7 @@
             <div class="logo">
                 <img src="{{ SITE_URL }}{{ site.logo_light.url }}" alt="Mehr Cool Logo">
             </div>
-            <h2 style="margin: 0; color: #007bff;">New Website Enquiry</h2>
+            <h2 style="margin: 0; color: #1e2c66;">New Website Enquiry</h2>
         </div>
 
         <div class="content">
@@ -47,11 +47,11 @@
             </div>
             <div class="detail-row">
                 <span class="detail-label">Phone:</span>
-                <span class="detail-value"><a href="tel:{{ lead.phone }}" style="color: #007bff; text-decoration: none;">{{ lead.phone }}</a></span>
+                <span class="detail-value"><a href="tel:{{ lead.phone }}" style="color: #1e2c66; text-decoration: none;">{{ lead.phone }}</a></span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Email:</span>
-                <span class="detail-value"><a href="mailto:{{ lead.email }}" style="color: #007bff; text-decoration: none;">{{ lead.email|default:"—" }}</a></span>
+                <span class="detail-value"><a href="mailto:{{ lead.email }}" style="color: #1e2c66; text-decoration: none;">{{ lead.email|default:"—" }}</a></span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Postcode:</span>
@@ -81,7 +81,7 @@
         <div class="footer">
             <div class="metadata">
                 <strong>Tracking Information:</strong><br>
-                Sent from: <a href="{{ lead.source_url }}" style="color: #007bff; text-decoration: none;">{{ lead.source_url }}</a><br>
+                Sent from: <a href="{{ lead.source_url }}" style="color: #1e2c66; text-decoration: none;">{{ lead.source_url }}</a><br>
                 Received: {{ lead.created_at|date:"j M Y \a\t H:i" }}
             </div>
 

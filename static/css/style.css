@@ -889,7 +889,7 @@ table {
 
   .site-header__brand:active .wordmark-suffix,
   .site-header__wordmark:active .wordmark-suffix {
-    color: #2563eb;
+    color: #1e2c66;
     text-shadow: 0 0 10px rgba(8, 68, 235, 0.5);
   }
 }
@@ -5462,8 +5462,8 @@ a.contact-line:active {
    ========================================================================== */
 
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-color: #1e2c66;
+  --primary-hover: #16204a;
   --danger-color: #ef4444;
   --danger-bg: #fef2f2;
   --text-main: #1e293b;
@@ -5601,8 +5601,8 @@ a.contact-line:active {
 /* Selected Radio Card State */
 .card-option input[type="radio"]:checked + .card-content {
   border-color: var(--primary-color);
-  background-color: #eff6ff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  background-color: #fef5e7;
+  box-shadow: 0 4px 12px rgba(30, 44, 102, 0.12);
 }
 
 .card-content h3 {
@@ -6010,7 +6010,7 @@ a.contact-line:active {
 .ticket-code {
   font-size: 1.2rem;
   letter-spacing: 1px;
-  color: #2563eb;
+  color: #1e2c66;
 }
 
 .btn-copy {
@@ -6061,8 +6061,8 @@ a.contact-line:active {
 }
 
 .step-item.active .step-icon {
-  background: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  background: #1e2c66;
+  box-shadow: 0 0 0 4px rgba(30, 44, 102, 0.2);
 }
 
 .step-text {
@@ -6084,7 +6084,7 @@ a.contact-line:active {
 }
 
 .step-divider.active {
-  background: #2563eb;
+  background: #1e2c66;
 }
 
 /* Call Box CTA */
@@ -6294,7 +6294,7 @@ a.contact-line:active {
 .ticket-code {
   font-size: 1.2rem;
   letter-spacing: 1px;
-  color: #2563eb;
+  color: #1e2c66;
 }
 
 .btn-copy {
@@ -6312,8 +6312,8 @@ a.contact-line:active {
 .appointment-highlight-card {
   display: flex;
   align-items: center;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: #fef5e7;
+  border: 1px solid #d3860c;
   border-radius: 10px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
@@ -6333,7 +6333,7 @@ a.contact-line:active {
 .highlight-item label {
   display: block;
   font-size: 0.8rem;
-  color: #3b82f6;
+  color: #1e2c66;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 0.2rem;
@@ -6341,13 +6341,13 @@ a.contact-line:active {
 
 .highlight-item strong {
   font-size: 2.1rem;
-  color: #1e3a8a;
+  color: #1e2c66;
 }
 
 .highlight-divider {
   width: 1px;
   height: 40px;
-  background: #bfdbfe;
+  background: #d3860c;
   margin: 0 0rem;
 }
 
@@ -6360,7 +6360,7 @@ a.contact-line:active {
 
 .btn-calendar {
   flex: 1;
-  background-color: #2563eb;
+  background-color: #1e2c66;
   color: #ffffff;
   border: none;
   padding: 0.75rem 1rem;
@@ -6373,14 +6373,14 @@ a.contact-line:active {
 }
 
 .btn-calendar:hover {
-  background-color: #1d4ed8;
+  background-color: #16204a;
 }
 
 .btn-calendar-outline {
   flex: 1;
   background-color: #ffffff;
-  color: #2563eb;
-  border: 1px solid #bfdbfe;
+  color: #1e2c66;
+  border: 1px solid #d3860c;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   font-weight: 600;
@@ -6391,7 +6391,7 @@ a.contact-line:active {
 }
 
 .btn-calendar-outline:hover {
-  background-color: #f0f7ff;
+  background-color: #fffaf0;
 }
 
 /* Process Section */
@@ -6425,7 +6425,7 @@ a.contact-line:active {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #2563eb;
+  background: #1e2c66;
   color: #ffffff;
   font-weight: bold;
   font-size: 0.9rem;
@@ -6516,7 +6516,7 @@ a.contact-line:active {
 }
 
 .support-notice-card a {
-  color: #2563eb;
+  color: #1e2c66;
   font-weight: 600;
 }
 
