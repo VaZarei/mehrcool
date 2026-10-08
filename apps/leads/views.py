@@ -212,6 +212,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .forms import RepairRequestForm
 from .models import RepairRequest
+from .services import dispatch_repair_confirmation
 
 def repair_request_view(request):
     if request.method == 'POST':
@@ -221,13 +222,14 @@ def repair_request_view(request):
             symptoms = request.POST.getlist('symptoms')
             repair_obj.symptoms = symptoms
             repair_obj.save()
+            dispatch_repair_confirmation(repair_obj)
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return JsonResponse({
                     'success': True,
                     'redirect_url': f'/repair-confirmation/{repair_obj.ticket_number}/'
                 })
-            return redirect('repair_confirmation', ticket_number=repair_obj.ticket_number)
+            return redirect('leads:repair_confirmation', ticket_number=repair_obj.ticket_number)
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return JsonResponse({'success': False, 'errors': form.errors.as_json()}, status=400)

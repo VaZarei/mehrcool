@@ -108,6 +108,77 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
     return bool(sent)
 
 
+def send_repair_confirmation(repair: Any) -> bool:
+    """Email the customer a confirmation of their repair request.
+
+    Args:
+        repair: Saved ``RepairRequest``.
+
+    Returns:
+        ``True`` if the email was sent.
+    """
+    if not repair.email:
+        logger.info("No email on repair request %s; skipping confirmation", repair.ticket_number)
+        return False
+
+    from django.conf import settings
+
+    site = SiteSettings.load()
+    body = render_to_string("leads/email/repair_confirmation.txt", {"repair": repair, "site": site})
+    kind = "Emergency repair request" if repair.urgency == "EMERGENCY" else "Repair booking request"
+    message = EmailMessage(
+        subject=f"{kind} received ({repair.ticket_number}) — {site.trading_name}",
+        body=body,
+        from_email=_extract_email_address(settings.DEFAULT_FROM_EMAIL),
+        to=[repair.email],
+    )
+    try:
+        sent = message.send(fail_silently=False)
+    except Exception:  # noqa: BLE001 - never let email failure affect the stored request
+        logger.exception("Repair confirmation failed for %s", repair.ticket_number)
+        return False
+    return bool(sent)
+
+
+def notify_staff_repair(repair: Any) -> bool:
+    """Email the configured staff recipient about a new repair request.
+
+    Args:
+        repair: Saved ``RepairRequest``.
+
+    Returns:
+        ``True`` if the email was sent.
+    """
+    from django.conf import settings
+
+    site = SiteSettings.load()
+    body = render_to_string("leads/email/repair_staff_notification.txt", {"repair": repair, "site": site, "SITE_URL": settings.SITE_URL})
+    prefix = "EMERGENCY repair" if repair.urgency == "EMERGENCY" else "Repair request"
+    message = EmailMessage(
+        subject=f"{prefix} {repair.ticket_number} — {repair.full_name}",
+        body=body,
+        from_email=_extract_email_address(settings.DEFAULT_FROM_EMAIL),
+        to=[site.notification_recipient],
+        reply_to=[repair.email] if repair.email else None,
+    )
+    try:
+        sent = message.send(fail_silently=False)
+    except Exception:  # noqa: BLE001 - never let email failure affect the stored request
+        logger.exception("Repair staff notification failed for %s", repair.ticket_number)
+        return False
+    return bool(sent)
+
+
+def dispatch_repair_confirmation(repair: Any) -> None:
+    """Queue staff notification and customer confirmation in parallel, after commit."""
+
+    def queue() -> None:
+        _run_in_background(notify_staff_repair, repair)
+        _run_in_background(send_repair_confirmation, repair)
+
+    transaction.on_commit(queue)
+
+
 def _run_in_background(func: Any, *args: Any) -> None:
     """Run ``func`` on the email pool, releasing its DB connection afterwards."""
 

@@ -1,0 +1,21 @@
+{% autoescape off %}{% if repair.urgency == 'EMERGENCY' %}*** EMERGENCY REPAIR REQUEST ***{% else %}New scheduled repair request{% endif %}
+
+Ticket:      {{ repair.ticket_number }}
+Name:        {{ repair.full_name }}
+Phone:       {{ repair.phone_number }}
+Email:       {{ repair.email|default:"not given" }}
+Property:    {{ repair.get_property_type_display }}
+Address:     {{ repair.service_address }}
+Access:      {{ repair.access_notes|default:"—" }}
+
+Equipment:   {{ repair.get_equipment_type_display|default:"not given" }}
+Brand/model: {{ repair.brand_model|default:"—" }}
+Symptoms:    {{ repair.symptoms|join:", "|default:"—" }}
+Photo:       {% if repair.equipment_photo %}{{ SITE_URL }}{{ repair.equipment_photo.url }}{% else %}none{% endif %}
+{% if repair.preferred_date %}
+Preferred:   {{ repair.preferred_date }}{% if repair.preferred_time_slot %} ({{ repair.preferred_time_slot }}){% endif %}
+{% endif %}
+Received:    {{ repair.created_at|date:"j M Y H:i" }}
+
+Manage: {{ SITE_URL }}/admin/leads/repairrequest/{{ repair.pk }}/change/
+{% endautoescape %}
