@@ -20,7 +20,7 @@ from apps.pages.services import page_copy
 from apps.seo import schema
 
 from .forms import ContactEnquiryForm
-from .services import attach_request_metadata, notify_new_lead, send_customer_confirmation
+from .services import attach_request_metadata, dispatch_lead_emails
 
 HX_REQUEST_HEADER = "HX-Request"
 
@@ -75,13 +75,7 @@ class LeadFormView(FormView):
         lead.save()
         logger.info(f"Lead #{lead.pk} saved: {lead.display_name} ({lead.email})")
 
-        notify_new_lead(lead, self.email_template)
-        logger.info(f"Admin notification sent for lead #{lead.pk}")
-
-        if self.customer_email_template:
-            logger.info(f"Attempting to send customer confirmation to {lead.email} using template {self.customer_email_template}")
-            result = send_customer_confirmation(lead, self.customer_email_template)
-            logger.info(f"Customer confirmation result for lead #{lead.pk}: {result}")
+        dispatch_lead_emails(lead, self.email_template, self.customer_email_template)
 
         if is_htmx(self.request):
             response = render(

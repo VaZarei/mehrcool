@@ -5,11 +5,12 @@ from __future__ import annotations
 import csv
 import logging
 from collections.abc import Iterable
+from concurrent.futures import ThreadPoolExecutor
 from email.utils import parseaddr
 from typing import Any
 
 from django.core.mail import EmailMessage
-from django.db import models
+from django.db import close_old_connections, connection, models, transaction
 from django.http import HttpRequest, HttpResponse
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -19,6 +20,8 @@ from apps.core.models import SiteSettings
 from .models import LeadBase
 
 logger = logging.getLogger(__name__)
+
+_email_executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix="lead-email")
 
 
 def _extract_email_address(email_string: str) -> str:
@@ -103,6 +106,41 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
         logger.exception("Customer confirmation failed for %s #%s: %s", type(lead).__name__, lead.pk, str(e))
         return False
     return bool(sent)
+
+
+def _run_in_background(func: Any, *args: Any) -> None:
+    """Run ``func`` on the email pool, releasing its DB connection afterwards."""
+
+    def runner() -> None:
+        close_old_connections()
+        try:
+            func(*args)
+        except Exception:  # noqa: BLE001 - background task must never raise
+            logger.exception("Background email task %s failed", func.__name__)
+        finally:
+            connection.close()
+
+    _email_executor.submit(runner)
+
+
+def dispatch_lead_emails(lead: LeadBase, notify_template: str, customer_template: str = "") -> None:
+    """Send the staff notification and customer confirmation in parallel, off-request.
+
+    Both emails are queued once the lead's transaction commits, so the HTTP
+    response returns immediately and failures are only logged.
+
+    Args:
+        lead: Saved lead.
+        notify_template: Template for the staff notification.
+        customer_template: Template for the customer confirmation (optional).
+    """
+
+    def queue() -> None:
+        _run_in_background(notify_new_lead, lead, notify_template)
+        if customer_template:
+            _run_in_background(send_customer_confirmation, lead, customer_template)
+
+    transaction.on_commit(queue)
 
 
 def export_csv(queryset: Iterable[models.Model], fields: list[str], filename: str) -> HttpResponse:
