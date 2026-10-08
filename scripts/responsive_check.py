@@ -16,7 +16,6 @@ from playwright.sync_api import sync_playwright
 WIDTHS = [320, 375, 414, 768, 1024, 1440, 1920]
 PAGES = [
     "/",
-    "/emergency-callout/",
     "/commercial-refrigeration/",
     "/commercial-refrigeration/walk-in-cold-rooms/",
     "/contact/",

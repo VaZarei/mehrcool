@@ -20,7 +20,7 @@ STORAGES["staticfiles"] = {"BACKEND": "django.contrib.staticfiles.storage.Static
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # Use .env EMAIL_URL instead
 
 CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
 

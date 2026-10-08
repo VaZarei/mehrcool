@@ -1,4 +1,4 @@
-New website enquiry — {{ site.trading_name }}
+{% autoescape off %}New website enquiry — {{ site.trading_name }}
 
 Name:        {{ lead.name }}
 Company:     {{ lead.company|default:"—" }}
@@ -15,3 +15,5 @@ Sent from:   {{ lead.source_url }}
 Received:    {{ lead.created_at|date:"j M Y H:i" }}
 
 Manage this lead in the admin: {{ SITE_URL }}/admin/leads/contactenquiry/{{ lead.pk }}/change/
+
+{% endautoescape %}

@@ -1,0 +1,10 @@
+{% autoescape off %}We're calling you back — {{ site.trading_name }}
+
+We've received your emergency callback request. Our duty engineer will ring you within minutes on {{ lead.phone }}.
+
+Keep your phone to hand!
+
+{{ site.trading_name }}
+{{ site.emergency_phone }}
+
+{% endautoescape %}

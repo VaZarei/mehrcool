@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import logging
 from collections.abc import Iterable
+from email.utils import parseaddr
 from typing import Any
 
 from django.core.mail import EmailMessage
@@ -18,6 +19,12 @@ from apps.core.models import SiteSettings
 from .models import LeadBase
 
 logger = logging.getLogger(__name__)
+
+
+def _extract_email_address(email_string: str) -> str:
+    """Extract email address from formatted string like 'Name <email@example.com>'."""
+    _, addr = parseaddr(email_string)
+    return addr or email_string
 
 
 def attach_request_metadata(lead: LeadBase, request: HttpRequest) -> None:
@@ -42,11 +49,14 @@ def notify_new_lead(lead: LeadBase, template: str) -> bool:
     Returns:
         ``True`` if the email was sent.
     """
+    from django.conf import settings
+
     site = SiteSettings.load()
     body = render_to_string(template, {"lead": lead, "site": site})
     message = EmailMessage(
         subject=lead.notification_subject(),
         body=body,
+        from_email=_extract_email_address(settings.DEFAULT_FROM_EMAIL),
         to=[site.notification_recipient],
         reply_to=[lead.email] if lead.email else None,
     )
@@ -57,6 +67,41 @@ def notify_new_lead(lead: LeadBase, template: str) -> bool:
         return False
     if sent:
         type(lead).objects.filter(pk=lead.pk).update(notified_at=timezone.now())
+    return bool(sent)
+
+
+def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
+    """Email the customer a confirmation of their submission.
+
+    Args:
+        lead: Saved lead.
+        template: Text template path rendering the email body.
+
+    Returns:
+        ``True`` if the email was sent.
+    """
+    if not lead.email:
+        logger.warning("No email address for %s #%s", type(lead).__name__, lead.pk)
+        return False
+
+    from django.conf import settings
+
+    site = SiteSettings.load()
+    body = render_to_string(template, {"lead": lead, "site": site})
+    from_email = _extract_email_address(settings.DEFAULT_FROM_EMAIL)
+    logger.info("Sending customer confirmation to %s from %s", lead.email, from_email)
+    message = EmailMessage(
+        subject=f"Thanks for getting in touch — {site.trading_name}",
+        body=body,
+        from_email=from_email,
+        to=[lead.email],
+    )
+    try:
+        sent = message.send(fail_silently=False)
+        logger.info("Customer confirmation sent successfully: %s", bool(sent))
+    except Exception as e:
+        logger.exception("Customer confirmation failed for %s #%s: %s", type(lead).__name__, lead.pk, str(e))
+        return False
     return bool(sent)
 
 

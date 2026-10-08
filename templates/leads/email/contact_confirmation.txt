@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hi {{ lead.name }},
+
+Thanks for your enquiry. We've received your message and an engineer will reply within one working day.
+
+If it's urgent, please call us on {{ site.emergency_phone }}.
+
+Your enquiry details:
+{{ lead.message }}
+
+Best regards,
+{{ site.trading_name }}
+{{ site.primary_phone }}
+{{ site.email }}
+
+{% endautoescape %}

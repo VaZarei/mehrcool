@@ -21,7 +21,6 @@ urls = [
     "/",
     "/services/",
     "/contact/",
-    "/emergency-callout/",
     "/sectors/",
     "/case-studies/",
     "/areas/",

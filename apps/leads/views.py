@@ -20,7 +20,7 @@ from apps.pages.services import page_copy
 from apps.seo import schema
 
 from .forms import ContactEnquiryForm
-from .services import attach_request_metadata, notify_new_lead
+from .services import attach_request_metadata, notify_new_lead, send_customer_confirmation
 
 HX_REQUEST_HEADER = "HX-Request"
 
@@ -41,6 +41,7 @@ class LeadFormView(FormView):
     """Shared behaviour: store, notify, respond with fragment or redirect."""
 
     email_template = ""
+    customer_email_template = ""
     fragment_template = ""
     success_fragment_template = ""
     success_url_name = ""
@@ -66,10 +67,22 @@ class LeadFormView(FormView):
         Returns:
             Fragment (HTMX) or redirect (plain HTML).
         """
+        import logging
+        logger = logging.getLogger(__name__)
+
         lead = form.save(commit=False)
         attach_request_metadata(lead, self.request)
         lead.save()
+        logger.info(f"Lead #{lead.pk} saved: {lead.display_name} ({lead.email})")
+
         notify_new_lead(lead, self.email_template)
+        logger.info(f"Admin notification sent for lead #{lead.pk}")
+
+        if self.customer_email_template:
+            logger.info(f"Attempting to send customer confirmation to {lead.email} using template {self.customer_email_template}")
+            result = send_customer_confirmation(lead, self.customer_email_template)
+            logger.info(f"Customer confirmation result for lead #{lead.pk}: {result}")
+
         if is_htmx(self.request):
             response = render(
                 self.request, self.success_fragment_template, {"lead": lead, **self.extra()}
@@ -95,6 +108,7 @@ class ContactView(LeadFormView):
     template_name = "leads/contact.html"
     form_class = ContactEnquiryForm
     email_template = "leads/email/contact_enquiry.txt"
+    customer_email_template = "leads/email/contact_confirmation.txt"
     fragment_template = "leads/partials/contact_form.html"
     success_fragment_template = "leads/partials/contact_success.html"
     success_url_name = "leads:contact_thanks"
