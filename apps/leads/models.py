@@ -168,7 +168,7 @@ class ContactEnquiry(LeadBase):
             Subject string.
         """
         kind = self.enquiry_type.label if self.enquiry_type else "General"
-        return f"[{kind}] Website enquiry from {self.display_name}"
+        return f"--> {kind} <-- from {self.display_name}, Website Enquiry "
 
 
 
@@ -226,8 +226,8 @@ class RepairRequest(models.Model):
     def save(self, *args, **kwargs):
         if not self.ticket_number:
             import uuid
-            prefix = 'EMP-' if self.urgency == 'EMERGENCY' else 'SR-'
-            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:3].upper()}"
+            prefix = 'EM-' if self.urgency == 'EMERGENCY' else 'SR-'
+            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:4].upper()}"
         super().save(*args, **kwargs)
 
     def __str__(self):

@@ -55,7 +55,7 @@ def notify_new_lead(lead: LeadBase, template: str) -> bool:
     from django.conf import settings
 
     site = SiteSettings.load()
-    body = render_to_string(template, {"lead": lead, "site": site})
+    body = render_to_string(template, {"lead": lead, "site": site, "SITE_URL": settings.SITE_URL})
     message = EmailMessage(
         subject=lead.notification_subject(),
         body=body,
@@ -63,6 +63,8 @@ def notify_new_lead(lead: LeadBase, template: str) -> bool:
         to=[site.notification_recipient],
         reply_to=[lead.email] if lead.email else None,
     )
+    if template.endswith('.html'):
+        message.content_subtype = "html"
     try:
         sent = message.send(fail_silently=False)
     except Exception:  # noqa: BLE001 - never let email failure lose a stored lead
@@ -90,7 +92,7 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
     from django.conf import settings
 
     site = SiteSettings.load()
-    body = render_to_string(template, {"lead": lead, "site": site})
+    body = render_to_string(template, {"lead": lead, "site": site, "SITE_URL": settings.SITE_URL})
     from_email = _extract_email_address(settings.DEFAULT_FROM_EMAIL)
     logger.info("Sending customer confirmation to %s from %s", lead.email, from_email)
     message = EmailMessage(
@@ -99,6 +101,7 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
         from_email=from_email,
         to=[lead.email],
     )
+    message.content_subtype = "html"
     try:
         sent = message.send(fail_silently=False)
         logger.info("Customer confirmation sent successfully: %s", bool(sent))
@@ -124,7 +127,7 @@ def send_repair_confirmation(repair: Any) -> bool:
     from django.conf import settings
 
     site = SiteSettings.load()
-    body = render_to_string("leads/email/repair_confirmation.txt", {"repair": repair, "site": site})
+    body = render_to_string("leads/email/repair_confirmation.html", {"repair": repair, "site": site, "SITE_URL": settings.SITE_URL})
     kind = "Emergency repair request" if repair.urgency == "EMERGENCY" else "Repair booking request"
     message = EmailMessage(
         subject=f"{kind} received ({repair.ticket_number}) — {site.trading_name}",
@@ -132,6 +135,7 @@ def send_repair_confirmation(repair: Any) -> bool:
         from_email=_extract_email_address(settings.DEFAULT_FROM_EMAIL),
         to=[repair.email],
     )
+    message.content_subtype = "html"
     try:
         sent = message.send(fail_silently=False)
     except Exception:  # noqa: BLE001 - never let email failure affect the stored request
@@ -152,7 +156,7 @@ def notify_staff_repair(repair: Any) -> bool:
     from django.conf import settings
 
     site = SiteSettings.load()
-    body = render_to_string("leads/email/repair_staff_notification.txt", {"repair": repair, "site": site, "SITE_URL": settings.SITE_URL})
+    body = render_to_string("leads/email/repair_staff_notification.html", {"repair": repair, "site": site, "SITE_URL": settings.SITE_URL})
     prefix = "EMERGENCY repair" if repair.urgency == "EMERGENCY" else "Repair request"
     message = EmailMessage(
         subject=f"{prefix} {repair.ticket_number} — {repair.full_name}",
@@ -161,6 +165,7 @@ def notify_staff_repair(repair: Any) -> bool:
         to=[site.notification_recipient],
         reply_to=[repair.email] if repair.email else None,
     )
+    message.content_subtype = "html"
     try:
         sent = message.send(fail_silently=False)
     except Exception:  # noqa: BLE001 - never let email failure affect the stored request

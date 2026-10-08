@@ -101,8 +101,8 @@ class ContactView(LeadFormView):
 
     template_name = "leads/contact.html"
     form_class = ContactEnquiryForm
-    email_template = "leads/email/contact_enquiry.txt"
-    customer_email_template = "leads/email/contact_confirmation.txt"
+    email_template = "leads/email/contact_enquiry.html"
+    customer_email_template = "leads/email/contact_confirmation.html"
     fragment_template = "leads/partials/contact_form.html"
     success_fragment_template = "leads/partials/contact_success.html"
     success_url_name = "leads:contact_thanks"

@@ -1,0 +1,43 @@
+{% autoescape off %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { margin-bottom: 20px; }
+        .content { margin: 20px 0; }
+        .details { background: #f5f5f5; padding: 15px; border-left: 4px solid #007bff; margin: 20px 0; }
+        .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p>Hi <strong>{{ lead.name }}</strong>,</p>
+        </div>
+
+        <div class="content">
+            <p>Thanks for your enquiry. We've received your message and an engineer will reply within one working day.</p>
+            <p><strong>If it's urgent, please call us on: <a href="tel:{{ site.emergency_phone }}" style="color: #007bff; text-decoration: none;">{{ site.emergency_phone }}</a>.</strong></p>
+        </div>
+
+        <div class="details">
+            <p><strong>Your enquiry details:</strong></p>
+            <p>{{ lead.message }}</p>
+        </div>
+
+        <div class="footer">
+            <div style="margin-bottom: 20px; text-align: center;">
+                <img src="{{ SITE_URL }}{{ site.logo_light.url }}" alt="Mehr Cool Logo" style="max-width: 150px; height: auto;">
+            </div>
+            <p><strong>{{ site.trading_name }}</strong><br>
+            {{ site.primary_phone }}<br>
+            {{ site.email }}</p>
+        </div>
+    </div>
+</body>
+</html>
+{% endautoescape %}
