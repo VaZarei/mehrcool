@@ -1,0 +1,14 @@
+# Production lock file. Exact versions resolved from requirements/production.txt.
+# Deploy with: pip install -r requirements/production.lock.txt
+# Regenerate and run pip-audit when updating dependencies.
+Django==6.1.2
+asgiref==3.12.1
+django-environ==0.14.0
+gunicorn==26.2.0
+pillow==12.3.0
+psycopg-binary==3.3.6
+psycopg==3.3.6
+segno==1.6.6
+sqlparse==0.6.0
+tzdata==2026.5
+whitenoise==6.12.0

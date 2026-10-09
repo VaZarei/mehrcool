@@ -19,4 +19,6 @@ class PermissionsPolicyMiddleware:
     def __call__(self, request: HttpRequest) -> HttpResponse:
         response = self.get_response(request)
         response.headers.setdefault("Permissions-Policy", PERMISSIONS_POLICY)
+        if request.path.startswith("/admin/"):
+            response.headers.setdefault("X-Robots-Tag", "noindex, nofollow")
         return response

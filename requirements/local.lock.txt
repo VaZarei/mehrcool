@@ -1,0 +1,20 @@
+# Development lock file. Exact versions resolved from requirements/local.txt.
+# Deploy with: pip install -r requirements/local.lock.txt
+# Regenerate and run pip-audit when updating dependencies.
+Django==6.1.2
+asgiref==3.12.1
+black==26.10.0
+click==8.5.0
+django-debug-toolbar==8.0.0
+django-environ==0.14.0
+mypy_extensions==1.1.0
+packaging==26.3
+pathspec==1.1.1
+pillow==12.3.0
+platformdirs==4.12.4
+pytokens==0.4.1
+ruff==0.16.10
+segno==1.6.6
+sqlparse==0.6.0
+tzdata==2026.5
+whitenoise==6.12.0

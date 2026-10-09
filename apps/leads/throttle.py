@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import logging
 from functools import wraps
 from typing import Any
 
 from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse, JsonResponse
+
+logger = logging.getLogger(__name__)
 
 # (scope, max POSTs, window seconds). Per client IP.
 IP_LIMIT = (5, 600)
@@ -23,11 +26,15 @@ def client_ip(request: HttpRequest) -> str:
 
 def hit(key: str, limit: int, window: int) -> bool:
     """Count one event; return True when ``key`` has exceeded ``limit`` in ``window`` seconds."""
-    cache.add(key, 0, window)
     try:
-        return cache.incr(key) > limit
-    except ValueError:
-        cache.set(key, 1, window)
+        cache.add(key, 0, window)
+        try:
+            return cache.incr(key) > limit
+        except ValueError:
+            cache.set(key, 1, window)
+            return False
+    except Exception:  # noqa: BLE001 - cache outage must not take the forms down
+        logger.exception("Rate-limit cache unavailable; allowing request")
         return False
 
 

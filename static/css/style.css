@@ -284,7 +284,7 @@ table {
 }
 
 .lead {
-  font-size: clamp(1.125rem, 1.08rem + 0.25vw, 1.25rem);
+  font-size: clamp(1.10rem, 1.08rem + 0.25vw, 1.0rem);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.35;
   color: #565658;

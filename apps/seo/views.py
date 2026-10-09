@@ -7,11 +7,11 @@ from django.http import HttpRequest, HttpResponse
 from django.views.decorators.cache import cache_control
 from django.views.decorators.http import require_GET
 
+# /admin/ is deliberately not listed (robots.txt is public); it is kept out of search results
+# with an X-Robots-Tag header instead (see apps.core.middleware).
 DISALLOWED_PATHS = [
-    "/admin/",
-    "/styleguide/",
     "/contact/thank-you/",
-    "/emergency-callout/thank-you/",
+    "/repair-confirmation/",
 ]
 
 

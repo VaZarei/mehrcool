@@ -222,6 +222,7 @@ class RepairRequest(models.Model):
     ticket_number = models.CharField(max_length=20, unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, default='PENDING')
+    consent = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.ticket_number:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import logging
+import re
 from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor
 from email.utils import parseaddr
@@ -94,7 +95,7 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
     site = SiteSettings.load()
     body = render_to_string(template, {"lead": lead, "site": site, "SITE_URL": settings.SITE_URL})
     from_email = _extract_email_address(settings.DEFAULT_FROM_EMAIL)
-    logger.info("Sending customer confirmation to %s from %s", lead.email, from_email)
+    logger.info("Sending customer confirmation for %s #%s", type(lead).__name__, lead.pk)
     message = EmailMessage(
         subject=f"Thanks for getting in touch — {site.trading_name}",
         body=body,
@@ -106,7 +107,8 @@ def send_customer_confirmation(lead: LeadBase, template: str) -> bool:
         sent = message.send(fail_silently=False)
         logger.info("Customer confirmation sent successfully: %s", bool(sent))
     except Exception as e:
-        logger.exception("Customer confirmation failed for %s #%s: %s", type(lead).__name__, lead.pk, str(e))
+        # No traceback/message: SMTP errors embed the recipient address.
+        logger.error("Customer confirmation failed for %s #%s: %s", type(lead).__name__, lead.pk, type(e).__name__)
         return False
     return bool(sent)
 
@@ -138,8 +140,8 @@ def send_repair_confirmation(repair: Any) -> bool:
     message.content_subtype = "html"
     try:
         sent = message.send(fail_silently=False)
-    except Exception:  # noqa: BLE001 - never let email failure affect the stored request
-        logger.exception("Repair confirmation failed for %s", repair.ticket_number)
+    except Exception as exc:  # noqa: BLE001 - never let email failure affect the stored request
+        logger.error("Repair confirmation failed for %s: %s", repair.ticket_number, type(exc).__name__)
         return False
     return bool(sent)
 
@@ -253,4 +255,18 @@ def _cell(obj: Any, field: str) -> str:
     value = display() if callable(display) else getattr(obj, field, "")
     if hasattr(value, "isoformat"):
         return value.isoformat()
-    return "" if value is None else str(value)
+    return "" if value is None else _csv_safe(str(value))
+
+
+_FORMULA_PREFIXES = ("=", "+", "-", "@", "\t", "\r")
+_INTL_PHONE = re.compile(r"^\+[\d\s().-]{7,}$")
+
+
+def _csv_safe(text: str) -> str:
+    """Neutralise spreadsheet formulas by prefixing a quote (CSV/formula injection).
+
+    Genuine international phone numbers (``+44 20 ...``) are left untouched.
+    """
+    if text.startswith(_FORMULA_PREFIXES) and not _INTL_PHONE.match(text):
+        return "'" + text
+    return text

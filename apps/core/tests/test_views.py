@@ -117,7 +117,7 @@ class PublicUrlSmokeTests(SeededSiteTestCase):
     def test_robots_points_to_sitemap(self):
         text = self.client.get("/robots.txt").content.decode()
         self.assertIn(f"Sitemap: {settings.SITE_URL}/sitemap.xml", text)
-        self.assertIn("Disallow: /admin/", text)
+        self.assertNotIn("/admin/", text)
 
     def test_styleguide_hidden_when_disabled(self):
         with override_settings(STYLEGUIDE_ENABLED=False):

@@ -14,11 +14,21 @@ if len(SECRET_KEY) < 50 or SECRET_KEY.lower().startswith(("insecure", "change", 
     )
 
 DEBUG = False
+STYLEGUIDE_ENABLED = False  # never expose the internal styleguide in production
 
 if not env("EMAIL_URL", default="") or env("EMAIL_URL", default="").startswith(("console", "dummy")):
     raise ImproperlyConfigured("EMAIL_URL must point at a real SMTP provider in production.")
-if not env("ALLOWED_HOSTS", default=[]):
-    raise ImproperlyConfigured("ALLOWED_HOSTS must be set in production.")
+_hosts = env("ALLOWED_HOSTS", default=[])
+if not _hosts or any(h.strip() in ("*", ".*") or h.strip().startswith("*") for h in _hosts):
+    raise ImproperlyConfigured("ALLOWED_HOSTS must list your real domains (no wildcards) in production.")
+if any(h in ("localhost", "127.0.0.1", "[::1]", "testserver") for h in _hosts):
+    raise ImproperlyConfigured("ALLOWED_HOSTS must not contain local hosts in production.")
+_origins = env("CSRF_TRUSTED_ORIGINS", default=[])
+if not _origins or not all(o.startswith("https://") and "*" not in o for o in _origins):
+    raise ImproperlyConfigured(
+        "CSRF_TRUSTED_ORIGINS must be set to explicit https:// origins in production, "
+        "e.g. https://mehrcoolrefrigeration.co.uk"
+    )
 
 # Behind Cloudflare / a TLS-terminating proxy.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -73,15 +83,31 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
         "LOCATION": "django_cache",
+        # Rate-limit counters share this table; keep room so they are not culled early.
+        "OPTIONS": {"MAX_ENTRIES": 10000, "CULL_FREQUENCY": 4},
     }
 }
+
+# Logs go to stdout (journald/Docker/host handles rotation). Set LOG_FILE to also write a
+# size-rotated file; the directory must be readable only by the app user (chmod 700).
+_log_handlers = ["console"]
+_log_config = {"console": {"class": "logging.StreamHandler"}}
+if env("LOG_FILE", default=""):
+    _log_config["file"] = {
+        "class": "logging.handlers.RotatingFileHandler",
+        "filename": env("LOG_FILE"),
+        "maxBytes": 5 * 1024 * 1024,
+        "backupCount": 10,
+        "encoding": "utf-8",
+    }
+    _log_handlers.append("file")
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "handlers": {"console": {"class": "logging.StreamHandler"}},
-    "root": {"handlers": ["console"], "level": "INFO"},
+    "handlers": _log_config,
+    "root": {"handlers": _log_handlers, "level": "INFO"},
     "loggers": {
-        "django.request": {"handlers": ["console"], "level": "WARNING", "propagate": False},
+        "django.request": {"handlers": _log_handlers, "level": "WARNING", "propagate": False},
     },
 }

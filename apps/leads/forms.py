@@ -132,13 +132,53 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
 
 from .models import RepairRequest
 
+SYMPTOM_CHOICES = [
+    ("NOT_COOLING", "Not cooling"),
+    ("LEAKING", "Leaking"),
+    ("NOISE", "Noise"),
+    ("ICE", "Frozen"),
+]
+TIME_SLOT_CHOICES = [("MORNING", "Morning"), ("AFTERNOON", "Afternoon")]
+PHONE_CHARS = re.compile(r"^[0-9+()\-.\s]+$")
+
+
 class RepairRequestForm(HoneypotMixin, forms.ModelForm):
+    symptoms = forms.MultipleChoiceField(
+        choices=SYMPTOM_CHOICES, required=False, widget=forms.CheckboxSelectMultiple
+    )
+    preferred_time_slot = forms.ChoiceField(choices=TIME_SLOT_CHOICES, required=False)
+
     class Meta:
         model = RepairRequest
         fields = [
             'urgency', 'property_type', 'full_name', 'phone_number',
-            'email', 'service_address', 'equipment_type', 'preferred_date', 'preferred_time_slot'
+            'email', 'service_address', 'equipment_type', 'preferred_date', 'preferred_time_slot',
+            'consent',
         ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['consent'].required = True
+        self.fields['consent'].error_messages['required'] = (
+            'Please confirm you agree to us contacting you about this request.'
+        )
+
+    def clean_phone_number(self):
+        value = self.cleaned_data["phone_number"].strip()
+        if not PHONE_CHARS.match(value):
+            raise ValidationError("Please enter a valid phone number.")
+        return validate_phone(value)
+
+    def clean_preferred_date(self):
+        from datetime import timedelta
+
+        from django.utils import timezone
+
+        value = self.cleaned_data.get("preferred_date")
+        today = timezone.localdate()
+        if value and not (today <= value <= today + timedelta(days=365)):
+            raise ValidationError("Please choose a date within the next 12 months.")
+        return value
 
     def clean(self):
         cleaned_data = super().clean()

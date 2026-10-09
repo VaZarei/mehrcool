@@ -82,6 +82,7 @@
         <span>© {% now "Y" %} {{ site.legal_name }}{% if site.company_number %}. Company No. {{ site.company_number }}{% endif %}{% if site.vat_number %}. VAT {{ site.vat_number }}{% endif %}.</span>
         {% if site.footer_legal_line %}<span>{{ site.footer_legal_line }}</span>{% endif %}
         <span>Serving {{ site.areas_served }}.</span>
+        {% if site.gtm_container_id or site.ga4_measurement_id %}<button type="button" data-cookie-settings class="link-button" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;">Cookie settings</button>{% endif %}
       </div>
     </div>
   </div>

@@ -83,7 +83,7 @@ class LeadFormView(FormView):
         lead = form.save(commit=False)
         attach_request_metadata(lead, self.request)
         lead.save()
-        logger.info(f"Lead #{lead.pk} saved: {lead.display_name} ({lead.email})")
+        logger.info("Lead #%s saved", lead.pk)
 
         dispatch_lead_emails(lead, self.email_template, self.customer_email_template)
 
@@ -221,11 +221,13 @@ class EmergencyThanksView(ThanksView):
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, JsonResponse
 from django.views.decorators.cache import never_cache
+from django.views.decorators.http import require_http_methods
 from .forms import RepairRequestForm
 from .throttle import email_limited as _email_limited
 from .models import RepairRequest
 from .services import dispatch_repair_confirmation
 
+@require_http_methods(['GET', 'HEAD', 'POST'])
 @throttle_post('repair')
 def repair_request_view(request):
     if request.method == 'POST':
@@ -235,8 +237,7 @@ def repair_request_view(request):
                 from .throttle import too_many
                 return too_many(request)
             repair_obj = form.save(commit=False)
-            symptoms = request.POST.getlist('symptoms')
-            repair_obj.symptoms = symptoms
+            repair_obj.symptoms = form.cleaned_data['symptoms']
             repair_obj.save()
             dispatch_repair_confirmation(repair_obj)
             owned = request.session.get('repair_tickets', [])
@@ -250,7 +251,8 @@ def repair_request_view(request):
             return redirect('leads:repair_confirmation', ticket_number=repair_obj.ticket_number)
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'success': False, 'errors': form.errors.as_json()}, status=400)
+            errors = {f: [str(m) for m in msgs] for f, msgs in form.errors.items()}
+            return JsonResponse({'success': False, 'errors': errors}, status=400)
 
     form = RepairRequestForm()
     return render(request, 'leads/repair_request_wizard.html', {'form': form})

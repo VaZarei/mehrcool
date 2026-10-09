@@ -12,4 +12,4 @@ class CoreConfig(AppConfig):
 
     def ready(self) -> None:
         """Import signal handlers so cache invalidation is connected."""
-        from . import signals  # noqa: F401
+        from . import checks, signals  # noqa: F401

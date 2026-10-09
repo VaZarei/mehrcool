@@ -6,6 +6,7 @@ import { initHeader } from "./header.js";
 import { initHeroVideo } from "./hero-video.js";
 import { initReveal } from "./reveal.js";
 import { initAnalytics } from "./analytics.js";
+import { initConsent } from "./consent.js";
 import { initForms } from "./forms.js";
 
 document.documentElement.classList.remove("no-js");
@@ -14,4 +15,5 @@ initHeader();
 initHeroVideo();
 initReveal();
 initAnalytics();
+initConsent();
 initForms();
