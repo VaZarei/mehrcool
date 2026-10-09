@@ -17,7 +17,7 @@
     <div class="ticket-box">
       <span class="ticket-label">Emergency Ticket Number:</span>
       <strong id="ticketNumber" class="ticket-code">{{ request_data.ticket_number }}</strong>
-      <button type="button" class="btn-copy" onclick="copyTicketNumber()">Copy</button>
+      <button type="button" class="btn-copy" id="copyTicketBtn">Copy</button>
     </div>
   </div>
 
@@ -103,12 +103,13 @@
   </div>
 </div>
 <!-- Copy Ticket JS Script -->
-<script>
+<script nonce="{{ csp_nonce }}">
     function copyTicketNumber() {
     const ticketText = document.getElementById('ticketNumber').innerText;
     navigator.clipboard.writeText(ticketText).then(() => {
         alert('Ticket number copied to clipboard!');
     });
     }
+  document.getElementById('copyTicketBtn')?.addEventListener('click', copyTicketNumber);
 </script>
 {% endblock %}

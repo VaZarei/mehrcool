@@ -57,7 +57,7 @@
 
 
 <!-- Effect for the Gallery Title -->
-<script>
+<script nonce="{{ csp_nonce }}">
   document.addEventListener('DOMContentLoaded', () => {
     const title = document.querySelector('.page-hero__title');
     if (!title) return;
@@ -92,7 +92,7 @@
   });
 </script>
 
-<script>
+<script nonce="{{ csp_nonce }}">
   document.addEventListener('DOMContentLoaded', () => {
     const title = document.querySelector('.page-hero__title');
     if (!title) return;
@@ -121,7 +121,7 @@
 
 <!-- Effect for the words befor this charachter':' -->
 
-<script>
+<script nonce="{{ csp_nonce }}">
   document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.page-hero__bg-slide');
     

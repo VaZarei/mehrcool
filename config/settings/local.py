@@ -1,9 +1,10 @@
 """Local development settings: SQLite, console email, debug toolbar, styleguide on."""
 
 from .base import *  # noqa: F403
-from .base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE, STORAGES
+from .base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE, SECRET_KEY, STORAGES
 
 DEBUG = True
+SECRET_KEY = SECRET_KEY or "insecure-dev-only-key-change-me"  # noqa: S105 - local only
 ALLOWED_HOSTS = ["localhost", "127.0.0.1","172.20.85.41", "[::1]", "testserver"]
 STYLEGUIDE_ENABLED = True
 

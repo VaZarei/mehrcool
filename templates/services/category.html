@@ -26,7 +26,7 @@
         
 
         <!-- Add this script right below it -->
-        <script>
+        <script nonce="{{ csp_nonce }}">
             document.addEventListener("DOMContentLoaded", function () {
               let introElement = document.getElementById("category-intro");
               if (!introElement) return;

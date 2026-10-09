@@ -157,7 +157,7 @@
 <!-- Load JavaScript File -->
 {% comment %} <script src="{% static 'js/repair_wizard.js' %}"></script> {% endcomment %}
 
-<script>
+<script nonce="{{ csp_nonce }}">
     document.addEventListener('DOMContentLoaded', function () {
         let currentStep = 1;
         const form = document.getElementById('repairForm');
