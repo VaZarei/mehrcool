@@ -25,6 +25,7 @@
 
   <form id="repairForm" method="POST" enctype="multipart/form-data" action="{% url 'leads:request_repair' %}">
     {% csrf_token %}
+    <div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">{{ form.website_url }}</div>
 
     <!-- STEP 1: Urgency Triage -->
     <div class="wizard-step active" data-step="1">

@@ -132,7 +132,7 @@ class ContactEnquiryForm(HoneypotMixin, ChoiceQuerysetMixin, forms.ModelForm):
 
 from .models import RepairRequest
 
-class RepairRequestForm(forms.ModelForm):
+class RepairRequestForm(HoneypotMixin, forms.ModelForm):
     class Meta:
         model = RepairRequest
         fields = [

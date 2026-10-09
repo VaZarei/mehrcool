@@ -21,6 +21,7 @@ from apps.seo import schema
 
 from .forms import ContactEnquiryForm
 from .services import attach_request_metadata, dispatch_lead_emails
+from .throttle import email_limited, is_limited, too_many, throttle_post
 
 HX_REQUEST_HEADER = "HX-Request"
 
@@ -58,6 +59,12 @@ class LeadFormView(FormView):
         """
         return page_copy(self.copy_slug, self.copy_default_title, self.copy_default_intro)
 
+    def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        """Reject floods before any validation, database or email work."""
+        if is_limited(request, self.event_name or "lead"):
+            return too_many(request)
+        return super().post(request, *args, **kwargs)
+
     def form_valid(self, form: Any) -> HttpResponse:
         """Persist the lead, send the notification and respond.
 
@@ -69,6 +76,9 @@ class LeadFormView(FormView):
         """
         import logging
         logger = logging.getLogger(__name__)
+
+        if email_limited(self.event_name or "lead", form.cleaned_data.get("email", "")):
+            return too_many(self.request)
 
         lead = form.save(commit=False)
         attach_request_metadata(lead, self.request)
@@ -209,20 +219,28 @@ class EmergencyThanksView(ThanksView):
 
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
+from django.views.decorators.cache import never_cache
 from .forms import RepairRequestForm
+from .throttle import email_limited as _email_limited
 from .models import RepairRequest
 from .services import dispatch_repair_confirmation
 
+@throttle_post('repair')
 def repair_request_view(request):
     if request.method == 'POST':
         form = RepairRequestForm(request.POST, request.FILES)
         if form.is_valid():
+            if _email_limited('repair', form.cleaned_data.get('email')):
+                from .throttle import too_many
+                return too_many(request)
             repair_obj = form.save(commit=False)
             symptoms = request.POST.getlist('symptoms')
             repair_obj.symptoms = symptoms
             repair_obj.save()
             dispatch_repair_confirmation(repair_obj)
+            owned = request.session.get('repair_tickets', [])
+            request.session['repair_tickets'] = (owned + [repair_obj.ticket_number])[-10:]
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return JsonResponse({
@@ -237,7 +255,10 @@ def repair_request_view(request):
     form = RepairRequestForm()
     return render(request, 'leads/repair_request_wizard.html', {'form': form})
 
+@never_cache
 def repair_confirmation_view(request, ticket_number):
+    if ticket_number not in request.session.get('repair_tickets', []):
+        raise Http404
     repair_request = get_object_or_404(RepairRequest, ticket_number=ticket_number)
     template = 'leads/repair_confirmation_emergency.html' if repair_request.urgency == 'EMERGENCY' else 'leads/repair_confirmation_standard.html'
     return render(request, template, {'request_data': repair_request})

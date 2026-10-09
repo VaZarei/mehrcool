@@ -224,11 +224,24 @@ class RepairRequest(models.Model):
     status = models.CharField(max_length=20, default='PENDING')
 
     def save(self, *args, **kwargs):
-        if not self.ticket_number:
-            import uuid
-            prefix = 'EM-' if self.urgency == 'EMERGENCY' else 'SR-'
-            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:4].upper()}"
-        super().save(*args, **kwargs)
+        if self.ticket_number:
+            return super().save(*args, **kwargs)
+        import uuid
+
+        from django.db import IntegrityError, transaction
+
+        prefix = 'EM-' if self.urgency == 'EMERGENCY' else 'SR-'
+        for _ in range(5):
+            self.ticket_number = f"{prefix}{uuid.uuid4().hex[:8].upper()}"
+            try:
+                with transaction.atomic():
+                    return super().save(*args, **kwargs)
+            except IntegrityError:
+                if not self._state.adding or RepairRequest.objects.filter(
+                    ticket_number=self.ticket_number
+                ).exists() is False:
+                    raise
+        raise IntegrityError("Could not generate a unique ticket number")
 
     def __str__(self):
         return f"{self.ticket_number} - {self.get_urgency_display()} ({self.full_name})"
