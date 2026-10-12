@@ -3,10 +3,12 @@
 
 import os
 import sys
+from pathlib import Path
 
 
 def main() -> None:
     """Run administrative tasks using the local settings module by default."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "djangocodes"))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
     try:
         from django.core.management import execute_from_command_line

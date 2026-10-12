@@ -3,10 +3,10 @@ __pycache__/
 *.pyc
 *.sqlite3
 .env
-/media/*
-!/media/.gitkeep
-!/media/placeholders/
-/staticfiles/
+/djangocodes/media/*
+!/djangocodes/media/.gitkeep
+!/djangocodes/media/placeholders/
+/djangocodes/staticfiles/
 .ruff_cache/
 .pytest_cache/
 *.log
@@ -28,18 +28,18 @@ env/
 db.sqlite3
 db.sqlite3-journal
 *.log
-/media/
-/staticfiles/
+/djangocodes/media/
+/djangocodes/staticfiles/
 .env
-/TempTestApps/
+/djangocodes/TempTestApps/
 
 # Generated vector artwork — rebuild with `python manage.py gen_assets`
-/static/img/brands/
-/static/img/profiles/prof-*.svg
+/djangocodes/static/img/brands/
+/djangocodes/static/img/profiles/prof-*.svg
 
 # Compiled Tailwind output — rebuild with `npm run build:css`
-/static/css/site.css
-/static/vendor/
+/djangocodes/static/css/site.css
+/djangocodes/static/vendor/
 
 # --- Node -----------------------------------------------------------------
 node_modules/

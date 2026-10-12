@@ -12,8 +12,9 @@ extend-exclude = '''
 
 [tool.ruff]
 line-length = 100
+src = ["djangocodes"]
 target-version = "py312"
-extend-exclude = [".venv", "**/migrations/*", "media", "staticfiles"]
+extend-exclude = [".venv", "**/migrations/*", "djangocodes/media", "djangocodes/staticfiles"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "DJ", "N", "D"]
@@ -33,15 +34,15 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "**/tests/*" = ["D"]
 # Seed modules are prose/data: long copy strings are intentional.
-"apps/core/seed/*" = ["E501"]
+"djangocodes/apps/core/seed/*" = ["E501"]
 # QA scripts configure Django before importing models.
-"scripts/*" = ["E402", "D", "E501"]
+"djangocodes/scripts/*" = ["E402", "D", "E501"]
 # SVG path data and markup templates cannot be wrapped meaningfully.
-"apps/core/icons.py" = ["E501"]
-"apps/core/placeholders.py" = ["E501"]
+"djangocodes/apps/core/icons.py" = ["E501"]
+"djangocodes/apps/core/placeholders.py" = ["E501"]
 "**/migrations/*" = ["D", "E501"]
 "manage.py" = ["D"]
-"config/*" = ["D"]
+"djangocodes/config/*" = ["D"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

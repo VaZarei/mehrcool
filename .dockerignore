@@ -5,11 +5,12 @@
 .env.*
 .ruff_cache
 .pytest_cache
-__pycache__
-*.pyc
+**/__pycache__
+**/*.pyc
 *.sqlite3
 *.log
-staticfiles
-TempTestApps
-scripts
+djangocodes/staticfiles
+djangocodes/TempTestApps
+djangocodes/scripts
+djangocodes/db.sqlite3
 *.md

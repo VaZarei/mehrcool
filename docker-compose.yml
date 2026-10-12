@@ -44,7 +44,7 @@ services:
     env_file:
       - /opt/vps_data/Bank/.env.production
     volumes:
-      - /opt/vps_data/Bank/mcr_dir/media:/app/media
+      - /opt/vps_data/Bank/mcr_dir/djangocodes/media:/app/djangocodes/media
     networks:
       app-network:
         aliases:

@@ -22,8 +22,8 @@ Third-party packages and the one-line reason for each are in `requirements/base.
 ## Project layout
 
 ```
-config/            settings (base / local / production), urls, wsgi, asgi
-apps/
+djangocodes/config/            settings (base / local / production), urls, wsgi, asgi
+djangocodes/apps/
   core/            SiteSettings singleton, navigation, trust badges, homepage, template tags,
                    image renditions, placeholders, seed data, management commands
   seo/             SEOFieldsModel, schema.org builders, sitemaps, robots.txt, redirects admin
@@ -33,11 +33,11 @@ apps/
   locations/       ServiceArea (borough landing pages)
   testimonials/    Testimonial
   leads/           ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote
-templates/         base.html, partials/, one folder per app
-static/css/        style.css (single stylesheet)
-static/js/         main.js entry + one module per behaviour, vendor/htmx.min.js
-media/placeholders demo media shipped with the repo (see ASSETS_NEEDED.md)
-fixtures/demo.json full demo dataset (python manage.py loaddata fixtures/demo.json)
+djangocodes/templates/         base.html, partials/, one folder per app
+djangocodes/static/css/        style.css (single stylesheet)
+djangocodes/static/js/         main.js entry + one module per behaviour, vendor/htmx.min.js
+djangocodes/media/placeholders demo media shipped with the repo (see ASSETS_NEEDED.md)
+djangocodes/fixtures/demo.json full demo dataset (python manage.py loaddata djangocodes/fixtures/demo.json)
 ```
 
 ## Local setup
@@ -60,7 +60,7 @@ The design system is at <http://127.0.0.1:8000/styleguide/> (local only).
 added alone. Alternatively load the fixture snapshot:
 
 ```bash
-python manage.py loaddata fixtures/demo.json
+python manage.py loaddata djangocodes/fixtures/demo.json
 ```
 
 The fixture references media under `media/placeholders/`, which is committed, so the site is
@@ -75,7 +75,7 @@ fully populated from a clean checkout.
 | Lint | `ruff check .` |
 | Regenerate placeholder media | `python manage.py make_placeholders` |
 | Create admin groups (Content Editor / Sales) | `python manage.py setup_groups` |
-| URL smoke test against the local DB | `python scripts/smoke_urls.py` |
+| URL smoke test against the local DB | `python djangocodes/scripts/smoke_urls.py` |
 | Deployment checklist | `python manage.py check --deploy` (with production env) |
 
 ### CSS workflow
@@ -115,7 +115,7 @@ See `.env.example`. Summary:
 2. `pip install -r requirements/production.txt`
 3. `python manage.py collectstatic --noinput`
 4. `python manage.py migrate && python manage.py createcachetable`
-5. Either `python manage.py loaddata fixtures/demo.json` for a demo, or `seed_demo`, or start empty and
+5. Either `python manage.py loaddata djangocodes/fixtures/demo.json` for a demo, or `seed_demo`, or start empty and
    fill Site settings in the admin (the singleton is created on first request with sensible defaults).
 6. `python manage.py setup_groups`
 7. Run `gunicorn config.wsgi --bind 0.0.0.0:8000 --workers 3` behind Cloudflare / nginx. WhiteNoise serves

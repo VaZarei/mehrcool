@@ -3,7 +3,7 @@ FROM python:3.14-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE=config.settings.production
+    PYTHONPATH=/app/djangocodes \n    DJANGO_SETTINGS_MODULE=config.settings.production
 
 RUN groupadd -r appgroup && useradd -r -g appgroup -u 1000 appuser
 
@@ -24,8 +24,8 @@ RUN DEBUG=False \
     DEFAULT_FROM_EMAIL=build@example.com \
     LEAD_NOTIFICATION_EMAIL=build@example.com \
     python manage.py collectstatic --noinput \
-    && mkdir -p /app/media \
-    && chown -R appuser:appgroup /app/staticfiles /app/media
+    && mkdir -p /app/djangocodes/media \
+    && chown -R appuser:appgroup /app/djangocodes/staticfiles /app/djangocodes/media
 
 USER appuser
 

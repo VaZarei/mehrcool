@@ -9,6 +9,7 @@ from pathlib import Path
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = BASE_DIR.parent
 
 env = environ.Env(
     DEBUG=(bool, False),
@@ -18,7 +19,7 @@ env = environ.Env(
     LEAD_NOTIFICATION_EMAIL=(str, "info@mehrcoolrefrigeration.co.uk"),
     DEFAULT_FROM_EMAIL=(str, "Mehr Cool Website <noreply@mehrcoolrefrigeration.co.uk>"),
 )
-environ.Env.read_env(BASE_DIR / ".env")
+environ.Env.read_env(PROJECT_ROOT / ".env")
 
 # No default here: production.py requires a real key; local.py supplies a dev-only fallback.
 SECRET_KEY = env("SECRET_KEY", default="")
