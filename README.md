@@ -12,9 +12,9 @@ editable.
 | Framework | Django 6.1, Python 3.12+ | Latest stable; batteries included (admin, sitemaps, redirects) |
 | Interactivity | HTMX 2 (vendored) + small ES modules | No SPA; every page works with JavaScript disabled |
 | CSS | Hand-written, ITCSS layers, literal values only | No framework, and no custom properties: a selector states the colour or size it paints |
-| Database | SQLite (local), PostgreSQL (production) | Configured via `DATABASE_URL` |
+| Database | SQLite (local and production) | Single file, `djangocodes/db.sqlite3`; path overridable via `DATABASE_URL` |
 | Static files | WhiteNoise + `CompressedManifestStaticFilesStorage` | Hashed filenames, one-year cache, Cloudflare-ready |
-| Images | Pillow renditions (AVIF/WebP/JPEG, `srcset`) | In-house `apps/core/images.py`; no extra dependency |
+| Images | Pillow renditions (AVIF/WebP/JPEG, `srcset`) | In-house `djangocodes/apps/core/images.py`; no extra dependency |
 
 Third-party packages and the one-line reason for each are in `requirements/base.txt`,
 `requirements/local.txt` and `requirements/production.txt`.
@@ -32,7 +32,7 @@ djangocodes/apps/
   projects/        Sector, CaseStudy
   locations/       ServiceArea (borough landing pages)
   testimonials/    Testimonial
-  leads/           ContactEnquiry, EmergencyCallout, FormFieldChoice, LeadNote
+  leads/           ContactEnquiry, RepairRequest, FormFieldChoice, LeadNote
 djangocodes/templates/         base.html, partials/, one folder per app
 djangocodes/static/css/        style.css (single stylesheet)
 djangocodes/static/js/         main.js entry + one module per behaviour, vendor/htmx.min.js
@@ -46,7 +46,7 @@ djangocodes/fixtures/demo.json full demo dataset (python manage.py loaddata djan
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements/local.txt
-copy .env.example .env               # cp on macOS/Linux; defaults are fine for local dev
+copy .env.production.example .env    # cp on macOS/Linux; then set local values (see Environment variables)
 python manage.py migrate
 python manage.py seed_demo           # populates everything + generates placeholder media
 python manage.py createsuperuser
@@ -63,35 +63,36 @@ added alone. Alternatively load the fixture snapshot:
 python manage.py loaddata djangocodes/fixtures/demo.json
 ```
 
-The fixture references media under `media/placeholders/`, which is committed, so the site is
+The fixture references media under `djangocodes/media/placeholders/`, which is committed, so the site is
 fully populated from a clean checkout.
 
 ## Everyday commands
 
 | Task | Command |
 | --- | --- |
-| Run tests | `python manage.py test apps` |
-| Format | `black .` |
+| Run tests | `python manage.py test djangocodes/apps` |
+| Format | `black .` (config in `pyproject.toml`) |
 | Lint | `ruff check .` |
 | Regenerate placeholder media | `python manage.py make_placeholders` |
 | Create admin groups (Content Editor / Sales) | `python manage.py setup_groups` |
+| Docker (production) | `docker compose up -d --build` |
 | URL smoke test against the local DB | `python djangocodes/scripts/smoke_urls.py` |
 | Deployment checklist | `python manage.py check --deploy` (with production env) |
 
 ### CSS workflow
 
-Edit `static/css/style.css` directly; it is served as-is in both DEBUG and production, no
+Edit `djangocodes/static/css/style.css` directly; it is served as-is in both DEBUG and production, no
 build step or `collectstatic` transform required beyond the normal static file hashing.
 
 One rule the stylesheet relies on:
 
 - **No CSS custom properties.** Every declaration carries its literal value, so a selector can
   be read on its own. The palette and the type/spacing ladders are listed on `/styleguide/`
-  (dev only) and in `apps/core/views.py`.
+  (dev only) and in `djangocodes/apps/core/views.py`.
 
 ## Environment variables
 
-See `.env.example`. Summary:
+Template: `.env.production.example`. Summary:
 
 | Variable | Purpose |
 | --- | --- |
@@ -100,18 +101,21 @@ See `.env.example`. Summary:
 | `DEBUG` | `False` in production |
 | `ALLOWED_HOSTS` | Comma-separated hostnames |
 | `CSRF_TRUSTED_ORIGINS` | Comma-separated `https://` origins |
-| `DATABASE_URL` | `postgres://user:pass@host:5432/db` or `sqlite:///db.sqlite3` |
+| `DATABASE_URL` | `sqlite:////app/djangocodes/db.sqlite3` in production; defaults to `djangocodes/db.sqlite3` locally |
+| `CONN_MAX_AGE` | Persistent DB connection lifetime in seconds (default 60) |
 | `EMAIL_URL` | e.g. `smtp+tls://user:pass@smtp.example.com:587`; `consolemail://` locally |
 | `DEFAULT_FROM_EMAIL` | Sender for lead notifications |
 | `LEAD_NOTIFICATION_EMAIL` | Fallback recipient if Site settings leaves it blank |
 | `SITE_URL` | Canonical origin, used in sitemaps, canonical tags and JSON-LD |
 | `SECURE_HSTS_SECONDS`, `SECURE_SSL_REDIRECT` | Security headers (production) |
 | `EMERGENCY_PHONE_FALLBACK`, `TRADING_NAME_FALLBACK` | Used only by the 500 page if the DB is down |
+| `LOG_FILE` | Optional path for a size-rotated log file (production) |
 | `STYLEGUIDE_ENABLED` | Expose `/styleguide/` (default off) |
 
 ## Deploying
 
-1. Provision PostgreSQL and set the variables above (`DJANGO_SETTINGS_MODULE=config.settings.production`).
+1. Set the variables above (`DJANGO_SETTINGS_MODULE=config.settings.production`). Production uses SQLite:
+   the database file must sit on persistent storage (a mounted volume) and be included in backups.
 2. `pip install -r requirements/production.txt`
 3. `python manage.py collectstatic --noinput`
 4. `python manage.py migrate && python manage.py createcachetable`
@@ -122,8 +126,13 @@ See `.env.example`. Summary:
    `/static/` with immutable cache headers; serve `/media/` from nginx or object storage.
 8. `python manage.py check --deploy` should report no issues.
 
-Media uploads live in `MEDIA_ROOT` (`media/`). Renditions are generated lazily into
-`media/renditions/` and can be deleted at any time.
+Production database: SQLite (`djangocodes/db.sqlite3`). Back it up while the site is running with
+`sqlite3 db.sqlite3 ".backup backup.sqlite3"` (copying the raw file during writes can corrupt it).
+SQLite allows one writer at a time, which is fine for a brochure site with lead forms; keep
+workers modest and avoid long write transactions.
+
+Media uploads live in `MEDIA_ROOT` (`djangocodes/media/`). Renditions are generated lazily into
+`djangocodes/media/renditions/` and can be deleted at any time.
 
 ## Architecture notes
 
@@ -132,17 +141,17 @@ Media uploads live in `MEDIA_ROOT` (`media/`). Renditions are generated lazily i
   `/case-studies/`, `/areas/`, `/contact/`, `/emergency-callout/`) read their heading and intro from
   `Page` rows with those reserved slugs. A test asserts no template contains contact details.
 - **URL dispatch.** `/<slug>/` is shared by category hubs and pages via
-  `apps.core.views.slug_dispatch` (category first, then page). Everything else has an explicit route
+  `djangocodes.apps.core.views.slug_dispatch` (category first, then page). Everything else has an explicit route
   registered before it.
 - **Blocks.** `ContentBlockBase` is abstract; `PageBlock` and `ServiceBlock` are concrete. Each block
-  type renders from `templates/pages/blocks/<type>.html`, so a new block type is a choice + a partial.
-- **Schema.org** is built in `apps/seo/schema.py` from the database and emitted via `{% json_ld %}`.
+  type renders from `djangocodes/templates/pages/blocks/<type>.html`, so a new block type is a choice + a partial.
+- **Schema.org** is built in `djangocodes/apps/seo/schema.py` from the database and emitted via `{% json_ld %}`.
 - **Performance.** Header/footer/nav fragments are cached; context processors cache settings,
   navigation and badges; every listing uses `select_related`/`prefetch_related` and query budgets are
-  asserted in `apps/core/tests/test_queries.py`. The hero video is never downloaded on phones, on
+  asserted in `djangocodes/apps/core/tests/test_queries.py`. The hero video is never downloaded on phones, on
   reduced-motion, on Save-Data, or on 2G.
-- **Extending.** Add a new app under `apps/`, inherit `TimeStampedModel` / `PublishableModel` /
-  `SEOFieldsModel`, register a sitemap in `apps/seo/sitemaps.py` and a URL include in `config/urls.py`.
+- **Extending.** Add a new app under `djangocodes/apps/`, inherit `TimeStampedModel` / `PublishableModel` /
+  `SEOFieldsModel`, register a sitemap in `djangocodes/apps/seo/sitemaps.py` and a URL include in `djangocodes/config/urls.py`.
   Nothing existing needs to change.
 
 ## Also read
