@@ -1,0 +1,15 @@
+.git
+.claude
+.venv
+.env
+.env.*
+.ruff_cache
+.pytest_cache
+__pycache__
+*.pyc
+*.sqlite3
+*.log
+staticfiles
+TempTestApps
+scripts
+*.md

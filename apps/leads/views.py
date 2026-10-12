@@ -11,7 +11,7 @@ from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, RedirectView, TemplateView
 
 from apps.core.models import SiteSettings
 from apps.core.views import trust_strip_context
@@ -147,39 +147,11 @@ class ContactView(LeadFormView):
 
 
 
-class RepairView(TemplateView):
-    """``/repair/``: emergency callback and scheduled-repair forms side by side.
+class RepairView(RedirectView):
+    """``/repair/`` now forwards to the repair request wizard."""
 
-    Each form posts to its own existing endpoint (``leads:emergency`` /
-    ``leads:request``); this view only renders the two unbound forms together.
-    """
-
-    template_name = "leads/repair.html"
-    copy_slug = "repair"
-    copy_default_title = "Refrigeration & air conditioning repair"
-    copy_default_intro = (
-        "Equipment down right now? Call the duty engineer. Planning a repair or site "
-        "visit? Send the details below."
-    )
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        """Add both unbound forms, breadcrumbs and schema."""
-        context = super().get_context_data(**kwargs)
-        copy = page_copy(self.copy_slug, self.copy_default_title, self.copy_default_intro)
-        crumbs = [("Home", "/"), ("Repair", reverse("leads:repair"))]
-        context.update(
-            {
-                "copy": copy,
-                "seo": copy.page,
-                "form": EmergencyCalloutForm(),
-                "request_form": RequestEnquiryForm(),
-                "breadcrumbs": crumbs,
-                "schema_graph": [schema.breadcrumbs(crumbs)],
-                "audience": "Emergency callers (Path A) and scheduled-repair enquirers (Path B)",
-                **trust_strip_context(),
-            }
-        )
-        return context
+    pattern_name = "leads:request_repair"
+    permanent = False
 
 
 class ThanksView(TemplateView):

@@ -30,7 +30,7 @@ class StaticViewSitemap(Sitemap):
             "core:home",
             "services:index",
             "leads:contact",
-            "leads:emergency",
+            "leads:repair",
             "projects:sector_list",
             "projects:case_study_list",
             "locations:index",
@@ -42,7 +42,7 @@ class StaticViewSitemap(Sitemap):
 
     def priority(self, item: str) -> float:
         """Homepage and emergency page rank highest."""
-        return 1.0 if item in ("core:home", "leads:emergency") else 0.7
+        return 1.0 if item in ("core:home", "leads:repair") else 0.7
 
 
 class PublishedSitemap(Sitemap):

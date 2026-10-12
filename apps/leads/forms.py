@@ -170,14 +170,19 @@ class RepairRequestForm(HoneypotMixin, forms.ModelForm):
         return validate_phone(value)
 
     def clean_preferred_date(self):
-        from datetime import timedelta
+        import calendar
+        from datetime import date
 
         from django.utils import timezone
 
         value = self.cleaned_data.get("preferred_date")
         today = timezone.localdate()
-        if value and not (today <= value <= today + timedelta(days=365)):
-            raise ValidationError("Please choose a date within the next 12 months.")
+        month = today.month + 4
+        year = today.year + (month - 1) // 12
+        month = (month - 1) % 12 + 1
+        latest = date(year, month, min(today.day, calendar.monthrange(year, month)[1]))
+        if value and not (today <= value <= latest):
+            raise ValidationError("Please choose a date within the next 4 months.")
         return value
 
     def clean(self):

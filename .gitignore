@@ -12,6 +12,7 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+.claude
 
 
 
@@ -30,6 +31,7 @@ db.sqlite3-journal
 /media/
 /staticfiles/
 .env
+/TempTestApps/
 
 # Generated vector artwork — rebuild with `python manage.py gen_assets`
 /static/img/brands/
@@ -57,3 +59,5 @@ desktop.ini
 htmlcov/
 .ruff_cache/
 
+
+.env.production
