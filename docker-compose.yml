@@ -1,60 +1,18 @@
 services:
-  caddy:
-    image: caddy:2-alpine
-    container_name: caddy-proxy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - /opt/vps_data/Bank/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - /opt/vps_data/Bank/caddy/data:/data
-      - /opt/vps_data/Bank/caddy/config:/config
-    networks:
-      app-network:
-        aliases:
-          - caddy-proxy
-
-  db:
-    image: postgres:17-alpine
-    container_name: mcr_db
+  mcr_show:
+    build:
+      context: /opt/vps-data/mcr/git-clone-1
+      dockerfile: Dockerfile
+    container_name: mcr_show_container
     restart: unless-stopped
     env_file:
-      - /opt/vps_data/Bank/.env.production
+      - /opt/vps-data/mcr/git-clone-1/.env.production
     volumes:
-      - mcr_pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
+      - /opt/vps-data/mcr/bank/container:/app/bank/container
     networks:
       - app-network
 
-  mcr_show:
-    build:
-      context: /opt/vps_data/Bank/mcr_dir
-      dockerfile: Dockerfile
-    container_name: mcr_showcase
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - /opt/vps_data/Bank/.env.production
-    volumes:
-      - /opt/vps_data/Bank/mcr_dir/djangocodes/media:/app/djangocodes/media
-    networks:
-      app-network:
-        aliases:
-          - mcr_show
-          - mcr_showcase
-
-volumes:
-  mcr_pgdata:
-
 networks:
   app-network:
-    driver: bridge
-    name: app-network
+    external: true
+    name: mcr_network
