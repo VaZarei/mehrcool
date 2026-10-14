@@ -7,9 +7,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production
 
 RUN groupadd -r appgroup && useradd -r -g appgroup -u 1000 -m -d /home/appuser appuser
-RUN chown -R appuser:appgroup /app /home/appuser
 
 WORKDIR /app
+
+RUN chown -R appuser:appgroup /app /home/appuser
 
 COPY requirements/ /app/requirements/
 RUN pip install --no-cache-dir -r requirements/production.lock.txt
