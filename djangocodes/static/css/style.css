@@ -1656,7 +1656,7 @@ table {
   flex: 1 1 auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 319px) {
   .hero__actions .btn {
     flex: none;
   }
