@@ -26,11 +26,10 @@ env/
 
 # --- Django ---------------------------------------------------------------
 
-/djangocodes/db.sqlite3
 *.log
 
 .env
-/TempTestApps/
+TempTestApps/
 
 # Generated vector artwork — rebuild with `python manage.py gen_assets`
 
