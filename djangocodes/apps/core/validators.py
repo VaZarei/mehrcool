@@ -47,7 +47,11 @@ class MaxFileSizeValidator:
         Raises:
             ValidationError: If the file exceeds ``max_bytes``.
         """
-        size = getattr(value, "size", None)
+        try:
+            size = getattr(value, "size", None)
+        except FileNotFoundError:
+            # Stored file missing from disk (e.g. not copied to this server); let the admin save/clear it.
+            return
         if size is not None and size > self.max_bytes:
             raise ValidationError(
                 f"This file is {_size_label(size)}. Please keep it under "
