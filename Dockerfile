@@ -6,7 +6,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONPATH=/app/djangocodes\
     DJANGO_SETTINGS_MODULE=config.settings.production
 
-RUN groupadd -r appgroup && useradd -r -g appgroup -u 1000 appuser
+RUN groupadd -r appgroup && useradd -r -g appgroup -u 1000 -m -d /home/appuser appuser
+RUN chown -R appuser:appgroup /app /home/appuser
 
 WORKDIR /app
 
