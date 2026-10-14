@@ -30,7 +30,7 @@ env/
 *.log
 
 .env
-/djangocodes/TempTestApps/
+/TempTestApps/
 
 # Generated vector artwork — rebuild with `python manage.py gen_assets`
 
