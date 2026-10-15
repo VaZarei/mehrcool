@@ -1,8 +1,8 @@
 /**
  * Hero video: the poster is always in the HTML; video <source> elements are only
- * attached when the viewport is desktop-sized, the user has not asked for reduced
+ * attached when the user has not asked for reduced
  * motion or reduced data, and the connection is not constrained. Nothing is
- * downloaded otherwise, so phones on 4G get a still image only.
+ * downloaded otherwise, so constrained connections get a still image only.
  */
 export function initHeroVideo() {
   const hero = document.querySelector("[data-hero]");
@@ -13,10 +13,10 @@ export function initHeroVideo() {
   if (!sources.length) return;
 
   const wantsVideo =
+    
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
     !navigator.connection?.saveData &&
     !/(^|-)2g$/.test(navigator.connection?.effectiveType || "");
-
 
   if (!wantsVideo) return;
 

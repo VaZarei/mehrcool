@@ -76,7 +76,7 @@ SECURE_CSP = {
 # Cloudflare caches static assets for a year because filenames are content-hashed.
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
-    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+    "staticfiles": {"BACKEND": "config.storage.HashedModuleStaticFilesStorage"},
 }
 
 CACHES = {

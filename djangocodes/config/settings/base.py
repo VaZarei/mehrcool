@@ -140,7 +140,7 @@ MEDIA_ROOT = env.path("MEDIA_ROOT", default=str(BASE_DIR / "media"))
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "config.storage.HashedModuleStaticFilesStorage",
     },
 }
 WHITENOISE_MAX_AGE = 60 * 60 * 24 * 365
