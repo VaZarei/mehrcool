@@ -23,7 +23,7 @@
 
   </div>
 
-  <form id="repairForm" method="POST" enctype="multipart/form-data" action="{% url 'leads:request_repair' %}">
+  <form id="repairForm" autocomplete="off" method="POST" enctype="multipart/form-data" action="{% url 'leads:request_repair' %}">
     {% csrf_token %}
     <div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">{{ form.website_url }}</div>
 
@@ -183,6 +183,14 @@
 </style>
 
 <script nonce="{{ csp_nonce }}">
+    window.addEventListener('pageshow', function (e) {
+        if (sessionStorage.getItem('repairFormSubmitted')) {
+            sessionStorage.removeItem('repairFormSubmitted');
+            if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+                window.location.reload();
+            }
+        }
+    });
     document.addEventListener('DOMContentLoaded', function () {
         let currentStep = 1;
         const form = document.getElementById('repairForm');
@@ -470,6 +478,7 @@
             })
             .then(data => {
                 if (data.success) {
+                    sessionStorage.setItem('repairFormSubmitted', '1');
                     window.location.href = data.redirect_url;
                 } else {
                     const errorMsg = data.errors ? Object.values(data.errors).flat().join('\n') : 'Unknown error occurred';
