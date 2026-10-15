@@ -177,12 +177,12 @@ class RepairRequestForm(HoneypotMixin, forms.ModelForm):
 
         value = self.cleaned_data.get("preferred_date")
         today = timezone.localdate()
-        month = today.month + 4
+        month = today.month + 6
         year = today.year + (month - 1) // 12
         month = (month - 1) % 12 + 1
         latest = date(year, month, min(today.day, calendar.monthrange(year, month)[1]))
         if value and not (today <= value <= latest):
-            raise ValidationError("Please choose a date within the next 4 months.")
+            raise ValidationError("Please choose a date within the next 6 months.")
         return value
 
     def clean(self):

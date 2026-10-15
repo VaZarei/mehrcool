@@ -163,6 +163,24 @@
 
 <!-- Load JavaScript File -->
 {% comment %} <script src="{% static 'js/repair_wizard.js' %}"></script> {% endcomment %}
+<link rel="stylesheet" href="{% static 'css/flatpickr.min.css' %}">
+<script src="{% static 'js/vendor/flatpickr.min.js' %}"></script>
+<style>
+  .flatpickr-day.prevMonthDay,
+  .flatpickr-day.nextMonthDay { color: #1d1d1f; }
+  .flatpickr-day.prevMonthDay.flatpickr-disabled,
+  .flatpickr-day.nextMonthDay.flatpickr-disabled,
+  .flatpickr-day.flatpickr-disabled { color: rgba(60, 60, 67, 0.3); }
+  .flatpickr-day.selected,
+  .flatpickr-day.selected.prevMonthDay,
+  .flatpickr-day.selected.nextMonthDay { color: #fff; }
+  .date-field { position: relative; }
+  .date-field .flatpickr-input { padding-right: 2.75rem; cursor: pointer; }
+  .date-field__icon {
+    position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; color: #6e6e73; pointer-events: none;
+  }
+</style>
 
 <script nonce="{{ csp_nonce }}">
     document.addEventListener('DOMContentLoaded', function () {
@@ -396,12 +414,22 @@
         // Service date: no past days, max 4 months ahead (matches RepairRequestForm.clean_preferred_date)
         const dateInput = form.querySelector('input[name="preferred_date"]');
         if (dateInput) {
-            const pad = n => String(n).padStart(2, '0');
-            const fmt = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
             const today = new Date();
-            const maxDate = new Date(today.getFullYear(), today.getMonth() + 4, today.getDate());
-            dateInput.min = fmt(today);
-            dateInput.max = fmt(maxDate);
+            const maxDate = new Date(today.getFullYear(), today.getMonth() + 6, today.getDate());
+            const fp = flatpickr(dateInput, {
+                dateFormat: 'Y-m-d',
+                altInput: true,
+                altFormat: 'F j, Y',
+                minDate: 'today',
+                maxDate: maxDate,
+                disableMobile: true,
+                showMonths: 1
+            });
+            const wrap = document.createElement('div');
+            wrap.className = 'date-field';
+            fp.altInput.parentNode.insertBefore(wrap, fp.altInput);
+            wrap.appendChild(fp.altInput);
+            wrap.insertAdjacentHTML('beforeend', '<svg class="date-field__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>');
         }
 
         // 4. AJAX Submission
