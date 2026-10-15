@@ -4,7 +4,7 @@
   {% if category.gallery_images.all %}
     <div class="page-hero__bg-gallery">
       {% for img in category.gallery_images.all %}
-        <div class="page-hero__bg-slide {% if loop.first %}is-active{% endif %}">
+        <div class="page-hero__bg-slide {% if forloop.first %}is-active{% endif %}">
           <img src="{{ img.image.url }}" alt="{{ img.alt }}" loading="eager">
         </div>
       {% endfor %}
